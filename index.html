@@ -111,9 +111,103 @@
     <p id="status" class="gold-msg">مستعد لإبهار العالم؟ ابدأ الآن..</p>
 
     <script>
-        const canvas = document.getElementById('mainCanvas');
-        const ctx = canvas.getContext('2d');
-        const bgImg = new Image();
+       <script>
+    const canvas = document.getElementById('mainCanvas');
+    const ctx = canvas.getContext('2d');
+    const bgImg = new Image();
+    bgImg.crossOrigin = "anonymous";
+    
+    let videoCount = localStorage.getItem('creative2026_count') || 0;
+
+    function checkLimits() {
+        if (videoCount >= 3 && videoCount != -1) {
+            document.getElementById('controls-area').style.display = 'none';
+            document.getElementById('subscription-panel').style.display = 'block';
+            return false;
+        }
+        return true;
+    }
+
+    function applyAndDraw() {
+        const url = document.getElementById('bgUrl').value;
+        if (url) {
+            bgImg.src = url;
+            bgImg.onload = () => {
+                document.getElementById('saveBtn').style.display = 'block';
+                render();
+            };
+        } else { render(); }
+    }
+
+    function render() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        if (bgImg.complete && bgImg.src) {
+            ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
+        } else {
+            ctx.fillStyle = "#111";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+        
+        ctx.font = "bold 75px Arial";
+        ctx.textAlign = "center";
+        ctx.shadowColor = "rgba(0,0,0,0.8)";
+        ctx.shadowBlur = 20;
+
+        let grad = ctx.createLinearGradient(0, 0, 0, canvas.height);
+        grad.addColorStop(0.3, "#D4AF37");
+        grad.addColorStop(0.7, "#FFD700");
+        ctx.fillStyle = grad;
+
+        const lines = (document.getElementById('userText').value || "Creative\n2026").split('\n');
+        let lineHeight = 95;
+        let y = (canvas.height - (lines.length * lineHeight)) / 2 + 60;
+
+        lines.forEach(line => {
+            ctx.fillText(line, canvas.width / 2, y);
+            y += lineHeight;
+        });
+
+        requestAnimationFrame(render);
+    }
+
+    function startRecording() {
+        if (!checkLimits()) return;
+
+        const stream = canvas.captureStream(30);
+        const recorder = new MediaRecorder(stream, { mimeType: 'video/webm' });
+        const chunks = [];
+
+        recorder.ondataavailable = e => chunks.push(e.data);
+        recorder.onstop = () => {
+            const blob = new Blob(chunks, { type: 'video/webm' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = `Creative2026_${Date.now()}.webm`;
+            a.click();
+            
+            if (videoCount != -1) {
+                videoCount++;
+                localStorage.setItem('creative2026_count', videoCount);
+                checkLimits();
+            }
+        };
+
+        recorder.start();
+        alert("بدأ الاستخراج.. سيتم الحفظ بعد 10 ثوانٍ.");
+        setTimeout(() => recorder.stop(), 10000);
+    }
+
+    function activateFullVersion() {
+        localStorage.setItem('creative2026_count', -1);
+        alert("تم التفعيل الملكي بنجاح يا أستاذ أشرف!");
+        location.reload();
+    }
+
+    window.onload = () => { checkLimits(); render(); };
+</script>
+
+        
         bgImg.crossOrigin = "anonymous";
         
         // جلب عدد الفيديوهات المحفوظة من ذاكرة الهاتف
