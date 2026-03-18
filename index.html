@@ -1,85 +1,21 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creative 2026 | المحرر الملكي الذهبي</title>
-    
     <link rel="icon" href="https://img.icons8.com/fluency/48/D4AF37/crown.png" type="image/png">
-
     <style>
-        /* التنسيق البصري: أسود وذهبي فخم */
-        body { 
-            background-color: #000; 
-            color: #fff; 
-            font-family: Arial, sans-serif; 
-            margin: 0; 
-            padding: 15px; 
-            text-align: center; 
-        }
-
-        h1 { 
-            color: #D4AF37; 
-            font-size: 35px; 
-            margin-bottom: 10px;
-            text-shadow: 2px 2px #333;
-        }
-
-        /* حاوية العرض - حجم مناسب للهاتف */
-        #canvas-wrapper { 
-            border: 3px solid #D4AF37; 
-            background: #111; 
-            margin: 15px auto; 
-            max-width: 900px; 
-            border-radius: 15px; 
-            overflow: hidden; 
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
-        }
-
+        body { background-color: #000; color: #fff; font-family: Arial, sans-serif; margin: 0; padding: 15px; text-align: center; }
+        h1 { color: #D4AF37; font-size: 32px; margin-bottom: 10px; text-shadow: 2px 2px #333; }
+        #canvas-wrapper { border: 3px solid #D4AF37; background: #111; margin: 15px auto; max-width: 900px; border-radius: 15px; overflow: hidden; box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
         canvas { width: 100%; height: auto; display: block; }
-
-        /* مدخلات النص والروابط - خطوط كبيرة (20px+) لراحة العين */
-        textarea, input { 
-            width: 95%; 
-            padding: 18px; 
-            font-size: 20px; 
-            margin: 10px 0; 
-            background: #222; 
-            color: #fff; 
-            border: 2px solid #444; 
-            border-radius: 12px; 
-            box-sizing: border-box;
-        }
-
-        textarea { height: 120px; }
-
-        /* الأزرار الذهبية الواضحة */
-        .button { 
-            width: 95%; 
-            padding: 22px; 
-            font-size: 24px; 
-            font-weight: bold; 
-            background-color: #D4AF37; 
-            color: #000; 
-            border: none; 
-            border-radius: 12px; 
-            cursor: pointer; 
-            margin-top: 10px;
-            transition: 0.3s;
-        }
-
-        /* لوحة الاشتراك - تظهر بعد 3 محاولات */
-        #subscription-panel { 
-            display:none; 
-            margin-top: 20px; 
-            padding: 25px; 
-            border: 4px dashed #D4AF37; 
-            background: #111; 
-            border-radius: 15px; 
-        }
-
-        .gold-msg { color: #D4AF37; font-size: 22px; font-weight: bold; margin-top: 15px; }
+        textarea, input { width: 95%; padding: 18px; font-size: 20px; margin: 10px 0; background: #222; color: #fff; border: 2px solid #444; border-radius: 12px; box-sizing: border-box; }
+        textarea { height: 110px; }
+        .button { width: 95%; padding: 20px; font-size: 22px; font-weight: bold; background-color: #D4AF37; color: #000; border: none; border-radius: 12px; cursor: pointer; margin-top: 10px; text-decoration: none; display: inline-block; }
+        #subscription-panel { display:none; margin-top: 20px; padding: 25px; border: 4px dashed #D4AF37; background: #111; border-radius: 15px; }
+        .gold-msg { color: #D4AF37; font-size: 20px; font-weight: bold; margin-top: 15px; line-height: 1.6; }
+        .whatsapp-btn { background-color: #25D366; color: white; margin-top: 15px; }
     </style>
 </head>
 <body>
@@ -91,130 +27,33 @@
     </div>
 
     <div id="controls-area">
-        <textarea id="userText" placeholder="اكتب نص المعايدة أو الخدمة هنا.. (اضغط Enter لسطر جديد)"></textarea>
-        <input type="text" id="bgUrl" placeholder="الصق رابط الصورة الذهبية الفخمة هنا">
+        <textarea id="userText" placeholder="اكتب نص المعايدة هنا.. (اضغط Enter لسطر جديد)"></textarea>
+        <input type="text" id="bgUrl" placeholder="الصق رابط الصورة الذهبية هنا">
         <button class="button" onclick="applyAndDraw()">✨ تحديث وتنسيق التصميم</button>
-        
         <button id="saveBtn" class="button" style="background-color: #28a745; color: white; display:none;" onclick="startRecording()">💾 حفظ الفيديو (محاولة مجانية)</button>
     </div>
 
     <div id="subscription-panel">
-        <h2 style="color: #D4AF37; font-size: 32px;">انتهت المحاولات المجانية! 🚀</h2>
+        <h2 style="color: #D4AF37; font-size: 28px;">انتهت المحاولات المجانية! 🚀</h2>
         <p class="gold-msg">يا أهلاً بيك في النادي الذهبي.. اشترك دلوقتي عشان تطلع فيديوهات براحتك ومن غير حدود بلمسة الخبير أشرف حسن.</p>
         
-        <a href="ضَع_رابط_الدفع_هنا" class="button" style="text-decoration: none; display: block;">إتمام الاشتراك الشهري 💳</a>
+        <a href="https://ipn.eg/S/ashrafhassan567/instapay/9qNhXU" class="button">إتمام الاشتراك الشهري (InstaPay) 💳</a>
         
-        <a href="https://ipn.eg/S/ashrafhassan567/instapay/9qNhXU" class="button" style="text-decoration: none; display: block; background-color: #D4AF37; color: #000;">
-    إتمام الاشتراك الشهري (عبر InstaPay) 💳
-</a>
+        <a href="https://wa.me/201026402440?text=تم التحويل عبر إنستا باي لتفعيل الاشتراك الذهبي" class="button whatsapp-btn">أرسل صورة التحويل (واتساب) ✅</a>
+        
+        <p style="font-size: 14px; color: #666; margin-top: 10px;">للتجربة فقط:</p>
+        <button onclick="activateFullVersion()" style="background:none; border:none; color:#D4AF37; text-decoration: underline;">تفعيل تجريبي</button>
+    </div>
 
-
-    <p id="status" class="gold-msg">مستعد لإبهار العالم؟ ابدأ الآن..</p>
+    <p id="status" class="gold-msg">جاهز للإبداع يا أشرف..</p>
 
     <script>
-       <script>
-    const canvas = document.getElementById('mainCanvas');
-    const ctx = canvas.getContext('2d');
-    const bgImg = new Image();
-    bgImg.crossOrigin = "anonymous";
-    
-    let videoCount = localStorage.getItem('creative2026_count') || 0;
-
-    function checkLimits() {
-        if (videoCount >= 3 && videoCount != -1) {
-            document.getElementById('controls-area').style.display = 'none';
-            document.getElementById('subscription-panel').style.display = 'block';
-            return false;
-        }
-        return true;
-    }
-
-    function applyAndDraw() {
-        const url = document.getElementById('bgUrl').value;
-        if (url) {
-            bgImg.src = url;
-            bgImg.onload = () => {
-                document.getElementById('saveBtn').style.display = 'block';
-                render();
-            };
-        } else { render(); }
-    }
-
-    function render() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        if (bgImg.complete && bgImg.src) {
-            ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
-        } else {
-            ctx.fillStyle = "#111";
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-        }
-        
-        ctx.font = "bold 75px Arial";
-        ctx.textAlign = "center";
-        ctx.shadowColor = "rgba(0,0,0,0.8)";
-        ctx.shadowBlur = 20;
-
-        let grad = ctx.createLinearGradient(0, 0, 0, canvas.height);
-        grad.addColorStop(0.3, "#D4AF37");
-        grad.addColorStop(0.7, "#FFD700");
-        ctx.fillStyle = grad;
-
-        const lines = (document.getElementById('userText').value || "Creative\n2026").split('\n');
-        let lineHeight = 95;
-        let y = (canvas.height - (lines.length * lineHeight)) / 2 + 60;
-
-        lines.forEach(line => {
-            ctx.fillText(line, canvas.width / 2, y);
-            y += lineHeight;
-        });
-
-        requestAnimationFrame(render);
-    }
-
-    function startRecording() {
-        if (!checkLimits()) return;
-
-        const stream = canvas.captureStream(30);
-        const recorder = new MediaRecorder(stream, { mimeType: 'video/webm' });
-        const chunks = [];
-
-        recorder.ondataavailable = e => chunks.push(e.data);
-        recorder.onstop = () => {
-            const blob = new Blob(chunks, { type: 'video/webm' });
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(blob);
-            a.download = `Creative2026_${Date.now()}.webm`;
-            a.click();
-            
-            if (videoCount != -1) {
-                videoCount++;
-                localStorage.setItem('creative2026_count', videoCount);
-                checkLimits();
-            }
-        };
-
-        recorder.start();
-        alert("بدأ الاستخراج.. سيتم الحفظ بعد 10 ثوانٍ.");
-        setTimeout(() => recorder.stop(), 10000);
-    }
-
-    function activateFullVersion() {
-        localStorage.setItem('creative2026_count', -1);
-        alert("تم التفعيل الملكي بنجاح يا أستاذ أشرف!");
-        location.reload();
-    }
-
-    window.onload = () => { checkLimits(); render(); };
-</script>
-
-        
+        const canvas = document.getElementById('mainCanvas');
+        const ctx = canvas.getContext('2d');
+        const bgImg = new Image();
         bgImg.crossOrigin = "anonymous";
-        
-        // جلب عدد الفيديوهات المحفوظة من ذاكرة الهاتف
         let videoCount = localStorage.getItem('creative2026_count') || 0;
 
-        // وظيفة التحقق من حدود الاستخدام
         function checkLimits() {
             if (videoCount >= 3 && videoCount != -1) {
                 document.getElementById('controls-area').style.display = 'none';
@@ -224,7 +63,6 @@
             return true;
         }
 
-        // رسم الخلفية والنص الذهبي المنسق
         function applyAndDraw() {
             const url = document.getElementById('bgUrl').value;
             if (url) {
@@ -233,87 +71,65 @@
                     document.getElementById('saveBtn').style.display = 'block';
                     render();
                 };
-            } else {
-                render(); // رسم نص تجريبي إذا لم توجد خلفية
-            }
+            } else { render(); }
         }
 
         function render() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            // 1. رسم الصورة الخلفية
             if (bgImg.complete && bgImg.src) {
                 ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
             } else {
                 ctx.fillStyle = "#111";
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
             }
-            
-            // 2. إعدادات النص الذهبي الفخم (تنسيق أسطر)
             ctx.font = "bold 75px Arial";
             ctx.textAlign = "center";
             ctx.shadowColor = "rgba(0,0,0,0.8)";
             ctx.shadowBlur = 20;
-
             let grad = ctx.createLinearGradient(0, 0, 0, canvas.height);
-            grad.addColorStop(0.3, "#D4AF37"); // ذهبي ملكي
-            grad.addColorStop(0.7, "#FFD700"); // ذهبي فاتح متوهج
+            grad.addColorStop(0.3, "#D4AF37");
+            grad.addColorStop(0.7, "#FFD700");
             ctx.fillStyle = grad;
 
             const lines = (document.getElementById('userText').value || "Creative\n2026").split('\n');
-            let lineHeight = 95;
-            let y = (canvas.height - (lines.length * lineHeight)) / 2 + 60;
-
+            let y = (canvas.height - (lines.length * 95)) / 2 + 60;
             lines.forEach(line => {
                 ctx.fillText(line, canvas.width / 2, y);
-                y += lineHeight;
+                y += 95;
             });
-
             requestAnimationFrame(render);
         }
 
-        // وظيفة تسجيل الفيديو وحفظه
         function startRecording() {
             if (!checkLimits()) return;
-
             const stream = canvas.captureStream(30);
             const recorder = new MediaRecorder(stream, { mimeType: 'video/webm' });
             const chunks = [];
-
             recorder.ondataavailable = e => chunks.push(e.data);
             recorder.onstop = () => {
                 const blob = new Blob(chunks, { type: 'video/webm' });
                 const a = document.createElement('a');
                 a.href = URL.createObjectURL(blob);
-                a.download = `Creative2026_Art_${Date.now()}.webm`;
+                a.download = `Creative2026_${Date.now()}.webm`;
                 a.click();
-                
-                // تحديث العداد
                 if (videoCount != -1) {
                     videoCount++;
                     localStorage.setItem('creative2026_count', videoCount);
                     checkLimits();
                 }
             };
-
             recorder.start();
-            alert("بدأ استخراج الفيديو الذهبي.. انتظر 10 ثوانٍ وسيتم الحفظ تلقائياً.");
+            alert("بدأ الاستخراج.. سيتم الحفظ بعد 10 ثوانٍ.");
             setTimeout(() => recorder.stop(), 10000);
         }
 
-        // تفعيل النسخة الكاملة (بعد الدفع أو للتجربة)
         function activateFullVersion() {
             localStorage.setItem('creative2026_count', -1);
-            videoCount = -1;
-            alert("مبروك! تم تفعيل اشتراكك الذهبي يا أستاذ أشرف.");
+            alert("مبروك! تم تفعيل الاشتراك بنجاح.");
             location.reload();
         }
 
-        // التشغيل عند فتح الصفحة
-        window.onload = () => {
-            checkLimits();
-            render();
-        };
+        window.onload = () => { checkLimits(); render(); };
     </script>
 </body>
 </html>
