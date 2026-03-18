@@ -1,1 +1,224 @@
 
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative 2026 | المحرر الملكي الذهبي</title>
+    
+    <link rel="icon" href="https://img.icons8.com/fluency/48/D4AF37/crown.png" type="image/png">
+
+    <style>
+        /* التنسيق البصري: أسود وذهبي فخم */
+        body { 
+            background-color: #000; 
+            color: #fff; 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            padding: 15px; 
+            text-align: center; 
+        }
+
+        h1 { 
+            color: #D4AF37; 
+            font-size: 35px; 
+            margin-bottom: 10px;
+            text-shadow: 2px 2px #333;
+        }
+
+        /* حاوية العرض - حجم مناسب للهاتف */
+        #canvas-wrapper { 
+            border: 3px solid #D4AF37; 
+            background: #111; 
+            margin: 15px auto; 
+            max-width: 900px; 
+            border-radius: 15px; 
+            overflow: hidden; 
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        canvas { width: 100%; height: auto; display: block; }
+
+        /* مدخلات النص والروابط - خطوط كبيرة (20px+) لراحة العين */
+        textarea, input { 
+            width: 95%; 
+            padding: 18px; 
+            font-size: 20px; 
+            margin: 10px 0; 
+            background: #222; 
+            color: #fff; 
+            border: 2px solid #444; 
+            border-radius: 12px; 
+            box-sizing: border-box;
+        }
+
+        textarea { height: 120px; }
+
+        /* الأزرار الذهبية الواضحة */
+        .button { 
+            width: 95%; 
+            padding: 22px; 
+            font-size: 24px; 
+            font-weight: bold; 
+            background-color: #D4AF37; 
+            color: #000; 
+            border: none; 
+            border-radius: 12px; 
+            cursor: pointer; 
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        /* لوحة الاشتراك - تظهر بعد 3 محاولات */
+        #subscription-panel { 
+            display:none; 
+            margin-top: 20px; 
+            padding: 25px; 
+            border: 4px dashed #D4AF37; 
+            background: #111; 
+            border-radius: 15px; 
+        }
+
+        .gold-msg { color: #D4AF37; font-size: 22px; font-weight: bold; margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+    <h1>Creative 2026 👑</h1>
+
+    <div id="canvas-wrapper">
+        <canvas id="mainCanvas" width="1280" height="720"></canvas>
+    </div>
+
+    <div id="controls-area">
+        <textarea id="userText" placeholder="اكتب نص المعايدة أو الخدمة هنا.. (اضغط Enter لسطر جديد)"></textarea>
+        <input type="text" id="bgUrl" placeholder="الصق رابط الصورة الذهبية الفخمة هنا">
+        <button class="button" onclick="applyAndDraw()">✨ تحديث وتنسيق التصميم</button>
+        
+        <button id="saveBtn" class="button" style="background-color: #28a745; color: white; display:none;" onclick="startRecording()">💾 حفظ الفيديو (محاولة مجانية)</button>
+    </div>
+
+    <div id="subscription-panel">
+        <h2 style="color: #D4AF37; font-size: 32px;">انتهت المحاولات المجانية! 🚀</h2>
+        <p class="gold-msg">يا أهلاً بيك في النادي الذهبي.. اشترك دلوقتي عشان تطلع فيديوهات براحتك ومن غير حدود بلمسة الخبير أشرف حسن.</p>
+        
+        <a href="ضَع_رابط_الدفع_هنا" class="button" style="text-decoration: none; display: block;">إتمام الاشتراك الشهري 💳</a>
+        
+        <p style="font-size: 14px; color: #666; margin-top: 10px;">للأغراض التجريبية فقط، يمكنك الضغط بالأسفل للتفعيل المؤقت:</p>
+        <button onclick="activateFullVersion()" style="background:none; border:none; color:#D4AF37; text-decoration: underline; cursor:pointer;">تفعيل اشتراك تجريبي</button>
+    </div>
+
+    <p id="status" class="gold-msg">مستعد لإبهار العالم؟ ابدأ الآن..</p>
+
+    <script>
+        const canvas = document.getElementById('mainCanvas');
+        const ctx = canvas.getContext('2d');
+        const bgImg = new Image();
+        bgImg.crossOrigin = "anonymous";
+        
+        // جلب عدد الفيديوهات المحفوظة من ذاكرة الهاتف
+        let videoCount = localStorage.getItem('creative2026_count') || 0;
+
+        // وظيفة التحقق من حدود الاستخدام
+        function checkLimits() {
+            if (videoCount >= 3 && videoCount != -1) {
+                document.getElementById('controls-area').style.display = 'none';
+                document.getElementById('subscription-panel').style.display = 'block';
+                return false;
+            }
+            return true;
+        }
+
+        // رسم الخلفية والنص الذهبي المنسق
+        function applyAndDraw() {
+            const url = document.getElementById('bgUrl').value;
+            if (url) {
+                bgImg.src = url;
+                bgImg.onload = () => {
+                    document.getElementById('saveBtn').style.display = 'block';
+                    render();
+                };
+            } else {
+                render(); // رسم نص تجريبي إذا لم توجد خلفية
+            }
+        }
+
+        function render() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // 1. رسم الصورة الخلفية
+            if (bgImg.complete && bgImg.src) {
+                ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
+            } else {
+                ctx.fillStyle = "#111";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+            }
+            
+            // 2. إعدادات النص الذهبي الفخم (تنسيق أسطر)
+            ctx.font = "bold 75px Arial";
+            ctx.textAlign = "center";
+            ctx.shadowColor = "rgba(0,0,0,0.8)";
+            ctx.shadowBlur = 20;
+
+            let grad = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            grad.addColorStop(0.3, "#D4AF37"); // ذهبي ملكي
+            grad.addColorStop(0.7, "#FFD700"); // ذهبي فاتح متوهج
+            ctx.fillStyle = grad;
+
+            const lines = (document.getElementById('userText').value || "Creative\n2026").split('\n');
+            let lineHeight = 95;
+            let y = (canvas.height - (lines.length * lineHeight)) / 2 + 60;
+
+            lines.forEach(line => {
+                ctx.fillText(line, canvas.width / 2, y);
+                y += lineHeight;
+            });
+
+            requestAnimationFrame(render);
+        }
+
+        // وظيفة تسجيل الفيديو وحفظه
+        function startRecording() {
+            if (!checkLimits()) return;
+
+            const stream = canvas.captureStream(30);
+            const recorder = new MediaRecorder(stream, { mimeType: 'video/webm' });
+            const chunks = [];
+
+            recorder.ondataavailable = e => chunks.push(e.data);
+            recorder.onstop = () => {
+                const blob = new Blob(chunks, { type: 'video/webm' });
+                const a = document.createElement('a');
+                a.href = URL.createObjectURL(blob);
+                a.download = `Creative2026_Art_${Date.now()}.webm`;
+                a.click();
+                
+                // تحديث العداد
+                if (videoCount != -1) {
+                    videoCount++;
+                    localStorage.setItem('creative2026_count', videoCount);
+                    checkLimits();
+                }
+            };
+
+            recorder.start();
+            alert("بدأ استخراج الفيديو الذهبي.. انتظر 10 ثوانٍ وسيتم الحفظ تلقائياً.");
+            setTimeout(() => recorder.stop(), 10000);
+        }
+
+        // تفعيل النسخة الكاملة (بعد الدفع أو للتجربة)
+        function activateFullVersion() {
+            localStorage.setItem('creative2026_count', -1);
+            videoCount = -1;
+            alert("مبروك! تم تفعيل اشتراكك الذهبي يا أستاذ أشرف.");
+            location.reload();
+        }
+
+        // التشغيل عند فتح الصفحة
+        window.onload = () => {
+            checkLimits();
+            render();
+        };
+    </script>
+</body>
+</html>
