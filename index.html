@@ -1,116 +1,69 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creative 2026 | أشرف حسن</title>
-    <style>
-        body { background-color: #000; color: #fff; font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 15px; text-align: center; }
-        .gold-text { color: #D4AF37; }
-        .card { border: 2px solid #D4AF37; border-radius: 15px; padding: 15px; background: #111; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(212,175,55,0.3); }
-        canvas { width: 100%; border-radius: 10px; border: 1px solid #333; background: #000; display: block; margin: 10px auto; }
-        textarea, select { width: 95%; padding: 15px; font-size: 18px; margin: 10px 0; background: #222; color: #fff; border: 1px solid #444; border-radius: 10px; outline: none; }
-        .btn { width: 95%; padding: 18px; font-size: 20px; font-weight: bold; border-radius: 12px; cursor: pointer; border: none; margin-top: 10px; transition: 0.3s; }
-        .btn-gold { background: linear-gradient(45deg, #D4AF37, #FFD700); color: #000; }
-        .btn-save { background: #28a745; color: #fff; display: none; }
-        .btn-wa { background: #25D366; color: #fff; text-decoration: none; display: block; margin: 10px auto; line-height: 50px; }
-    </style>
-</head>
-<body>
+<div class="card">
+    <h3 class="gold-text">🎬 ارفع فيديو من جهازك للتعديل</h3>
+    <input type="file" id="videoLoader" accept="video/*" style="background: #222; color: #D4AF37; padding: 10px; border: 1px dashed #D4AF37; width: 90%; border-radius: 10px;">
+    
+    <textarea id="txtInput" placeholder="اكتب عبارة التهنئة على الفيديو..."></textarea>
+    
+    <button class="btn btn-gold" onclick="startVideoEditor()">✨ تشغيل ومعاينة الفيديو الذهبي</button>
+    <p style="color: #888; font-size: 14px; margin-top: 5px;">* ملحوظة: الحفظ متاح حالياً كلقطة شاشة (HD Snapshot) من الفيديو.</p>
+</div>
 
-    <h1 class="gold-text">Creative 2026 👑</h1>
+<video id="hiddenVideo" style="display:none;" loop muted></video>
 
-    <div class="card">
-        <h3 class="gold-text">🎙️ اسمع ترحيب أشرف حسن</h3>
-        <button onclick="sayWelcome()" style="background:none; border:none; cursor:pointer;">
-            <img src="https://img.icons8.com/fluency/96/D4AF37/microphone.png" style="width: 60px;">
-        </button>
-        <p style="color: #888; font-size: 14px;">اضغط للمباركة والتعليمات</p>
-    </div>
+<script>
+    const cvs = document.getElementById('creativeCanvas');
+    const cx = cvs.getContext('2d');
+    const vdo = document.getElementById('hiddenVideo');
+    let isVideoPlaying = false;
 
-    <canvas id="creativeCanvas" width="1280" height="720"></canvas>
+    // 1. التعامل مع رفع الفيديو من الجهاز
+    document.getElementById('videoLoader').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        const url = URL.createObjectURL(file);
+        vdo.src = url;
+        vdo.load();
+        vdo.onloadeddata = function() {
+            isVideoPlaying = true;
+            renderVideoFrame(); // بدء الرسم المستمر
+        };
+    });
 
-    <div class="card">
-        <textarea id="txtInput" placeholder="اكتب عبارة التهنئة هنا..."></textarea>
-        
-        <h3 class="gold-text">🎵 اختر نغمة فخمة أو دعاء</h3>
-        <select id="sndSelect" onchange="playSnd()">
-            <option value="">-- اضغط للاختيار --</option>
-            <optgroup label="✨ أدعية وأناشيد">
-                <option value="https://server11.mp3quran.net/a_hader/001.mp3">سورة الفاتحة (خاشع)</option>
-                <option value="https://download.tvquran.com/download/recitations/1/1.mp3">دعاء مؤثر</option>
-            </optgroup>
-            <optgroup label="🎹 نغمات ملكية">
-                <option value="https://www.bensound.com/bensound-music/bensound-memories.mp3">ذكريات ذهبية</option>
-                <option value="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3">هدوء فخم</option>
-            </optgroup>
-        </select>
-        <audio id="audioPlayer" controls style="width:100%; margin-top:10px; filter:invert(1);"></audio>
-
-        <button class="btn btn-gold" onclick="doRender()">✨ استعراض التصميم</button>
-        <button id="dlBtn" class="btn btn-save" onclick="doDownload()">💾 حفظ الصورة بجودة HD</button>
-        
-        <hr style="border:0.5px solid #333; margin:20px 0;">
-        <a href="https://wa.me/201026402440" class="btn btn-wa">💬 تواصل مع أشرف حسن (واتساب)</a>
-    </div>
-
-    <script>
-        const cvs = document.getElementById('creativeCanvas');
-        const cx = cvs.getContext('2d');
-
-        // وظيفة الرسم (المحرك الأساسي)
-        function doRender() {
-            // خلفية سوداء ملكية
-            cx.fillStyle = "#000";
-            cx.fillRect(0, 0, cvs.width, cvs.height);
-
-            // إعداد النص المشكل (أسود وذهبي)
-            cx.textAlign = "center";
-            cx.font = "bold 80px Arial";
-            
-            let g = cx.createLinearGradient(0, 250, 0, 450);
-            g.addColorStop(0.2, "#000"); // أسود ملكي
-            g.addColorStop(0.6, "#D4AF37"); // ذهبي فخم
-            cx.fillStyle = g;
-            
-            const val = document.getElementById('txtInput').value || "Creative 2026";
-            cx.fillText(val, cvs.width/2, cvs.height/2 + 30);
-            
-            document.getElementById('dlBtn').style.display = 'block';
+    function startVideoEditor() {
+        if(vdo.src) {
+            vdo.play();
+            isVideoPlaying = true;
+            renderVideoFrame();
+        } else {
+            alert("من فضلك ارفع فيديو أولاً يا بطل!");
         }
-
-        // تشغيل الصوت المختار
-        function playSnd() {function playSnd() {
-    const p = document.getElementById('audioPlayer');
-    const s = document.getElementById('sndSelect').value;
-    if(s) { 
-        p.src = s; // دي أهم خطوة للتشغيل الفوري
-        p.load(); 
-        p.play(); 
     }
-}
 
-            const p = document.getElementById('audioPlayer');
-            const s = document.getElementById('sndSelect').value;
-            if(s) { p.src = s; p.play(); }
-        }
+    // 2. محرك الرسم المستمر (يرسم النص فوق الفيديو)
+    function renderVideoFrame() {
+        if (!isVideoPlaying) return;
 
-        // الترحيب الصوتي (AI)
-        function sayWelcome() {
-            const m = new SpeechSynthesisUtterance("أهلاً بك في كرياتيف عشرين ستة وعشرين.. صالون المبدع أشرف حسن.. نصمم لك الفخامة بلمسات ذهبية ملكية.");
-            m.lang = 'ar-EG'; window.speechSynthesis.speak(m);
-        }
+        // رسم فريم الفيديو الحالي على الكانفس
+        cx.drawImage(vdo, 0, 0, cvs.width, cvs.height);
 
-        // حفظ الصورة على الموبايل
-        function doDownload() {
-            const l = document.createElement('a');
-            l.download = 'Ashraf_Creative_2026.png';
-            l.href = cvs.toDataURL();
-            l.click();
-        }
+        // إضافة طبقة فخامة (تعتيم خفيف)
+        cx.fillStyle = "rgba(0,0,0,0.3)";
+        cx.fillRect(0, 0, cvs.width, cvs.height);
 
-        // تشغيل أولي عند الفتح
-        window.onload = doRender;
-    </script>
-</body>
-</html>
+        // إعداد النص المشكل (أسود وذهبي)
+        cx.textAlign = "center";
+        cx.font = "bold 80px Arial";
+        let g = cx.createLinearGradient(0, 250, 0, 450);
+        g.addColorStop(0.2, "#000"); 
+        g.addColorStop(0.6, "#D4AF37");
+        cx.fillStyle = g;
+        
+        cx.shadowBlur = 20;
+        cx.shadowColor = "rgba(0,0,0,0.9)";
+        
+        const val = document.getElementById('txtInput').value || "Creative 2026";
+        cx.fillText(val, cvs.width/2, cvs.height/2 + 30);
+
+        // تكرار الرسم مع كل فريم جديد من الفيديو
+        requestAnimationFrame(renderVideoFrame);
+    }
+</script>
