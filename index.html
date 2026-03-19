@@ -182,4 +182,46 @@ function playSelectedAudio() {
     }
 }
 </script>
+<div id="audio-library-section" style="margin-top: 25px; padding: 20px; border: 2px solid #D4AF37; border-radius: 15px; background: #111; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);">
+    
+    <h3 style="color: #D4AF37; font-size: 22px; margin-bottom: 8px;">🌙 لمستك الإيمانية والفنية</h3>
+    <p style="color: #ccc; font-size: 18px; margin-bottom: 15px; line-height: 1.5;">
+        "تفضل باختيار الصوت الذي يلامس قلبك ويناسب تصميمك الفريد."
+    </p>
+
+    <select id="audioSelect" onchange="playSelectedAudio()" style="width: 100%; padding: 15px; font-size: 18px; background: #222; color: #D4AF37; border: 1px solid #D4AF37; border-radius: 10px; cursor: pointer;">
+        <option value="">-- اضغط هنا لاختيار الصوت --</option>
+        
+        <optgroup label="✨ أدعية وأناشيد هادئة">
+            <option value="https://server11.mp3quran.net/a_hader/001.mp3">سورة الفاتحة (صوت خاشع)</option>
+            <option value="https://download.tvquran.com/download/recitations/1/1.mp3">دعاء ختم القرآن (مؤثر)</option>
+            <option value="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Ketsa/Raising_Frequency/Ketsa_-_08_-_Flowing_Spirit.mp3">أنشودة روحانية هادئة</option>
+        </optgroup>
+
+        <optgroup label="🎹 نغمات ذهبية فخمة">
+            <option value="https://www.bensound.com/bensound-music/bensound-memories.mp3">🎹 ذكريات ملكية</option>
+            <option value="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3">👑 هدوء ملكي فخم</option>
+        </optgroup>
+    </select>
+
+    <audio id="mainAudio" controls style="width: 100%; margin-top: 15px; filter: invert(1);">
+        <source id="audioSource" src="" type="audio/mpeg">
+    </audio>
+</div>
+
+<script>
+function playSelectedAudio() {
+    const select = document.getElementById('audioSelect');
+    const audio = document.getElementById('mainAudio');
+    const source = document.getElementById('audioSource');
+    
+    if (select.value) {
+        source.src = select.value;
+        audio.load();
+        audio.play().catch(e => console.log("المتصفح يحتاج لتفاعل يدوي"));
+    } else {
+        audio.pause();
+    }
+}
+</script>
 
