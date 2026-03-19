@@ -3,258 +3,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creative 2026 | المحرر الملكي</title>
-    <link rel="icon" href="https://img.icons8.com/fluency/48/D4AF37/crown.png" type="image/png">
-    <style><div id="user-guide" style="margin: 20px auto; padding: 15px; border: 1px solid #D4AF37; border-radius: 12px; background: rgba(212, 175, 55, 0.05); max-width: 900px; text-align: right;">
-    <h3 style="color: #D4AF37; font-size: 22px; margin-bottom: 10px;">🌟 كيف تصمم هديتك الملكية؟</h3>
-    <ul style="color: #eee; font-size: 19px; line-height: 1.6; list-style-type: '✨ '; padding-right: 25px;">
-        <li>اكتب اسمك أو عبارة التهنئة في المربع المخصص.</li>
-        <li>الصق رابط صورة خلفية فخمة (أو اتركها سوداء ملكية).</li>
-        <li>اختر نغمة أو دعاء من المكتبة الصوتية بالأسفل لتعيش الأجواء.</li>
-        <li>اضغط "استعراض" ثم "حفظ التصميم" ليكون عندك في الاستوديو فوراً!</li>
-    </ul>
-</div><div id="ai-welcome" style="margin: 20px auto; padding: 20px; border: 2px solid #D4AF37; border-radius: 15px; background: #000; text-align: center; box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);">
-    <h4 style="color: #D4AF37; font-size: 20px; margin-bottom: 10px;">🎙️ استمع لرسالة ترحيب خاصة</h4>
-    
-    <button onclick="playAIWelcome()" style="background: none; border: none; cursor: pointer;">
-        <img src="https://img.icons8.com/fluency/96/D4AF37/microphone.png" id="micIcon" style="width: 70px; transition: 0.3s;">
-    </button>
-    
-    <p id="welcomeStatus" style="color: #888; font-size: 16px; margin-top: 10px;">اضغط على الميكروفون لسماع الترحيب</p>
-</div>
+    <title>Creative 2026 | صالون أشرف حسن</title>
+    <style>
+        /* التنسيق الملكي - أسود وذهبي فخم */
+        :root { --gold: #D4AF37; --dark-gold: #B8860B; --black: #000000; --gray: #1a1a1a; }
+        body { background-color: var(--black); color: #fff; font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 15px; text-align: center; overflow-x: hidden; }
+        h1 { color: var(--gold); font-size: 35px; margin-bottom: 5px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        
+        .container { max-width: 900px; margin: auto; }
+        .gold-card { border: 2px solid var(--gold); border-radius: 15px; padding: 20px; background: var(--gray); margin-bottom: 20px; box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2); }
+        
+        /* منطقة العرض */
+        #canvas-wrapper { border: 3px solid var(--gold); background: #000; margin: 15px auto; border-radius: 12px; overflow: hidden; position: relative; }
+        canvas { width: 100%; height: auto; display: block; }
 
-<script>
-function playAIWelcome() {
-    // نص الترحيب بلهجة مصرية فخمة تليق بخبير UI/UX
-    const msg = new SpeechSynthesisUtterance();
-    msg.text = "أهلاً بك في كِرياتِيف عشرين ستة وعشرين.. صالون المبدع أشرف حسن.. هنا نصمم لك الفخامة بلمسات ذهبية ملكية.. ابدأ الآن واصنع هديتك بذكاء واحترافية.";
-    msg.lang = 'ar-EG'; // لهجة مصرية
-    msg.pitch = 0.9; // صوت عميق وفخم
-    msg.rate = 0.85; // سرعة هادئة وواضحة لراحة السمع
-    
-    // تأثير بصري للميكروفون أثناء الكلام
-    const icon = document.getElementById('micIcon');
-    icon.style.transform = "scale(1.2)";
-    icon.style.filter = "drop-shadow(0 0 10px #D4AF37)";
-    
-    window.speechSynthesis.speak(msg);
-    
-    msg.onend = () => {
-        icon.style.transform = "scale(1)";
-        icon.style.filter = "none";
-        document.getElementById('welcomeStatus').innerText = "شكراً لزيارتك لصالون أشرف حسن";
-    };
-}
-</script>
+        /* المدخلات - خطوط واضحة (20px) لراحة أشرف */
+        textarea, input, select { width: 100%; padding: 15px; font-size: 19px; margin: 10px 0; background: #222; color: #fff; border: 1.5px solid #444; border-radius: 10px; box-sizing: border-box; outline: none; transition: 0.3s; }
+        textarea:focus, input:focus { border-color: var(--gold); box-shadow: 0 0 8px var(--gold); }
+        
+        /* الأزرار */
+        .btn { width: 100%; padding: 18px; font-size: 22px; font-weight: bold; border-radius: 12px; cursor: pointer; border: none; margin-top: 10px; transition: 0.3s; display: block; text-decoration: none; }
+        .btn-gold { background: linear-gradient(45deg, var(--gold), #FFD700); color: #000; }
+        .btn-green { background: #25D366; color: white; }
+        .btn-save { background: #28a745; color: white; display: none; }
+        .btn:active { transform: scale(0.98); }
 
-
-        body { background-color: #000; color: #fff; font-family: Arial, sans-serif; margin: 0; padding: 15px; text-align: center; }
-        h1 { color: #D4AF37; font-size: 32px; margin-bottom: 10px; text-shadow: 2px 2px #333; }
-        #canvas-wrapper { border: 3px solid #D4AF37; background: #111; margin: 15px auto; max-width: 900px; border-radius: 15px; overflow: hidden; box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
-        canvas { width: 100%; height: auto; display: block; background: #000; }
-        textarea, input { width: 95%; padding: 18px; font-size: 20px; margin: 10px 0; background: #222; color: #fff; border: 2px solid #444; border-radius: 12px; box-sizing: border-box; }
-        .button { width: 95%; padding: 20px; font-size: 22px; font-weight: bold; background-color: #D4AF37; color: #000; border: none; border-radius: 12px; cursor: pointer; margin-top: 10px; text-decoration: none; display: inline-block; }
-        .whatsapp-btn { background-color: #25D366; color: white; margin-top: 15px; }
-        #subscription-panel { display:none; margin-top: 20px; padding: 25px; border: 4px dashed #D4AF37; background: #111; border-radius: 15px; }
-        .gold-msg { color: #D4AF37; font-size: 20px; font-weight: bold; margin-top: 15px; }
+        /* دليل المستخدم والترحيب */
+        .guide-list { text-align: right; padding-right: 20px; color: #ddd; font-size: 18px; line-height: 1.6; }
     </style>
 </head>
 <body>
 
+<div class="container">
     <h1>Creative 2026 👑</h1>
+    
+    <div class="gold-card">
+        <div onclick="playAIWelcome()" style="cursor:pointer; display:inline-block;">
+            <img src="https://img.icons8.com/fluency/96/D4AF37/microphone.png" id="micIcon" style="width: 65px;">
+            <p id="welcomeStatus" style="color: var(--gold); font-size: 16px; margin-top: 5px;">اضغط للاستماع لترحيب أشرف</p>
+        </div>
+        <hr style="border: 0.5px solid #333; margin: 15px 0;">
+        <h3 style="color: var(--gold); margin-top:0;">🌟 خريطة طريقك للإبداع:</h3>
+        <div class="guide-list">
+            • اكتب نص التهنئة في المربع بالأسفل.<br>
+            • اختر نغمة أو دعاء من المكتبة الصوتية.<br>
+            • اضغط "استعراض" لمشاهدة سحر الأسود والذهبي.<br>
+            • احفظ تصميمك وانشره بين أحبابك.
+        </div>
+    </div>
 
     <div id="canvas-wrapper">
         <canvas id="mainCanvas" width="1280" height="720"></canvas>
     </div>
 
-    <div id="controls-area">
-        <textarea id="userText" placeholder="اكتب نص المعايدة هنا.."></textarea>
-        <input type="text" id="bgUrl" placeholder="الصق رابط الصورة الذهبية هنا">
-        <button class="button" onclick="applyAndDraw()">✨ تحديث التصميم</button>
-        <button id="saveBtn" class="button" style="background-color: #28a745; color: white; display:none;" onclick="startRecording()">💾 حفظ الفيديو (Download)</button>
-        <button id="shareBtn" class="button" style="background-color: #007bff; color: white; display:none;" onclick="shareSite()">🔗 مشاركة الموقع</button>
-    </div>
-
-    <div id="subscription-panel">
-        <h2 style="color: #D4AF37;">انتهت المحاولات المجانية!</h2>
-        <a href="https://ipn.eg/S/ashrafhassan567/instapay/9qNhXU" class="button">اشتراك InstaPay 💳</a>
-        <a href="https://wa.me/201026402440" class="button whatsapp-btn">تفعيل عبر واتساب ✅</a>
-    </div>
-
-    <script>
-        const canvas = document.getElementById('mainCanvas');
-        const ctx = canvas.getContext('2d');
-        const bgImg = new Image();
-        bgImg.crossOrigin = "anonymous";
-        let videoCount = localStorage.getItem('creative2026_count') || 0;
-
-        function checkLimits() {
-            if (videoCount >= 3 && videoCount != -1) {
-                document.getElementById('controls-area').style.display = 'none';
-                document.getElementById('subscription-panel').style.display = 'block';
-                return false;
-            }
-            return true;
-        }
-
-        function applyAndDraw() {
-            const url = document.getElementById('bgUrl').value;
-            document.getElementById('shareBtn').style.display = 'block';
-            document.getElementById('saveBtn').style.display = 'block';
-            if (url) {
-                bgImg.src = url;
-                bgImg.onload = () => render();
-            } else { render(); }
-        }
-
-        function render() {
-            ctx.fillStyle = "#000";
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            if (bgImg.complete && bgImg.src) {
-                ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
-            }
-            
-            ctx.font = "bold 80px Arial";
-            ctx.textAlign = "center";
-            ctx.fillStyle = "#D4AF37"; // ذهبي صريح لضمان الظهور
-            ctx.shadowBlur = 15;
-            ctx.shadowColor = "black";
-
-            const lines = (document.getElementById('userText').value || "Creative 2026").split('\n');
-            let y = (canvas.height - (lines.length * 100)) / 2 + 70;
-            lines.forEach(line => {
-                ctx.fillText(line, canvas.width / 2, y);
-                y += 100;
-            });
-        }
-
-        // الكود المطور لتسجيل الفيديو على الموبايل
-        function startRecording() {
-            if (!checkLimits()) return;
-            
-            // تحديث الرسم مرة أخيرة قبل التسجيل
-            render();
-
-            const stream = canvas.captureStream(25); // 25 فريم لسهولة المعالجة
-            const recorder = new MediaRecorder(stream, {
-                mimeType: 'video/webm;codecs=vp8' // الصيغة الأكثر توافقاً مع جوجل كروم موبايل
-            });
-            
-            const chunks = [];
-            recorder.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data); };
-            
-            recorder.onstop = () => {
-                const blob = new Blob(chunks, { type: 'video/webm' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = `Creative2026_${Date.now()}.webm`;
-                document.body.appendChild(a);
-                a.click();
-                setTimeout(() => {
-                    document.body.removeChild(a);
-                    window.URL.revokeObjectURL(url);
-                }, 100);
-
-                if (videoCount != -1) {
-                    videoCount++;
-                    localStorage.setItem('creative2026_count', videoCount);
-                    checkLimits();
-                }
-            };
-
-            recorder.start();
-            alert("جاري استخراج الفيديو.. سيتم التحميل تلقائياً بعد 5 ثوانٍ");
-            setTimeout(() => recorder.stop(), 5000); // 5 ثواني كافية للتجربة
-        }
-
-        async function shareSite() {
-            if (navigator.share) {
-                navigator.share({ title: 'Creative 2026', url: window.location.href });
-            } else { alert(window.location.href); }
-        }
-
-        window.onload = () => { checkLimits(); render(); };
-    </script>
-</body>
-</html><div id="audio-library-section" style="margin-top: 25px; padding: 20px; border: 2px solid #D4AF37; border-radius: 15px; background: #111; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);">
-    
-    <h3 style="color: #D4AF37; font-size: 22px; margin-bottom: 8px;">🎵 لمستك الصوتية الخاصة</h3>
-    <p style="color: #ccc; font-size: 18px; margin-bottom: 15px; line-height: 1.5;">
-        "اختر من مكتبتنا النغمة التي تناسب ذوقك الرفيع، واستمتع بتجربة إبداعية متكاملة."
-    </p>
-
-    <select id="audioSelect" onchange="playSelectedAudio()" style="width: 100%; padding: 15px; font-size: 18px; background: #222; color: #D4AF37; border: 1px solid #D4AF37; border-radius: 10px; cursor: pointer;">
-        <option value="">-- اضغط هنا لاختيار النغمة --</option>
-        <option value="https://www.bensound.com/bensound-music/bensound-memories.mp3">🎹 نغمة هادئة (ذكريات)</option>
-        <option value="https://www.bensound.com/bensound-music/bensound-creativeminds.mp3">✨ نغمة إبداعية (مودرن)</option>
-        <option value="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3">👑 نغمة ملكية (بطيئة)</option>
-    </select>
-
-    <audio id="mainAudio" controls style="width: 100%; margin-top: 15px; filter: invert(1) hue-rotate(180deg);">
-        <source id="audioSource" src="" type="audio/mpeg">
-        متصفحك لا يدعم تشغيل الصوت.
-    </audio>
-</div>
-
-<script>
-// وظيفة تشغيل الصوت المختار بذكاء
-function playSelectedAudio() {
-    const select = document.getElementById('audioSelect');
-    const audio = document.getElementById('mainAudio');
-    const source = document.getElementById('audioSource');
-    
-    if (select.value) {
-        source.src = select.value;
-        audio.load();
-        audio.play().catch(error => {
-            console.log("تطلب بعض المتصفحات ضغطة زر لتشغيل الصوت: " + error);
-        });
-    } else {
-        audio.pause();
-    }
-}
-</script>
-<div id="audio-library-section" style="margin-top: 25px; padding: 20px; border: 2px solid #D4AF37; border-radius: 15px; background: #111; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);">
-    
-    <h3 style="color: #D4AF37; font-size: 22px; margin-bottom: 8px;">🌙 لمستك الإيمانية والفنية</h3>
-    <p style="color: #ccc; font-size: 18px; margin-bottom: 15px; line-height: 1.5;">
-        "تفضل باختيار الصوت الذي يلامس قلبك ويناسب تصميمك الفريد."
-    </p>
-
-    <select id="audioSelect" onchange="playSelectedAudio()" style="width: 100%; padding: 15px; font-size: 18px; background: #222; color: #D4AF37; border: 1px solid #D4AF37; border-radius: 10px; cursor: pointer;">
-        <option value="">-- اضغط هنا لاختيار الصوت --</option>
+    <div class="gold-card">
+        <textarea id="userText" placeholder="اكتب عبارة التهنئة هنا.."></textarea>
+        <input type="text" id="bgUrl" placeholder="رابط خلفية اختيارية (اتركه للأسود الملكي)">
         
-        <optgroup label="✨ أدعية وأناشيد هادئة">
-            <option value="https://server11.mp3quran.net/a_hader/001.mp3">سورة الفاتحة (صوت خاشع)</option>
-            <option value="https://download.tvquran.com/download/recitations/1/1.mp3">دعاء ختم القرآن (مؤثر)</option>
-            <option value="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Ketsa/Raising_Frequency/Ketsa_-_08_-_Flowing_Spirit.mp3">أنشودة روحانية هادئة</option>
-        </optgroup>
+        <button class="btn btn-gold" onclick="applyAndDraw()">✨ استعراض التصميم الملكي</button>
+        
+        <div style="margin-top:20px;">
+            <h3 style="color: var(--gold);">🎵 نغمات وأدعية خاشعة</h3>
+            <select id="audioSelect" onchange="playSelectedAudio()">
+                <option value="">-- اختر الصوت المناسب --</option>
+                <optgroup label="✨ إيمانيات">
+                    <option value="https://server11.mp3quran.net/a_hader/001.mp3">سورة الفاتحة (تلاوة خاشعة)</option>
+                    <option value="https://download.tvquran.com/download/recitations/1/1.mp3">دعاء ختم القرآن</option>
+                </optgroup>
+                <optgroup label="🎹 فخامة ذهبية">
+                    <option value="https://www.bensound.com/bensound-music/bensound-memories.mp3">نغمة ذكريات فخمة</option>
+                    <option value="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3">هدوء ملكي (Slow)</option>
+                </optgroup>
+            </select>
+            <audio id="mainAudio" controls style="width: 100%; margin-top: 10px; filter: invert(1);"></audio>
+        </div>
 
-        <optgroup label="🎹 نغمات ذهبية فخمة">
-            <option value="https://www.bensound.com/bensound-music/bensound-memories.mp3">🎹 ذكريات ملكية</option>
-            <option value="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3">👑 هدوء ملكي فخم</option>
-        </optgroup>
-    </select>
-
-    <audio id="mainAudio" controls style="width: 100%; margin-top: 15px; filter: invert(1);">
-        <source id="audioSource" src="" type="audio/mpeg">
-    </audio>
+        <button id="saveBtn" class="btn btn-save" onclick="saveAsImage()">💾 حفظ التصميم في الاستوديو</button>
+        <button onclick="shareCreative2026()" class="btn btn-green">📢 مشاركة الموقع عبر واتساب</button>
+    </div>
 </div>
 
 <script>
-function playSelectedAudio() {
-    const select = document.getElementById('audioSelect');
-    const audio = document.getElementById('mainAudio');
-    const source = document.getElementById('audioSource');
-    
-    if (select.value) {
-        source.src = select.value;
-        audio.load();
-        audio.play().catch(e => console.log("المتصفح يحتاج لتفاعل يدوي"));
-    } else {
-        audio.pause();
+    const canvas = document.getElementById('mainCanvas');
+    const ctx = canvas.getContext('2d');
+    const bgImg = new Image();
+    bgImg.crossOrigin = "anonymous";
+
+    // رسم أولي عند التحميل
+    window.onload = () => { render(); };
+
+    function applyAndDraw() {
+        const url = document.getElementById('bgUrl').value;
+        document.getElementById('saveBtn').style.display = 'block';
+        if (url) {
+            bgImg.src = url;
+            bgImg.onload = () => render();
+            bgImg.onerror = () => { alert("رابط الصورة غير صالح، سيتم استخدام الخلفية الملكية."); render(); };
+        } else {
+            render();
+        }
     }
-}
+
+    function render() {
+        // تنظيف ورسم الخلفية
+        ctx.fillStyle = "#000";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        if (bgImg.complete && bgImg.src) {
+            ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
+            // طبقة تعتيم خفيفة لإبراز النص
+            ctx.fillStyle = "rgba(0,0,0,0.4)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+
+        // إعدادات النص المشكل (أسود وذهبي)
+        ctx.textAlign = "center";
+        ctx.font = "bold 75px Arial";
+        
+        // إنشاء تدرج لوني فخم
+        let grad = ctx.createLinearGradient(0, 200, 0, 500);
+        grad.addColorStop(0.2, "#000000"); // أسود من الأعلى
+        grad.addColorStop(0.5, "#D4AF37"); // ذهبي في المنتصف
+        grad.addColorStop(0.8, "#FFD700"); // ذهبي لامع بالأسفل
+        
+        ctx.fillStyle = grad;
+        ctx.shadowBlur = 20;
+        ctx.shadowColor = "rgba(0,0,0,0.8)";
+
+        const lines = (document.getElementById('userText').value || "Creative\n2026").split('\n');
+        let y = (canvas.height - (lines.length * 90)) / 2 + 65;
+        
+        lines.forEach(line => {
+            ctx.fillText(line, canvas.width / 2, y);
+            y += 90;
+        });
+    }
+
+    function saveAsImage() {
+        const link = document.createElement('a');
+        link.download = `Creative2026_${Date.now()}.png`;
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+    }
+
+    function playSelectedAudio() {
+        const audio = document.getElementById('mainAudio');
+        const val = document.getElementById('audioSelect').value;
+        if (val) {
+            audio.src = val;
+            audio.play();
+        }
+    }
+
+    function playAIWelcome() {
+        const msg = new SpeechSynthesisUtterance("أهلاً بك في صالون المبدع أشرف حسن.. كرياتيف عشرين ستة وعشرين.. نصمم لك الفخامة بلمسات ذهبية ملكية.");
+        msg.lang = 'ar-EG';
+        msg.rate = 0.8;
+        window.speechSynthesis.speak(msg);
+        
+        const icon = document.getElementById('micIcon');
+        icon.style.transform = "scale(1.2)";
+        msg.onend = () => icon.style.transform = "scale(1)";
+    }
+
+    async function shareCreative2026() {
+        const text = "جربت موقع أشرف حسن للتصاميم الملكية؟ فخامة الأسود والذهبي في ثواني: ";
+        if (navigator.share) {
+            navigator.share({ title: 'Creative 2026', text: text, url: window.location.href });
+        } else {
+            window.open(`https://wa.me/?text=${encodeURIComponent(text + window.location.href)}`);
+        }
+    }
 </script>
 
+</body>
+</html>
