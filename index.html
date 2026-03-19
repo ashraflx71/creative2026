@@ -80,7 +80,16 @@
         }
 
         // تشغيل الصوت المختار
-        function playSnd() {
+        function playSnd() {function playSnd() {
+    const p = document.getElementById('audioPlayer');
+    const s = document.getElementById('sndSelect').value;
+    if(s) { 
+        p.src = s; // دي أهم خطوة للتشغيل الفوري
+        p.load(); 
+        p.play(); 
+    }
+}
+
             const p = document.getElementById('audioPlayer');
             const s = document.getElementById('sndSelect').value;
             if(s) { p.src = s; p.play(); }
