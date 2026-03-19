@@ -13,7 +13,40 @@
         <li>اختر نغمة أو دعاء من المكتبة الصوتية بالأسفل لتعيش الأجواء.</li>
         <li>اضغط "استعراض" ثم "حفظ التصميم" ليكون عندك في الاستوديو فوراً!</li>
     </ul>
+</div><div id="ai-welcome" style="margin: 20px auto; padding: 20px; border: 2px solid #D4AF37; border-radius: 15px; background: #000; text-align: center; box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);">
+    <h4 style="color: #D4AF37; font-size: 20px; margin-bottom: 10px;">🎙️ استمع لرسالة ترحيب خاصة</h4>
+    
+    <button onclick="playAIWelcome()" style="background: none; border: none; cursor: pointer;">
+        <img src="https://img.icons8.com/fluency/96/D4AF37/microphone.png" id="micIcon" style="width: 70px; transition: 0.3s;">
+    </button>
+    
+    <p id="welcomeStatus" style="color: #888; font-size: 16px; margin-top: 10px;">اضغط على الميكروفون لسماع الترحيب</p>
 </div>
+
+<script>
+function playAIWelcome() {
+    // نص الترحيب بلهجة مصرية فخمة تليق بخبير UI/UX
+    const msg = new SpeechSynthesisUtterance();
+    msg.text = "أهلاً بك في كِرياتِيف عشرين ستة وعشرين.. صالون المبدع أشرف حسن.. هنا نصمم لك الفخامة بلمسات ذهبية ملكية.. ابدأ الآن واصنع هديتك بذكاء واحترافية.";
+    msg.lang = 'ar-EG'; // لهجة مصرية
+    msg.pitch = 0.9; // صوت عميق وفخم
+    msg.rate = 0.85; // سرعة هادئة وواضحة لراحة السمع
+    
+    // تأثير بصري للميكروفون أثناء الكلام
+    const icon = document.getElementById('micIcon');
+    icon.style.transform = "scale(1.2)";
+    icon.style.filter = "drop-shadow(0 0 10px #D4AF37)";
+    
+    window.speechSynthesis.speak(msg);
+    
+    msg.onend = () => {
+        icon.style.transform = "scale(1)";
+        icon.style.filter = "none";
+        document.getElementById('welcomeStatus').innerText = "شكراً لزيارتك لصالون أشرف حسن";
+    };
+}
+</script>
+
 
         body { background-color: #000; color: #fff; font-family: Arial, sans-serif; margin: 0; padding: 15px; text-align: center; }
         h1 { color: #D4AF37; font-size: 32px; margin-bottom: 10px; text-shadow: 2px 2px #333; }
