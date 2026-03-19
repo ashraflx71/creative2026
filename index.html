@@ -3,259 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creative 2026 | صالون أشرف حسن</title>
+    <title>Creative 2026 | أشرف حسن</title>
     <style>
-        /* التنسيق الملكي - أسود وذهبي فخم */
-        :root { --gold: #D4AF37; --dark-gold: #B8860B; --black: #000000; --gray: #1a1a1a; }
-        body { background-color: var(--black); color: #fff; font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 15px; text-align: center; overflow-x: hidden; }
-        h1 { color: var(--gold); font-size: 35px; margin-bottom: 5px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
-        
-        .container { max-width: 900px; margin: auto; }
-        .gold-card { border: 2px solid var(--gold); border-radius: 15px; padding: 20px; background: var(--gray); margin-bottom: 20px; box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2); }
-        
-        /* منطقة العرض */
-        #canvas-wrapper { border: 3px solid var(--gold); background: #000; margin: 15px auto; border-radius: 12px; overflow: hidden; position: relative; }
-        canvas { width: 100%; height: auto; display: block; }
-
-        /* المدخلات - خطوط واضحة (20px) لراحة أشرف */
-        textarea, input, select { width: 100%; padding: 15px; font-size: 19px; margin: 10px 0; background: #222; color: #fff; border: 1.5px solid #444; border-radius: 10px; box-sizing: border-box; outline: none; transition: 0.3s; }
-        textarea:focus, input:focus { border-color: var(--gold); box-shadow: 0 0 8px var(--gold); }
-        
-        /* الأزرار */
-        .btn { width: 100%; padding: 18px; font-size: 22px; font-weight: bold; border-radius: 12px; cursor: pointer; border: none; margin-top: 10px; transition: 0.3s; display: block; text-decoration: none; }
-        .btn-gold { background: linear-gradient(45deg, var(--gold), #FFD700); color: #000; }
-        .btn-green { background: #25D366; color: white; }
-        .btn-save { background: #28a745; color: white; display: none; }
-        .btn:active { transform: scale(0.98); }
-
-        /* دليل المستخدم والترحيب */
-        .guide-list { text-align: right; padding-right: 20px; color: #ddd; font-size: 18px; line-height: 1.6; }
+        body { background-color: #000; color: #fff; font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 15px; text-align: center; }
+        .gold-text { color: #D4AF37; }
+        .card { border: 2px solid #D4AF37; border-radius: 15px; padding: 15px; background: #111; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(212,175,55,0.3); }
+        canvas { width: 100%; border-radius: 10px; border: 1px solid #333; background: #000; display: block; margin: 10px auto; }
+        textarea, select { width: 95%; padding: 15px; font-size: 18px; margin: 10px 0; background: #222; color: #fff; border: 1px solid #444; border-radius: 10px; outline: none; }
+        .btn { width: 95%; padding: 18px; font-size: 20px; font-weight: bold; border-radius: 12px; cursor: pointer; border: none; margin-top: 10px; transition: 0.3s; }
+        .btn-gold { background: linear-gradient(45deg, #D4AF37, #FFD700); color: #000; }
+        .btn-save { background: #28a745; color: #fff; display: none; }
+        .btn-wa { background: #25D366; color: #fff; text-decoration: none; display: block; margin: 10px auto; line-height: 50px; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>Creative 2026 👑</h1>
-    
-    <div class="gold-card">
-        <div onclick="playAIWelcome()" style="cursor:pointer; display:inline-block;">
-            <img src="https://img.icons8.com/fluency/96/D4AF37/microphone.png" id="micIcon" style="width: 65px;">
-            <p id="welcomeStatus" style="color: var(--gold); font-size: 16px; margin-top: 5px;">اضغط للاستماع لترحيب أشرف</p>
-        </div>
-        <hr style="border: 0.5px solid #333; margin: 15px 0;">
-        <h3 style="color: var(--gold); margin-top:0;">🌟 خريطة طريقك للإبداع:</h3>
-        <div class="guide-list">
-            • اكتب نص التهنئة في المربع بالأسفل.<br>
-            • اختر نغمة أو دعاء من المكتبة الصوتية.<br>
-            • اضغط "استعراض" لمشاهدة سحر الأسود والذهبي.<br>
-            • احفظ تصميمك وانشره بين أحبابك.
-        </div>
-    </div>
+    <h1 class="gold-text">Creative 2026 👑</h1>
 
-    <div id="canvas-wrapper">
-        <canvas id="mainCanvas" width="1280" height="720"></canvas>
-    </div>
-
-    <div class="gold-card">
-        <textarea id="userText" placeholder="اكتب عبارة التهنئة هنا.."></textarea>
-        <input type="text" id="bgUrl" placeholder="رابط خلفية اختيارية (اتركه للأسود الملكي)">
-        
-        <button class="btn btn-gold" onclick="applyAndDraw()">✨ استعراض التصميم الملكي</button>
-        
-        <div style="margin-top:20px;">
-            <h3 style="color: var(--gold);">🎵 نغمات وأدعية خاشعة</h3>
-            <select id="audioSelect" onchange="playSelectedAudio()">
-                <option value="">-- اختر الصوت المناسب --</option>
-                <optgroup label="✨ إيمانيات">
-                    <option value="https://server11.mp3quran.net/a_hader/001.mp3">سورة الفاتحة (تلاوة خاشعة)</option>
-                    <option value="https://download.tvquran.com/download/recitations/1/1.mp3">دعاء ختم القرآن</option>
-                </optgroup>
-                <optgroup label="🎹 فخامة ذهبية">
-                    <option value="https://www.bensound.com/bensound-music/bensound-memories.mp3">نغمة ذكريات فخمة</option>
-                    <option value="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3">هدوء ملكي (Slow)</option>
-                </optgroup>
-            </select>
-            <audio id="mainAudio" controls style="width: 100%; margin-top: 10px; filter: invert(1);"></audio>
-        </div>
-
-        <button id="saveBtn" class="btn btn-save" onclick="saveAsImage()">💾 حفظ التصميم في الاستوديو</button>
-        <button onclick="shareCreative2026()" class="btn btn-green">📢 مشاركة الموقع عبر واتساب</button>
-    </div>
-</div>
-
-<script>
-    const canvas = document.getElementById('mainCanvas');
-    const ctx = canvas.getContext('2d');
-    const bgImg = new Image();
-    bgImg.crossOrigin = "anonymous";
-
-    // رسم أولي عند التحميل
-    window.onload = () => { render(); };
-
-    function applyAndDraw() {
-        const url = document.getElementById('bgUrl').value;
-        document.getElementById('saveBtn').style.display = 'block';
-        if (url) {
-            bgImg.src = url;
-            bgImg.onload = () => render();
-            bgImg.onerror = () => { alert("رابط الصورة غير صالح، سيتم استخدام الخلفية الملكية."); render(); };
-        } else {
-            render();
-        }
-    }
-
-    function render() {
-        // تنظيف ورسم الخلفية
-        ctx.fillStyle = "#000";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
-        if (bgImg.complete && bgImg.src) {
-            ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
-            // طبقة تعتيم خفيفة لإبراز النص
-            ctx.fillStyle = "rgba(0,0,0,0.4)";
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-        }
-
-        // إعدادات النص المشكل (أسود وذهبي)
-        ctx.textAlign = "center";
-        ctx.font = "bold 75px Arial";
-        
-        // إنشاء تدرج لوني فخم
-        let grad = ctx.createLinearGradient(0, 200, 0, 500);
-        grad.addColorStop(0.2, "#000000"); // أسود من الأعلى
-        grad.addColorStop(0.5, "#D4AF37"); // ذهبي في المنتصف
-        grad.addColorStop(0.8, "#FFD700"); // ذهبي لامع بالأسفل
-        
-        ctx.fillStyle = grad;
-        ctx.shadowBlur = 20;
-        ctx.shadowColor = "rgba(0,0,0,0.8)";
-
-        const lines = (document.getElementById('userText').value || "Creative\n2026").split('\n');
-        let y = (canvas.height - (lines.length * 90)) / 2 + 65;
-        
-        lines.forEach(line => {
-            ctx.fillText(line, canvas.width / 2, y);
-            y += 90;
-        });
-    }
-
-    function saveAsImage() {
-        const link = document.createElement('a');
-        link.download = `Creative2026_${Date.now()}.png`;
-        link.href = canvas.toDataURL("image/png");
-        link.click();
-    }
-
-    function playSelectedAudio() {
-        const audio = document.getElementById('mainAudio');
-        const val = document.getElementById('audioSelect').value;
-        if (val) {
-            audio.src = val;
-            audio.play();
-        }
-    }
-
-    function playAIWelcome() {
-        const msg = new SpeechSynthesisUtterance("أهلاً بك في صالون المبدع أشرف حسن.. كرياتيف عشرين ستة وعشرين.. نصمم لك الفخامة بلمسات ذهبية ملكية.");
-        msg.lang = 'ar-EG';
-        msg.rate = 0.8;
-        window.speechSynthesis.speak(msg);
-        
-        const icon = document.getElementById('micIcon');
-        icon.style.transform = "scale(1.2)";
-        msg.onend = () => icon.style.transform = "scale(1)";
-    }
-
-    async function shareCreative2026() {
-        const text = "جربت موقع أشرف حسن للتصاميم الملكية؟ فخامة الأسود والذهبي في ثواني: ";
-        if (navigator.share) {
-            navigator.share({ title: 'Creative 2026', text: text, url: window.location.href });
-        } else {
-            window.open(`https://wa.me/?text=${encodeURIComponent(text + window.location.href)}`);
-        }
-    }
-</script>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creative 2026 | صالون أشرف حسن</title>
-    <style>
-        body { background-color: #000; color: #fff; font-family: Arial, sans-serif; margin: 0; padding: 15px; text-align: center; }
-        h1 { color: #D4AF37; font-size: 35px; text-shadow: 2px 2px #333; }
-        .gold-card { border: 2px solid #D4AF37; border-radius: 15px; padding: 15px; background: #111; margin-bottom: 20px; }
-        canvas { width: 100%; border: 2px solid #D4AF37; border-radius: 10px; background: #000; }
-        textarea, select { width: 95%; padding: 15px; font-size: 20px; margin: 10px 0; background: #222; color: #fff; border: 1.5px solid var(--gold); border-radius: 10px; }
-        .btn { width: 95%; padding: 18px; font-size: 22px; font-weight: bold; border-radius: 12px; cursor: pointer; border: none; margin-top: 10px; }
-        .btn-gold { background: #D4AF37; color: #000; }
-        .btn-whatsapp { background: #25D366; color: white; text-decoration: none; display: block; margin: 10px auto; width: 85%; }
-    </style>
-</head>
-<body>
-
-    <h1>Creative 2026 👑</h1>
-
-    <div class="gold-card">
-        <h3 style="color: #D4AF37;">🎙️ رسالة ترحيب من مساعد أشرف</h3>
-        <button onclick="playWelcome()" style="background:none; border:none; cursor:pointer;">
+    <div class="card">
+        <h3 class="gold-text">🎙️ اسمع ترحيب أشرف حسن</h3>
+        <button onclick="sayWelcome()" style="background:none; border:none; cursor:pointer;">
             <img src="https://img.icons8.com/fluency/96/D4AF37/microphone.png" style="width: 60px;">
         </button>
-        <p style="color: #888;">اضغط واسمع "الشغل العالي"</p>
+        <p style="color: #888; font-size: 14px;">اضغط للمباركة والتعليمات</p>
     </div>
 
-    <canvas id="mainCanvas" width="1280" height="720"></canvas>
+    <canvas id="creativeCanvas" width="1280" height="720"></canvas>
 
-    <div class="gold-card">
-        <textarea id="userText" placeholder="اكتب تهنئتك الملكية هنا.."></textarea>
+    <div class="card">
+        <textarea id="txtInput" placeholder="اكتب عبارة التهنئة هنا..."></textarea>
         
-        <h3 style="color: #D4AF37;">🎵 اختر نغمة فخمة أو دعاء</h3>
-        <select id="audioSelect" onchange="playAudio()">
-            <option value="">-- اختر من مكتبة أشرف --</option>
-            <option value="https://server11.mp3quran.net/a_hader/001.mp3">سورة الفاتحة (خاشع)</option>
-            <option value="https://www.bensound.com/bensound-music/bensound-memories.mp3">نغمة ذكريات فخمة</option>
+        <h3 class="gold-text">🎵 اختر نغمة فخمة أو دعاء</h3>
+        <select id="sndSelect" onchange="playSnd()">
+            <option value="">-- اضغط للاختيار --</option>
+            <optgroup label="✨ أدعية وأناشيد">
+                <option value="https://server11.mp3quran.net/a_hader/001.mp3">سورة الفاتحة (خاشع)</option>
+                <option value="https://download.tvquran.com/download/recitations/1/1.mp3">دعاء مؤثر</option>
+            </optgroup>
+            <optgroup label="🎹 نغمات ملكية">
+                <option value="https://www.bensound.com/bensound-music/bensound-memories.mp3">ذكريات ذهبية</option>
+                <option value="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3">هدوء فخم</option>
+            </optgroup>
         </select>
-        <audio id="player" controls style="width:100%; margin-top:10px; filter:invert(1);"></audio>
+        <audio id="audioPlayer" controls style="width:100%; margin-top:10px; filter:invert(1);"></audio>
 
-        <button class="btn btn-gold" onclick="draw()">✨ استعراض التصميم</button>
-        <button class="btn btn-gold" style="background:#28a745; color:white;" onclick="save()">💾 حفظ الصورة HD</button>
-        <a href="https://wa.me/201026402440" class="btn btn-whatsapp">📩 تفعيل الاشتراك عبر واتساب</a>
+        <button class="btn btn-gold" onclick="doRender()">✨ استعراض التصميم</button>
+        <button id="dlBtn" class="btn btn-save" onclick="doDownload()">💾 حفظ الصورة بجودة HD</button>
+        
+        <hr style="border:0.5px solid #333; margin:20px 0;">
+        <a href="https://wa.me/201026402440" class="btn btn-wa">💬 تواصل مع أشرف حسن (واتساب)</a>
     </div>
 
     <script>
-        const canvas = document.getElementById('mainCanvas');
-        const ctx = canvas.getContext('2d');
+        const cvs = document.getElementById('creativeCanvas');
+        const cx = cvs.getContext('2d');
 
-        function draw() {
-            ctx.fillStyle = "#000"; ctx.fillRect(0, 0, canvas.width, canvas.height);
-            let grad = ctx.createLinearGradient(0, 200, 0, 500);
-            grad.addColorStop(0.2, "#000"); grad.addColorStop(0.7, "#D4AF37");
-            ctx.fillStyle = grad; ctx.font = "bold 80px Arial"; ctx.textAlign = "center";
-            const txt = document.getElementById('userText').value || "Creative 2026";
-            ctx.fillText(txt, canvas.width/2, canvas.height/2);
+        // وظيفة الرسم (المحرك الأساسي)
+        function doRender() {
+            // خلفية سوداء ملكية
+            cx.fillStyle = "#000";
+            cx.fillRect(0, 0, cvs.width, cvs.height);
+
+            // إعداد النص المشكل (أسود وذهبي)
+            cx.textAlign = "center";
+            cx.font = "bold 80px Arial";
+            
+            let g = cx.createLinearGradient(0, 250, 0, 450);
+            g.addColorStop(0.2, "#000"); // أسود ملكي
+            g.addColorStop(0.6, "#D4AF37"); // ذهبي فخم
+            cx.fillStyle = g;
+            
+            const val = document.getElementById('txtInput').value || "Creative 2026";
+            cx.fillText(val, cvs.width/2, cvs.height/2 + 30);
+            
+            document.getElementById('dlBtn').style.display = 'block';
         }
 
-        function playAudio() {
-            const player = document.getElementById('player');
-            player.src = document.getElementById('audioSelect').value;
-            player.play();
+        // تشغيل الصوت المختار
+        function playSnd() {
+            const p = document.getElementById('audioPlayer');
+            const s = document.getElementById('sndSelect').value;
+            if(s) { p.src = s; p.play(); }
         }
 
-        function playWelcome() {
-            const msg = new SpeechSynthesisUtterance("أهلاً بك في صالون المبدع أشرف حسن.. نصمم لك الفخامة بلمسات ذهبية ملكية.");
-            msg.lang = 'ar-EG'; window.speechSynthesis.speak(msg);
+        // الترحيب الصوتي (AI)
+        function sayWelcome() {
+            const m = new SpeechSynthesisUtterance("أهلاً بك في كرياتيف عشرين ستة وعشرين.. صالون المبدع أشرف حسن.. نصمم لك الفخامة بلمسات ذهبية ملكية.");
+            m.lang = 'ar-EG'; window.speechSynthesis.speak(m);
         }
 
-        function save() {
-            const link = document.createElement('a');
-            link.download = 'Creative2026.png';
-            link.href = canvas.toDataURL();
-            link.click();
+        // حفظ الصورة على الموبايل
+        function doDownload() {
+            const l = document.createElement('a');
+            l.download = 'Ashraf_Creative_2026.png';
+            l.href = cvs.toDataURL();
+            l.click();
         }
-        window.onload = draw;
+
+        // تشغيل أولي عند الفتح
+        window.onload = doRender;
     </script>
 </body>
 </html>
