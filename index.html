@@ -2,72 +2,29 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>Creative 2026 | أشرف حسن</title>
-    <style>
-        body { background: #000; color: #fff; text-align: center; font-family: Arial; }
-        .gold-text { color: #D4AF37; }
-        .card { border: 2px solid #D4AF37; border-radius: 15px; padding: 15px; background: #111; margin: 10px; }
-        canvas { width: 100%; max-width: 800px; border-radius: 10px; background: #222; border: 1px solid #333; }
-        textarea, input, .btn { width: 90%; padding: 12px; margin: 8px 0; border-radius: 10px; font-size: 18px; }
-        .btn-gold { background: #D4AF37; color: #000; border: none; font-weight: bold; cursor: pointer; }
-        #vdo { display: none; } /* الفيديو الحقيقي مستخبي والشغل كله على الكانفس */
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative 2026 👑</title>
+    
+    <!-- إضافة الكود الجديد هنا -->
+    <link rel="manifest" href="/creative2026/manifest.json">
+    <meta name="theme-color" content="#000000">
+    
+    <!-- يمكنك إضافة أي أكواد CSS أو JavaScript أخرى هنا -->
 </head>
 <body>
-
-    <h1 class="gold-text">Creative 2026 👑</h1>
+    <h1>Creative 2026 👑</h1>
+    <h3>🎬 منطقة الاختبار الملكي (أشرف حسن)</h3>
     
-    <canvas id="creativeCanvas" width="1280" height="720"></canvas>
-    <video id="vdo" loop muted playsinline crossorigin="anonymous"></video>
-
-    <div class="card">
-        <h3 class="gold-text">🎬 منطقة الاختبار الملكي (أشرف حسن)</h3>
-        <button class="btn btn-gold" style="background:#444; color:#D4AF37;" onclick="loadTestVideo()">🎥 تشغيل فيديو تجريبي</button>
-        <input type="file" id="mediaLoader" accept="video/*,image/*">
-        <textarea id="txtInput" placeholder="اكتب: تجربة أشرف 2026"></textarea>
-        <button class="btn btn-gold" onclick="doManualRender()">✨ تحديث العرض</button>
-    </div>
-
+    <!-- سكريبت تسجيل Service Worker -->
     <script>
-        const cvs = document.getElementById('creativeCanvas');
-        const cx = cvs.getContext('2d');
-        const vdo = document.getElementById('vdo');
-        let isVideo = false;
-
-        // وظيفة تشغيل الفيديو التجريبي
-        function loadTestVideo() {
-            vdo.src = "https://www.w3schools.com/html/mov_bbb.mp4"; 
-            vdo.play();
-            isVideo = true;
-            renderLoop(); // تشغيل محرك الرسم
-            alert("الفيديو شغال يا هندسة.. اكتب نصك ودوس تحديث!");
-        }
-
-        // محرك الرسم (الجيش اللي بيشغل الفيديو)
-        function renderLoop() {
-            if (isVideo) {
-                cx.drawImage(vdo, 0, 0, cvs.width, cvs.height);
-                drawText();
-                requestAnimationFrame(renderLoop);
-            }
-        }
-
-        function drawText() {
-            cx.fillStyle = "#D4AF37";
-            cx.font = "bold 80px Arial";
-            cx.textAlign = "center";
-            cx.shadowBlur = 15;
-            cx.shadowColor = "#000";
-            const txt = document.getElementById('txtInput').value || "Creative 2026";
-            cx.fillText(txt, cvs.width/2, cvs.height/2 + 40);
-        }
-
-        function doManualRender() {
-            if (!isVideo) {
-                cx.fillStyle = "#000";
-                cx.fillRect(0, 0, cvs.width, cvs.height);
-                drawText();
-            }
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/creative2026/sw.js').then(function(registration) {
+                    console.log('ServiceWorker registered with scope: ', registration.scope);
+                }, function(err) {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
         }
     </script>
 </body>
