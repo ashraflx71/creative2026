@@ -6,26 +6,15 @@
     <title>Creative 2026 | المحرر الملكي</title>
     <link rel="icon" href="https://img.icons8.com/fluency/48/D4AF37/crown.png" type="image/png">
     <style>
-        /* التنسيق البصري: أسود وذهبي فخم - ذوق أشرف */
         body { background-color: #000; color: #fff; font-family: Arial, sans-serif; margin: 0; padding: 15px; text-align: center; }
         h1 { color: #D4AF37; font-size: 32px; margin-bottom: 10px; text-shadow: 2px 2px #333; }
-        
-        /* حاوية العرض - UI/UX متناسب مع الهاتف */
         #canvas-wrapper { border: 3px solid #D4AF37; background: #111; margin: 15px auto; max-width: 900px; border-radius: 15px; overflow: hidden; box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
-        canvas { width: 100%; height: auto; display: block; }
-        
-        /* مدخلات النص - خطوط كبيرة (20px+) لسهولة القراءة */
+        canvas { width: 100%; height: auto; display: block; background: #000; }
         textarea, input { width: 95%; padding: 18px; font-size: 20px; margin: 10px 0; background: #222; color: #fff; border: 2px solid #444; border-radius: 12px; box-sizing: border-box; }
-        textarea { height: 110px; }
-        
-        /* الأزرار الذهبية والملونة */
         .button { width: 95%; padding: 20px; font-size: 22px; font-weight: bold; background-color: #D4AF37; color: #000; border: none; border-radius: 12px; cursor: pointer; margin-top: 10px; text-decoration: none; display: inline-block; }
         .whatsapp-btn { background-color: #25D366; color: white; margin-top: 15px; }
-        .share-btn { background-color: #007bff; color: white; }
-        
-        /* لوحة الاشتراك - تظهر بعد 3 محاولات */
         #subscription-panel { display:none; margin-top: 20px; padding: 25px; border: 4px dashed #D4AF37; background: #111; border-radius: 15px; }
-        .gold-msg { color: #D4AF37; font-size: 20px; font-weight: bold; margin-top: 15px; line-height: 1.6; }
+        .gold-msg { color: #D4AF37; font-size: 20px; font-weight: bold; margin-top: 15px; }
     </style>
 </head>
 <body>
@@ -37,26 +26,18 @@
     </div>
 
     <div id="controls-area">
-        <textarea id="userText" placeholder="اكتب نص المعايدة هنا.. (اضغط Enter لسطر جديد)"></textarea>
+        <textarea id="userText" placeholder="اكتب نص المعايدة هنا.."></textarea>
         <input type="text" id="bgUrl" placeholder="الصق رابط الصورة الذهبية هنا">
-        <button class="button" onclick="applyAndDraw()">✨ تحديث وتنسيق التصميم</button>
-        <button id="saveBtn" class="button" style="background-color: #28a745; color: white; display:none;" onclick="startRecording()">💾 حفظ الفيديو (محاولة مجانية)</button>
-        <button id="shareBtn" class="button share-btn" style="display:none;" onclick="shareSite()">🔗 مشاركة الموقع</button>
+        <button class="button" onclick="applyAndDraw()">✨ تحديث التصميم</button>
+        <button id="saveBtn" class="button" style="background-color: #28a745; color: white; display:none;" onclick="startRecording()">💾 حفظ الفيديو (Download)</button>
+        <button id="shareBtn" class="button" style="background-color: #007bff; color: white; display:none;" onclick="shareSite()">🔗 مشاركة الموقع</button>
     </div>
 
     <div id="subscription-panel">
-        <h2 style="color: #D4AF37; font-size: 28px;">انتهت المحاولات المجانية! 🚀</h2>
-        <p class="gold-msg">يا أهلاً بيك في النادي الذهبي.. اشترك الآن لتصميم فيديوهاتك بلا حدود بلمسة الخبير أشرف حسن.</p>
-        
-        <a href="https://ipn.eg/S/ashrafhassan567/instapay/9qNhXU" class="button">إتمام الاشتراك الشهري (InstaPay) 💳</a>
-        
-        <a href="https://wa.me/201026402440?text=تم التحويل عبر إنستا باي لتفعيل الاشتراك الذهبي في Creative 2026" class="button whatsapp-btn">أرسل صورة التحويل (واتساب) ✅</a>
-        
-        <p style="font-size: 14px; color: #666; margin-top: 10px;">للتجربة التقنية فقط:</p>
-        <button onclick="activateFullVersion()" style="background:none; border:none; color:#D4AF37; text-decoration: underline;">تفعيل تجريبي</button>
+        <h2 style="color: #D4AF37;">انتهت المحاولات المجانية!</h2>
+        <a href="https://ipn.eg/S/ashrafhassan567/instapay/9qNhXU" class="button">اشتراك InstaPay 💳</a>
+        <a href="https://wa.me/201026402440" class="button whatsapp-btn">تفعيل عبر واتساب ✅</a>
     </div>
-
-    <p id="status" class="gold-msg">جاهز للإبداع يا أشرف..</p>
 
     <script>
         const canvas = document.getElementById('mainCanvas');
@@ -77,84 +58,78 @@
         function applyAndDraw() {
             const url = document.getElementById('bgUrl').value;
             document.getElementById('shareBtn').style.display = 'block';
+            document.getElementById('saveBtn').style.display = 'block';
             if (url) {
                 bgImg.src = url;
-                bgImg.onload = () => {
-                    document.getElementById('saveBtn').style.display = 'block';
-                    render();
-                };
+                bgImg.onload = () => render();
             } else { render(); }
         }
 
         function render() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "#000";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
             if (bgImg.complete && bgImg.src) {
                 ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
-            } else {
-                ctx.fillStyle = "#111";
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
             }
             
-            // تنسيق النص الذهبي الفخم - SEO & UI
-            ctx.font = "bold 75px Arial";
+            ctx.font = "bold 80px Arial";
             ctx.textAlign = "center";
-            ctx.shadowColor = "rgba(0,0,0,0.8)";
-            ctx.shadowBlur = 20;
-            let grad = ctx.createLinearGradient(0, 0, 0, canvas.height);
-            grad.addColorStop(0.3, "#D4AF37");
-            grad.addColorStop(0.7, "#FFD700");
-            ctx.fillStyle = grad;
+            ctx.fillStyle = "#D4AF37"; // ذهبي صريح لضمان الظهور
+            ctx.shadowBlur = 15;
+            ctx.shadowColor = "black";
 
-            const lines = (document.getElementById('userText').value || "Creative\n2026").split('\n');
-            let y = (canvas.height - (lines.length * 95)) / 2 + 60;
+            const lines = (document.getElementById('userText').value || "Creative 2026").split('\n');
+            let y = (canvas.height - (lines.length * 100)) / 2 + 70;
             lines.forEach(line => {
                 ctx.fillText(line, canvas.width / 2, y);
-                y += 95;
+                y += 100;
             });
-            requestAnimationFrame(render);
         }
 
+        // الكود المطور لتسجيل الفيديو على الموبايل
         function startRecording() {
             if (!checkLimits()) return;
-            const stream = canvas.captureStream(30);
-            const recorder = new MediaRecorder(stream, { mimeType: 'video/webm' });
+            
+            // تحديث الرسم مرة أخيرة قبل التسجيل
+            render();
+
+            const stream = canvas.captureStream(25); // 25 فريم لسهولة المعالجة
+            const recorder = new MediaRecorder(stream, {
+                mimeType: 'video/webm;codecs=vp8' // الصيغة الأكثر توافقاً مع جوجل كروم موبايل
+            });
+            
             const chunks = [];
-            recorder.ondataavailable = e => chunks.push(e.data);
+            recorder.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data); };
+            
             recorder.onstop = () => {
                 const blob = new Blob(chunks, { type: 'video/webm' });
+                const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
-                a.href = URL.createObjectURL(blob);
+                a.href = url;
                 a.download = `Creative2026_${Date.now()}.webm`;
+                document.body.appendChild(a);
                 a.click();
+                setTimeout(() => {
+                    document.body.removeChild(a);
+                    window.URL.revokeObjectURL(url);
+                }, 100);
+
                 if (videoCount != -1) {
                     videoCount++;
                     localStorage.setItem('creative2026_count', videoCount);
                     checkLimits();
                 }
             };
+
             recorder.start();
-            alert("بدأ استخراج الفيديو.. انتظر 10 ثوانٍ وسيتم الحفظ.");
-            setTimeout(() => recorder.stop(), 10000);
+            alert("جاري استخراج الفيديو.. سيتم التحميل تلقائياً بعد 5 ثوانٍ");
+            setTimeout(() => recorder.stop(), 5000); // 5 ثواني كافية للتجربة
         }
 
         async function shareSite() {
             if (navigator.share) {
-                try {
-                    await navigator.share({
-                        title: 'Creative 2026 👑',
-                        text: 'صمم فيديوهاتك بلمسة ذهبية من موبايلك!',
-                        url: window.location.href
-                    });
-                } catch (err) { console.log(err); }
-            } else {
-                alert("انسخ الرابط وشاركه: " + window.location.href);
-            }
-        }
-
-        function activateFullVersion() {
-            localStorage.setItem('creative2026_count', -1);
-            alert("تم التفعيل الملكي بنجاح!");
-            location.reload();
+                navigator.share({ title: 'Creative 2026', url: window.location.href });
+            } else { alert(window.location.href); }
         }
 
         window.onload = () => { checkLimits(); render(); };
