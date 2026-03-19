@@ -3,19 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creative 2026 | المحرر الملكي الذهبي</title>
+    <title>Creative 2026 | المحرر الملكي</title>
     <link rel="icon" href="https://img.icons8.com/fluency/48/D4AF37/crown.png" type="image/png">
     <style>
+        /* التنسيق البصري: أسود وذهبي فخم - ذوق أشرف */
         body { background-color: #000; color: #fff; font-family: Arial, sans-serif; margin: 0; padding: 15px; text-align: center; }
         h1 { color: #D4AF37; font-size: 32px; margin-bottom: 10px; text-shadow: 2px 2px #333; }
+        
+        /* حاوية العرض - UI/UX متناسب مع الهاتف */
         #canvas-wrapper { border: 3px solid #D4AF37; background: #111; margin: 15px auto; max-width: 900px; border-radius: 15px; overflow: hidden; box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
         canvas { width: 100%; height: auto; display: block; }
+        
+        /* مدخلات النص - خطوط كبيرة (20px+) لسهولة القراءة */
         textarea, input { width: 95%; padding: 18px; font-size: 20px; margin: 10px 0; background: #222; color: #fff; border: 2px solid #444; border-radius: 12px; box-sizing: border-box; }
         textarea { height: 110px; }
+        
+        /* الأزرار الذهبية والملونة */
         .button { width: 95%; padding: 20px; font-size: 22px; font-weight: bold; background-color: #D4AF37; color: #000; border: none; border-radius: 12px; cursor: pointer; margin-top: 10px; text-decoration: none; display: inline-block; }
+        .whatsapp-btn { background-color: #25D366; color: white; margin-top: 15px; }
+        .share-btn { background-color: #007bff; color: white; }
+        
+        /* لوحة الاشتراك - تظهر بعد 3 محاولات */
         #subscription-panel { display:none; margin-top: 20px; padding: 25px; border: 4px dashed #D4AF37; background: #111; border-radius: 15px; }
         .gold-msg { color: #D4AF37; font-size: 20px; font-weight: bold; margin-top: 15px; line-height: 1.6; }
-        .whatsapp-btn { background-color: #25D366; color: white; margin-top: 15px; }
     </style>
 </head>
 <body>
@@ -31,17 +41,18 @@
         <input type="text" id="bgUrl" placeholder="الصق رابط الصورة الذهبية هنا">
         <button class="button" onclick="applyAndDraw()">✨ تحديث وتنسيق التصميم</button>
         <button id="saveBtn" class="button" style="background-color: #28a745; color: white; display:none;" onclick="startRecording()">💾 حفظ الفيديو (محاولة مجانية)</button>
+        <button id="shareBtn" class="button share-btn" style="display:none;" onclick="shareSite()">🔗 مشاركة الموقع</button>
     </div>
 
     <div id="subscription-panel">
         <h2 style="color: #D4AF37; font-size: 28px;">انتهت المحاولات المجانية! 🚀</h2>
-        <p class="gold-msg">يا أهلاً بيك في النادي الذهبي.. اشترك دلوقتي عشان تطلع فيديوهات براحتك ومن غير حدود بلمسة الخبير أشرف حسن.</p>
+        <p class="gold-msg">يا أهلاً بيك في النادي الذهبي.. اشترك الآن لتصميم فيديوهاتك بلا حدود بلمسة الخبير أشرف حسن.</p>
         
         <a href="https://ipn.eg/S/ashrafhassan567/instapay/9qNhXU" class="button">إتمام الاشتراك الشهري (InstaPay) 💳</a>
         
-        <a href="https://wa.me/201026402440?text=تم التحويل عبر إنستا باي لتفعيل الاشتراك الذهبي" class="button whatsapp-btn">أرسل صورة التحويل (واتساب) ✅</a>
+        <a href="https://wa.me/201026402440?text=تم التحويل عبر إنستا باي لتفعيل الاشتراك الذهبي في Creative 2026" class="button whatsapp-btn">أرسل صورة التحويل (واتساب) ✅</a>
         
-        <p style="font-size: 14px; color: #666; margin-top: 10px;">للتجربة فقط:</p>
+        <p style="font-size: 14px; color: #666; margin-top: 10px;">للتجربة التقنية فقط:</p>
         <button onclick="activateFullVersion()" style="background:none; border:none; color:#D4AF37; text-decoration: underline;">تفعيل تجريبي</button>
     </div>
 
@@ -65,6 +76,7 @@
 
         function applyAndDraw() {
             const url = document.getElementById('bgUrl').value;
+            document.getElementById('shareBtn').style.display = 'block';
             if (url) {
                 bgImg.src = url;
                 bgImg.onload = () => {
@@ -82,6 +94,8 @@
                 ctx.fillStyle = "#111";
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
             }
+            
+            // تنسيق النص الذهبي الفخم - SEO & UI
             ctx.font = "bold 75px Arial";
             ctx.textAlign = "center";
             ctx.shadowColor = "rgba(0,0,0,0.8)";
@@ -119,13 +133,27 @@
                 }
             };
             recorder.start();
-            alert("بدأ الاستخراج.. سيتم الحفظ بعد 10 ثوانٍ.");
+            alert("بدأ استخراج الفيديو.. انتظر 10 ثوانٍ وسيتم الحفظ.");
             setTimeout(() => recorder.stop(), 10000);
+        }
+
+        async function shareSite() {
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: 'Creative 2026 👑',
+                        text: 'صمم فيديوهاتك بلمسة ذهبية من موبايلك!',
+                        url: window.location.href
+                    });
+                } catch (err) { console.log(err); }
+            } else {
+                alert("انسخ الرابط وشاركه: " + window.location.href);
+            }
         }
 
         function activateFullVersion() {
             localStorage.setItem('creative2026_count', -1);
-            alert("مبروك! تم تفعيل الاشتراك بنجاح.");
+            alert("تم التفعيل الملكي بنجاح!");
             location.reload();
         }
 
