@@ -135,4 +135,42 @@
         window.onload = () => { checkLimits(); render(); };
     </script>
 </body>
-</html>
+</html><div id="audio-library-section" style="margin-top: 25px; padding: 20px; border: 2px solid #D4AF37; border-radius: 15px; background: #111; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);">
+    
+    <h3 style="color: #D4AF37; font-size: 22px; margin-bottom: 8px;">🎵 لمستك الصوتية الخاصة</h3>
+    <p style="color: #ccc; font-size: 18px; margin-bottom: 15px; line-height: 1.5;">
+        "اختر من مكتبتنا النغمة التي تناسب ذوقك الرفيع، واستمتع بتجربة إبداعية متكاملة."
+    </p>
+
+    <select id="audioSelect" onchange="playSelectedAudio()" style="width: 100%; padding: 15px; font-size: 18px; background: #222; color: #D4AF37; border: 1px solid #D4AF37; border-radius: 10px; cursor: pointer;">
+        <option value="">-- اضغط هنا لاختيار النغمة --</option>
+        <option value="https://www.bensound.com/bensound-music/bensound-memories.mp3">🎹 نغمة هادئة (ذكريات)</option>
+        <option value="https://www.bensound.com/bensound-music/bensound-creativeminds.mp3">✨ نغمة إبداعية (مودرن)</option>
+        <option value="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3">👑 نغمة ملكية (بطيئة)</option>
+    </select>
+
+    <audio id="mainAudio" controls style="width: 100%; margin-top: 15px; filter: invert(1) hue-rotate(180deg);">
+        <source id="audioSource" src="" type="audio/mpeg">
+        متصفحك لا يدعم تشغيل الصوت.
+    </audio>
+</div>
+
+<script>
+// وظيفة تشغيل الصوت المختار بذكاء
+function playSelectedAudio() {
+    const select = document.getElementById('audioSelect');
+    const audio = document.getElementById('mainAudio');
+    const source = document.getElementById('audioSource');
+    
+    if (select.value) {
+        source.src = select.value;
+        audio.load();
+        audio.play().catch(error => {
+            console.log("تطلب بعض المتصفحات ضغطة زر لتشغيل الصوت: " + error);
+        });
+    } else {
+        audio.pause();
+    }
+}
+</script>
+
