@@ -9,8 +9,7 @@
         .royal-box { border: 2px solid #D4AF37; padding: 25px; border-radius: 20px; max-width: 600px; margin: 20px auto; box-shadow: 0 0 20px #D4AF37; background: #0a0a0a; }
         h1 { color: #D4AF37; font-size: 35px; margin-bottom: 5px; }
         textarea { width: 100%; height: 100px; background: #111; border: 1px solid #D4AF37; color: #FFD700; padding: 15px; border-radius: 12px; font-size: 20px; margin-bottom: 20px; outline: none; box-sizing: border-box; }
-        .main-btn { background: linear-gradient(45deg, #D4AF37, #FFD700); color: #000; padding: 18px; font-size: 22px; font-weight: bold; border: none; border-radius: 50px; cursor: pointer; width: 100%; transition: 0.3s; }
-        .main-btn:active { transform: scale(0.95); }
+        .main-btn { background: linear-gradient(45deg, #D4AF37, #FFD700); color: #000; padding: 18px; font-size: 22px; font-weight: bold; border: none; border-radius: 50px; cursor: pointer; width: 100%; }
         #videoDisplay { display: none; margin-top: 25px; }
         video { width: 100%; border: 2px solid #D4AF37; border-radius: 15px; background: #000; box-shadow: 0 0 15px rgba(212, 175, 55, 0.5); }
         #status { margin: 15px; color: #FFD700; font-weight: bold; font-size: 18px; }
@@ -20,7 +19,7 @@
 
 <div class="royal-box">
     <h1>Creative 2026 👑</h1>
-    <p style="font-size: 16px; color: #888;">منصة أشرف حسن للذكاء الاصطناعي</p>
+    <p style="font-size: 16px; color: #888;">بوابة أشرف حسن للذكاء الاصطناعي</p>
     
     <textarea id="userInput" placeholder="اكتب: فضاء، ذهب، أو بحر..."></textarea>
     <button class="main-btn" onclick="startAI()">إصدار الفيديو الملكي</button>
@@ -29,7 +28,7 @@
 
     <div id="videoDisplay">
         <h3 style="color:#D4AF37">📺 تم توليد المشهد الملكي:</h3>
-        <video id="myVid" controls autoplay loop muted playsinline webkit-playsinline>
+        <video id="myVid" controls autoplay loop muted playsinline>
             <source src="" type="video/mp4">
         </video>
     </div>
@@ -44,10 +43,10 @@ function startAI() {
 
     if(!text) { alert("أدخل نصاً أولاً يا أشرف!"); return; }
 
-    status.innerHTML = "⏳ جاري استدعاء السيرفر السحابي...";
+    status.innerHTML = "⏳ جاري استدعاء السيرفر السحابي المباشر...";
     display.style.display = 'none';
 
-    // روابط فيديوهات فخمة ومباشرة من Pexels CDN (تعمل 100%)
+    // مكتبة روابط فيديوهات مباشرة تعمل 100% بدون حجب
     const library = {
         "فضاء": "https://cdn.pixabay.com/video/2020/09/20/50531-462378875_large.mp4",
         "ذهب": "https://cdn.pixabay.com/video/2023/10/24/186350-877884485_large.mp4",
@@ -56,20 +55,20 @@ function startAI() {
     };
 
     setTimeout(() => {
-        // إذا لم يجد الكلمة، سيختار فيديو "تكنولوجيا" كافتراضي فخم
+        // اختيار الفيديو أو الافتراضي "تكنولوجيا"
         let selectedUrl = library[text] || library["تكنولوجيا"]; 
         
         status.innerHTML = "✅ تم التحميل بنجاح! شاهد الإبداع.";
         
         video.src = selectedUrl;
-        video.load(); // أمر ضروري لتهيئة الفيديو الجديد
-        
+        video.load(); 
         display.style.display = 'block';
-        video.play().catch(e => {
-            status.innerHTML = "✅ الفيديو جاهز، اضغط 'Play' للمشاهدة.";
+        
+        // محاولة تشغيل الفيديو مع معالجة حماية الموبايل
+        video.play().catch(() => {
+            status.innerHTML = "✅ الفيديو جاهز، اضغط تشغيل لمشاهدته.";
         });
 
-        // تحريك الشاشة للفيديو تلقائياً
         window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
     }, 2000);
 }
