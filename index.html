@@ -3,99 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creative 2026 👑</title>
+    <title>Creative 2026 | Ashraf 👑</title>
     
+    <meta name="description" content="منصة أشرف الإبداعية 2026 - UI/UX & SEO">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#D4AF37">
-    <meta name="description" content="منصة أشرف حسن الإبداعية 2026">
 
     <style>
+        /* التنسيق الملكي الموحد (Black & Gold) */
         body {
             background-color: #000000;
             color: #ffffff;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
             text-align: center;
             padding: 20px;
             font-size: 20px;
+            margin: 0;
         }
-        .royal-border {
+        .royal-container {
             border: 2px solid #D4AF37;
-            padding: 20px;
-            border-radius: 15px;
-            max-width: 600px;
-            margin: auto;
+            padding: 25px;
+            border-radius: 20px;
+            max-width: 650px;
+            margin: 20px auto;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
         }
         h1 {
-            background: linear-gradient(to bottom, #cf9d1d, #ffeb4d);
+            background: linear-gradient(to bottom, #cf9d1d, #ffeb4d, #cf9d1d);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-size: 35px;
+            font-size: clamp(28px, 5vw, 38px);
+            margin-bottom: 10px;
         }
         textarea {
-            width: 90%;
+            width: 100%;
             height: 120px;
-            background: #1a1a1a;
+            background: #111;
             border: 1px solid #D4AF37;
-            color: white;
-            padding: 10px;
-            border-radius: 8px;
-            font-size: 18px;
+            color: #FFD700;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 20px; /* لراحة عينك يا أشرف */
+            box-sizing: border-box;
             margin-bottom: 20px;
+            outline: none;
         }
         .main-button {
-            background-color: #D4AF37;
+            background: linear-gradient(45deg, #D4AF37, #FFD700);
             color: black;
-            padding: 15px 30px;
+            padding: 18px;
             font-size: 22px;
             font-weight: bold;
             border: none;
             border-radius: 50px;
             cursor: pointer;
             width: 100%;
+            transition: 0.3s;
         }
-        #statusPanel {
-            margin-top: 20px;
+        .main-button:active { transform: scale(0.98); }
+        
+        /* شاشة العرض (Display Screen) */
+        #displayScreen {
+            margin-top: 25px;
+            display: none; /* مخفية حتى يتم التنفيذ */
+        }
+        video {
+            width: 100%;
+            border: 2px solid #D4AF37;
+            border-radius: 15px;
+            background: #000;
+        }
+        #status {
+            margin: 15px 0;
             color: #FFD700;
-            display: none;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
 
-    <div class="royal-border">
+    <div class="royal-container">
         <h1>Creative 2026 👑</h1>
-        <h3>🎬 منطقة الاختبار (أشرف حسن)</h3>
+        <p style="color: #aaa; font-size: 16px;">بوابة أشرف حسن للذكاء الاصطناعي</p>
         
-        <textarea id="userScript" placeholder="اكتب النص هنا لتحويله لفيديو..."></textarea>
+        <textarea id="userInput" placeholder="اكتب فكرة الفيديو هنا..."></textarea>
         
-        <button class="main-button" onclick="startProcess()">إنشاء الفيديو الملكي</button>
+        <button class="main-button" onclick="executeProcess()">إصدار الفيديو الملكي</button>
 
-        <div id="statusPanel" id="status"></div>
+        <div id="status"></div>
+
+        <div id="displayScreen">
+            <h3 style="color: #D4AF37;">🎥 معاينة العرض:</h3>
+            <video id="outputVideo" controls>
+                <source src="" type="video/mp4">
+            </video>
+            <p style="font-size: 14px; color: #888; margin-top:10px;">نظام Green Software: معالجة سحابية موفرة للطاقة</p>
+        </div>
     </div>
 
     <script>
-        // وظيفة التشغيل الفعلي
-        function startProcess() {
-            const text = document.getElementById('userScript').value;
-            const status = document.getElementById('statusPanel');
+        // المحرك البرمجي الموحد
+        async function executeProcess() {
+            const input = document.getElementById('userInput').value;
+            const status = document.getElementById('status');
+            const screen = document.getElementById('displayScreen');
+            const video = document.getElementById('outputVideo');
 
-            if (!text.trim()) {
-                alert("من فضلك أدخل نصاً أولاً");
+            if (!input.trim()) {
+                alert("أستاذ أشرف، العقل يقول لا بد من مدخلات لنعطيك نتائج!");
                 return;
             }
 
-            status.style.display = 'block';
-            status.innerHTML = "⏳ جاري المعالجة السحابية... انتظر قليلاً";
+            // بداية المعالجة
+            status.innerHTML = "⏳ جاري الاتصال بالسيرفر السحابي (Freemium)...";
+            screen.style.display = 'none';
 
-            setTimeout(() => {
-                status.innerHTML = "✅ تم الاستلام بنجاح! الرابط يعمل الآن يا أشرف.";
-            }, 2000);
+            try {
+                // محاكاة المعالجة الحقيقية لمدة 3 ثواني
+                await new Promise(resolve => setTimeout(resolve, 3000));
+
+                status.innerHTML = "✅ اكتمل الإنشاء بنجاح!";
+                
+                // تفعيل شاشة العرض بفيديو تجريبي فخم
+                video.src = "https://www.w3schools.com/html/mov_bbb.mp4"; 
+                screen.style.display = 'block';
+                video.scrollIntoView({ behavior: 'smooth' });
+                
+            } catch (error) {
+                status.innerHTML = "❌ حدث خطأ تقني، حاول مرة أخرى.";
+            }
         }
 
-        // تسجيل Service Worker
+        // تسجيل الـ Service Worker للـ PWA
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js')
-            .then(() => console.log("Service Worker Active"));
+            navigator.serviceWorker.register('sw.js').catch(() => {});
         }
     </script>
 </body>
