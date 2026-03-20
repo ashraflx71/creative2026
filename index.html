@@ -55,5 +55,32 @@ h1, h2 {
             });
         }
     </script>
-</body>
+</<script>
+function startGeneration() {
+    const text = document.querySelector('textarea').value;
+    if(text.trim() === "") {
+        alert("يا أشرف، فضلاً أدخل النص أولاً لنبدأ الإبداع!");
+        return;
+    }
+    
+    // تغيير حالة الزر لإعطاء انطباع بالعمل (UX Improvement)
+    const btn = document.querySelector('.btn-generate');
+    btn.innerHTML = "جاري المعالجة الملكية... ⏳";
+    btn.style.opacity = "0.7";
+
+    // هنا نقوم بربط الواجهة بـ API خارجي لتحويل النص لفيديو
+    console.log("النص المستلم: " + text);
+    
+    // محاكاة للنتيجة (Demo)
+    setTimeout(() => {
+        alert("تم استلام النص بنجاح! جاري التجهيز وفق معايير Green Software.");
+        btn.innerHTML = "إنشاء الفيديو الملكي";
+        btn.style.opacity = "1";
+    }, 2000);
+}
+
+// ربط الوظيفة بالزر
+document.querySelector('.btn-generate').onclick = startGeneration;
+</script>
+body>
 </html>
