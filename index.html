@@ -5,73 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creative 2026 | Ashraf 👑</title>
     <style>
-        body { background: #000; color: #fff; font-family: Arial; text-align: center; padding: 20px; font-size: 22px; margin: 0; }
-        .royal-box { border: 2px solid #D4AF37; padding: 25px; border-radius: 20px; max-width: 600px; margin: 20px auto; box-shadow: 0 0 20px #D4AF37; background: #0a0a0a; }
-        h1 { color: #D4AF37; font-size: 35px; margin-bottom: 5px; }
-        textarea { width: 100%; height: 100px; background: #111; border: 1px solid #D4AF37; color: #FFD700; padding: 15px; border-radius: 12px; font-size: 20px; margin-bottom: 20px; outline: none; box-sizing: border-box; }
-        .main-btn { background: linear-gradient(45deg, #D4AF37, #FFD700); color: #000; padding: 18px; font-size: 22px; font-weight: bold; border: none; border-radius: 50px; cursor: pointer; width: 100%; }
-        #videoDisplay { display: none; margin-top: 25px; }
-        video { width: 100%; border: 2px solid #D4AF37; border-radius: 15px; background: #000; box-shadow: 0 0 15px rgba(212, 175, 55, 0.5); }
-        #status { margin: 15px; color: #FFD700; font-weight: bold; font-size: 18px; }
+        body { background: #000; color: #D4AF37; text-align: center; font-family: Arial; padding: 20px; font-size: 22px; margin: 0; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .royal-card { border: 3px solid #D4AF37; padding: 30px; border-radius: 25px; background: #0a0a0a; box-shadow: 0 0 30px #D4AF37; width: 90%; max-width: 500px; }
+        h1 { margin-bottom: 10px; font-size: 32px; text-shadow: 0 0 10px #D4AF37; }
+        #videoContainer { margin-top: 20px; position: relative; width: 100%; height: 250px; background: #111; border-radius: 15px; overflow: hidden; border: 1px solid #444; cursor: pointer; }
+        video { width: 100%; height: 100%; object-fit: cover; display: none; }
+        .play-hint { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #fff; font-size: 18px; font-weight: bold; background: rgba(212, 175, 55, 0.6); padding: 10px 20px; border-radius: 30px; pointer-events: none; }
+        .status-text { margin-top: 15px; font-size: 16px; color: #888; }
     </style>
 </head>
 <body>
 
-<div class="royal-box">
+<div class="royal-card">
     <h1>Creative 2026 👑</h1>
-    <p style="font-size: 16px; color: #888;">بوابة أشرف حسن للذكاء الاصطناعي</p>
-    
-    <textarea id="userInput" placeholder="اكتب: فضاء، ذهب، أو بحر..."></textarea>
-    <button class="main-btn" onclick="startAI()">إصدار الفيديو الملكي</button>
+    <p>أشرف حسن - اضغط على المربع بالأسفل</p>
 
-    <div id="status"></div>
-
-    <div id="videoDisplay">
-        <h3 style="color:#D4AF37">📺 تم توليد المشهد الملكي:</h3>
-        <video id="myVid" controls autoplay loop muted playsinline>
-            <source src="" type="video/mp4">
+    <div id="videoContainer" onclick="forcePlay()">
+        <div id="hint" class="play-hint">اضغط هنا لتشغيل العرض 🎬</div>
+        <video id="mainVid" playsinline loop muted>
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
         </video>
     </div>
+
+    <p class="status-text">مشروع: balmy-apogee-444018-r6</p>
 </div>
 
 <script>
-function startAI() {
-    const text = document.getElementById('userInput').value.trim();
-    const status = document.getElementById('status');
-    const display = document.getElementById('videoDisplay');
-    const video = document.getElementById('myVid');
+function forcePlay() {
+    const v = document.getElementById('mainVid');
+    const h = document.getElementById('hint');
 
-    if(!text) { alert("أدخل نصاً أولاً يا أشرف!"); return; }
-
-    status.innerHTML = "⏳ جاري استدعاء السيرفر السحابي المباشر...";
-    display.style.display = 'none';
-
-    // مكتبة روابط فيديوهات مباشرة تعمل 100% بدون حجب
-    const library = {
-        "فضاء": "https://cdn.pixabay.com/video/2020/09/20/50531-462378875_large.mp4",
-        "ذهب": "https://cdn.pixabay.com/video/2023/10/24/186350-877884485_large.mp4",
-        "بحر": "https://cdn.pixabay.com/video/2021/09/13/88394-604771523_large.mp4",
-        "تكنولوجيا": "https://cdn.pixabay.com/video/2023/04/18/159419-819129759_large.mp4"
-    };
-
-    setTimeout(() => {
-        // اختيار الفيديو أو الافتراضي "تكنولوجيا"
-        let selectedUrl = library[text] || library["تكنولوجيا"]; 
-        
-        status.innerHTML = "✅ تم التحميل بنجاح! شاهد الإبداع.";
-        
-        video.src = selectedUrl;
-        video.load(); 
-        display.style.display = 'block';
-        
-        // محاولة تشغيل الفيديو مع معالجة حماية الموبايل
-        video.play().catch(() => {
-            status.innerHTML = "✅ الفيديو جاهز، اضغط تشغيل لمشاهدته.";
-        });
-
-        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-    }, 2000);
+    // إظهار الفيديو وتشغيله بقوة اللمس
+    v.style.display = 'block';
+    h.style.display = 'none';
+    
+    v.play().then(() => {
+        console.log("المنطق انتصر.. الفيديو يعمل!");
+    }).catch(err => {
+        // إذا فشل، نحاول تشغيله صامتاً تماماً
+        v.muted = true;
+        v.play();
+    });
 }
 </script>
+
 </body>
 </html>
