@@ -1,23 +1,21 @@
 {
-  "name": "Creative 2026",
-  "short_name": "Creative26",
-  "description": "منصة أشرف حسن الإبداعية لتوليد الفيديو",
-  "start_url": "/creative2026/",
+  "name": "Creative 2026 👑",
+  "short_name": "Creative2026",
+  "start_url": "/creative2026/index.html",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#000000",
+  "background_color": "#000000",
+  "theme_color": "#D4AF37",
+  "description": "منصة أشرف الإبداعية لتطوير واجهات المستخدم وتحويل النصوص لفيديو",
   "icons": [
     {
-      "src": "icon-192.png",
+      "src": "https://via.placeholder.com/192/D4AF37/000000?text=A",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     },
     {
-      "src": "icon-512.png",
+      "src": "https://via.placeholder.com/512/D4AF37/000000?text=Ashraf",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     }
   ]
 }
