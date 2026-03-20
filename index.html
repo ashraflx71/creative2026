@@ -5,68 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creative 2026 | Ashraf 👑</title>
     <style>
-        body { background: #000; color: #fff; font-family: Arial; text-align: center; padding: 20px; font-size: 20px; margin: 0; }
-        .royal-container { border: 2px solid #D4AF37; padding: 20px; border-radius: 20px; max-width: 600px; margin: auto; background: #0a0a0a; box-shadow: 0 0 20px #D4AF37; }
-        h1 { color: #D4AF37; font-size: 30px; margin-bottom: 10px; }
+        body { background: #000; color: #fff; font-family: Arial; text-align: center; padding: 20px; font-size: 20px; }
+        .royal-card { border: 2px solid #D4AF37; padding: 20px; border-radius: 20px; max-width: 550px; margin: auto; background: #0a0a0a; box-shadow: 0 0 15px #D4AF37; }
+        h1 { color: #D4AF37; font-size: 28px; }
         textarea { width: 100%; height: 80px; background: #111; border: 1px solid #D4AF37; color: #FFD700; padding: 10px; border-radius: 10px; font-size: 18px; margin-bottom: 15px; outline: none; box-sizing: border-box; }
-        .btn { background: linear-gradient(45deg, #D4AF37, #FFD700); color: #000; padding: 15px; font-size: 20px; font-weight: bold; border: none; border-radius: 50px; cursor: pointer; width: 100%; transition: 0.3s; }
-        #videoArea { display: none; margin-top: 25px; }
-        video { width: 100%; border: 2px solid #D4AF37; border-radius: 15px; background: #000; }
+        .btn { background: linear-gradient(45deg, #D4AF37, #FFD700); color: #000; padding: 15px; font-size: 20px; font-weight: bold; border: none; border-radius: 50px; cursor: pointer; width: 100%; }
+        #videoArea { display: none; margin-top: 20px; }
+        video { width: 100%; border-radius: 15px; border: 1px solid #444; }
         #status { margin: 10px; color: #FFD700; font-size: 16px; }
     </style>
 </head>
 <body>
 
-<div class="royal-container">
+<div class="royal-card">
     <h1>Creative 2026 👑</h1>
-    <p style="font-size: 14px; color: #888;">منصة أشرف حسن لتوليد المحتوى الذكي</p>
+    <p style="font-size: 14px; color: #888;">بوابة أشرف حسن للإبداع الرقمي</p>
     
-    <textarea id="userInput" placeholder="اكتب هنا: فضاء، تكنولوجيا، أو طبيعة..."></textarea>
+    <textarea id="userInput" placeholder="اكتب: فضاء، سيارات، أو أرنب..."></textarea>
     
-    <button class="btn" onclick="generateNow()">إصدار الفيديو الملكي 🎬</button>
+    <button class="btn" onclick="startProcess()">توليد الفيديو الملكي 🎬</button>
 
     <div id="status"></div>
 
     <div id="videoArea">
-        <h3 style="color:#D4AF37; font-size: 18px;">📺 المعاينة الذكية:</h3>
-        <video id="mainVid" controls playsinline loop>
+        <video id="mainVid" controls playsinline>
             <source src="" type="video/mp4">
         </video>
     </div>
 </div>
 
 <script>
-function generateNow() {
-    const text = document.getElementById('userInput').value.trim();
+function startProcess() {
+    const text = document.getElementById('userInput').value.trim().toLowerCase();
     const status = document.getElementById('status');
     const area = document.getElementById('videoArea');
     const video = document.getElementById('mainVid');
 
-    if(!text) { alert("من فضلك اكتب نصاً أولاً!"); return; }
+    if(!text) { alert("أدخل نصاً أولاً يا أشرف!"); return; }
 
-    status.innerHTML = "⏳ جاري المعالجة السحابية...";
+    status.innerHTML = "⏳ جاري التحميل السريع...";
     area.style.display = 'none';
 
-    // مكتبة فيديوهات خفيفة جداً لضمان عدم التقطيع
+    // مكتبة فيديوهات "جوجل" السريعة جداً والمضمونة
     const library = {
-        "فضاء": "https://www.w3schools.com/html/mov_bbb.mp4",
-        "تكنولوجيا": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
-        "طبيعة": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+        "أرنب": "https://www.w3schools.com/html/mov_bbb.mp4",
+        "سيارات": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+        "فضاء": "https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
     };
 
     setTimeout(() => {
-        // اختيار الفيديو أو الافتراضي
-        let url = library[text] || library["تكنولوجيا"];
+        // اختيار الفيديو أو الافتراضي "سيارات"
+        let url = library[text] || library["سيارات"];
         
-        status.innerHTML = "✅ تم الإصدار بنجاح!";
+        status.innerHTML = "✅ الفيديو جاهز للعرض!";
         video.src = url;
         video.load();
         area.style.display = 'block';
-        
-        video.play().catch(() => {
-            status.innerHTML = "✅ الفيديو جاهز، اضغط تشغيل لمشاهدته.";
-        });
-    }, 1500);
+        video.play();
+    }, 1000);
 }
 </script>
 
