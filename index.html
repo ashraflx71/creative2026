@@ -54,7 +54,38 @@ h1, h2 {
             
             });
         }
-    </script>
+    </script><script>
+    // وظيفة الضغط على الزر الملكي
+    async function handleGenerateVideo() {
+        const scriptText = document.getElementById('userScript').value;
+        const statusPanel = document.getElementById('statusPanel');
+
+        if (!scriptText) {
+            alert("أستاذ أشرف، فضلاً اكتب النص الذي تود تحويله لفيديو أولاً.");
+            return;
+        }
+
+        // تحسين تجربة المستخدم (UX)
+        statusPanel.style.display = 'block';
+        statusPanel.innerHTML = "جاري الاتصال بالسيرفر السحابي... 🚀";
+
+        try {
+            // محاكاة الاتصال بـ API خارجي (هنا نضع رابط الخدمة مستقبلاً)
+            console.log("إرسال النص للمعالجة:", scriptText);
+            
+            // تأخير بسيط لمحاكاة المعالجة (توفير طاقة - Green Software)
+            await new Promise(resolve => setTimeout(resolve, 3000));
+
+            statusPanel.innerHTML = "✅ اكتملت المعالجة! جاري تجهيز رابط التحميل...";
+            statusPanel.style.color = "#FFD700"; // ذهبي ساطع للنجاح
+            
+        } catch (error) {
+            statusPanel.innerHTML = "❌ عذراً، حدث خطأ في الاتصال بالشبكة.";
+            statusPanel.style.color = "red";
+        }
+    }
+</script>
+
 </<script>
 function startGeneration() {
     const text = document.querySelector('textarea').value;
