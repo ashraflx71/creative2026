@@ -3,68 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creative 2026 | Ashraf 👑</title>
+    <title>منصة أشرف الإبداعية 2026 👑</title>
     <style>
-        body { background: #000; color: #fff; font-family: Arial; text-align: center; padding: 20px; font-size: 20px; }
-        .royal-card { border: 2px solid #D4AF37; padding: 20px; border-radius: 20px; max-width: 550px; margin: auto; background: #0a0a0a; box-shadow: 0 0 15px #D4AF37; }
-        h1 { color: #D4AF37; font-size: 28px; }
-        textarea { width: 100%; height: 80px; background: #111; border: 1px solid #D4AF37; color: #FFD700; padding: 10px; border-radius: 10px; font-size: 18px; margin-bottom: 15px; outline: none; box-sizing: border-box; }
-        .btn { background: linear-gradient(45deg, #D4AF37, #FFD700); color: #000; padding: 15px; font-size: 20px; font-weight: bold; border: none; border-radius: 50px; cursor: pointer; width: 100%; }
-        #videoArea { display: none; margin-top: 20px; }
-        video { width: 100%; border-radius: 15px; border: 1px solid #444; }
-        #status { margin: 10px; color: #FFD700; font-size: 16px; }
+        /* التيم الملكي: أسود وذهبي */
+        body { background-color: #000; color: gold; font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        h1 { color: gold; font-size: 40px; border-bottom: 2px solid gold; display: inline-block; padding-bottom: 10px; }
+        
+        /* شبكة عرض الفيديوهات (UI/UX) */
+        .video-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 30px; }
+        .video-card { background: #111; border: 2px solid gold; border-radius: 15px; padding: 15px; width: 300px; }
+        
+        /* وضوح النص (Readability 20px+) */
+        p { font-size: 20px; margin-top: 10px; }
+        video { width: 100%; border-radius: 10px; }
+        
+        .footer { margin-top: 50px; font-size: 18px; color: #888; }
     </style>
 </head>
 <body>
 
-<div class="royal-card">
-    <h1>Creative 2026 👑</h1>
-    <p style="font-size: 14px; color: #888;">بوابة أشرف حسن للإبداع الرقمي</p>
-    
-    <textarea id="userInput" placeholder="اكتب: فضاء، سيارات، أو أرنب..."></textarea>
-    
-    <button class="btn" onclick="startProcess()">توليد الفيديو الملكي 🎬</button>
+    <h1>منصة أشرف الإبداعية 2026 👑</h1>
+    <p>🎬 منطقة الاختبار الملكي - محرك إنتاج الفيديو الذكي</p>
 
-    <div id="status"></div>
+    <div class="video-grid">
+        <div class="video-card">
+            <video controls>
+                <source src="classic_summary.mp4" type="video/mp4">
+            </video>
+            <p>📚 ملخصات الأدب الكلاسيكي</p>
+        </div>
 
-    <div id="videoArea">
-        <video id="mainVid" controls playsinline>
-            <source src="" type="video/mp4">
-        </video>
+        <div class="video-card">
+            <video controls>
+                <source src="royal_test_zone.mp4" type="video/mp4">
+            </video>
+            <p>⚙️ تجربة المحرك الذكي</p>
+        </div>
     </div>
-</div>
 
-<script>
-function startProcess() {
-    const text = document.getElementById('userInput').value.trim().toLowerCase();
-    const status = document.getElementById('status');
-    const area = document.getElementById('videoArea');
-    const video = document.getElementById('mainVid');
-
-    if(!text) { alert("أدخل نصاً أولاً يا أشرف!"); return; }
-
-    status.innerHTML = "⏳ جاري التحميل السريع...";
-    area.style.display = 'none';
-
-    // مكتبة فيديوهات "جوجل" السريعة جداً والمضمونة
-    const library = {
-        "أرنب": "https://www.w3schools.com/html/mov_bbb.mp4",
-        "سيارات": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
-        "فضاء": "https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
-    };
-
-    setTimeout(() => {
-        // اختيار الفيديو أو الافتراضي "سيارات"
-        let url = library[text] || library["سيارات"];
-        
-        status.innerHTML = "✅ الفيديو جاهز للعرض!";
-        video.src = url;
-        video.load();
-        area.style.display = 'block';
-        video.play();
-    }, 1000);
-}
-</script>
+    <div class="footer">تطوير: أشرف حسن - خبير SEO & UI/UX</div>
 
 </body>
 </html>
