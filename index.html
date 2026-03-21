@@ -3,33 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أشرف الإبداعية 2026</title>
+    <title>منصة أشرف الإبداعية 2026 | Creative 2026</title>
     <style>
-        body {
-            background-color: #000000;
-            color: #ffffff;
-            font-family: Arial, sans-serif;
-            font-size: 22px; /* الخط الكبير اللي يريحك */
-            text-align: center;
-            padding: 50px;
+        /* التنسيق الملكي: أسود وذهبي */
+        :root {
+            --gold: #D4AF37;
+            --black: #000000;
+            --dark-grey: #1a1a1a;
+            --white: #ffffff;
         }
-        h1 { color: #D4AF37; font-size: 40px; }
-        .gold-text { color: #D4AF37; font-weight: bold; }
-        .content-box {
-            border: 2px solid #D4AF37;
-            padding: 20px;
-            margin: 20px auto;
-            max-width: 800px;
+
+        body {
+            background-color: var(--black);
+            color: var(--white);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            /* حجم الخط الكبير المفضل لك لسهولة القراءة */
+            font-size: 22px; 
+            line-height: 1.8;
+        }
+
+        header {
+            border-bottom: 3px solid var(--gold);
+            padding: 40px 20px;
+            text-align: center;
+            background-color: var(--dark-grey);
+        }
+
+        h1 {
+            color: var(--gold);
+            font-size: 45px;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 30px;
+        }
+
+        .service-card {
+            border: 2px solid var(--gold);
             border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            background-color: var(--dark-grey);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: scale(1.02);
+        }
+
+        h2 {
+            color: var(--gold);
+            border-right: 5px solid var(--gold);
+            padding-right: 15px;
+            font-size: 32px;
+        }
+
+        .highlight {
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 18px;
+            border-top: 1px solid var(--gold);
+            margin-top: 50px;
+            color: var(--gold);
+        }
+
+        /* تنسيق الزر الاحترافي */
+        .btn {
+            display: inline-block;
+            background-color: var(--gold);
+            color: var(--black);
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 24px;
         }
     </style>
 </head>
 <body>
-    <h1>🌟 منصة أشرف الإبداعية 2026 🌟</h1>
-    <div class="content-box">
-        <p>مرحباً بكم.. هنا نبني مستقبل <span class="gold-text">البرمجيات الخضراء</span> وخدمات الـ <span class="gold-text">SEO</span> الاحترافية.</p>
-        <p>نحن نؤمن بأن التقنية يجب أن تكون بسيطة، واضحة، وصديقة للبيئة.</p>
+
+    <header>
+        <h1>🌟 منصة أشرف الإبداعية 2026 🌟</h1>
+        <p style="color: var(--gold); font-size: 24px;">خبير الـ SEO وتصميم واجهات المستخدم UX</p>
+    </header>
+
+    <div class="container">
+        
+        <section class="service-card">
+            <h2>🌍 رؤية 2026: البرمجيات الخضراء</h2>
+            <p>نحن لا نكتب مجرد أكواد، بل نبني <span class="highlight">Green Software</span>. برمجيات ذكية، موفرة للطاقة، وسريعة الأداء لتخدم كوكبنا ومستخدمينا بذكاء.</p>
+        </section>
+
+        <section class="service-card">
+            <h2>🚀 خدمات الـ SEO الاحترافية</h2>
+            <p>تصدر نتائج البحث ليس صدفة. نستخدم أحدث استراتيجيات <span class="highlight">الذكاء الاصطناعي</span> لضمان ظهور موقعك في المقدمة دائماً.</p>
+        </section>
+
+        <section class="service-card">
+            <h2>🤖 مساعد Optimum الذكي</h2>
+            <p>أداتنا المبتكرة لتحليل مهام الربح من الإنترنت بدقة متناهية. وفر وقتك وجهدك ودع <span class="highlight">Optimum Courier AI</span> يختار لك الأفضل.</p>
+            <a href="https://youtube.com/@ashrafhassan2026" class="btn">شاهد الشروحات على يوتيوب</a>
+        </section>
+
     </div>
-    <p>انتظروا قريباً شروحات الفيديو والخدمات البرمجية الكاملة.</p>
+
+    <footer>
+        <p>جميع الحقوق محفوظة © أشرف حسن 2026 | الله المستعان</p>
+    </footer>
+
 </body>
 </html>
