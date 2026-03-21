@@ -1,64 +1,82 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة أشرف الإبداعية 2026 | خبير SEO & UI/UX</title>
+import streamlit as st
+
+# إعدادات الصفحة
+st.set_page_config(
+    page_title="Ashraf Creative 2026",
+    page_icon="👑",
+    layout="wide"
+)
+
+# تصميم CSS مخصص (الأسود والذهبي) مع خط كبير للوضوح
+st.markdown("""
     <style>
-        /* الهوية الملكية: أسود وذهبي */
-        body { background-color: #000; color: #FFD700; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; }
-        header { background: #111; padding: 40px 20px; border-bottom: 3px solid #FFD700; text-align: center; }
-        
-        h1 { font-size: 45px; margin: 0; text-transform: uppercase; letter-spacing: 2px; }
-        .subtitle { font-size: 22px; color: #fff; margin-top: 10px; }
-
-        .container { padding: 40px; display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
-
-        /* كروت العرض (Cards UI) */
-        .card { background: #1a1a1a; border: 1px solid #FFD700; border-radius: 15px; width: 320px; transition: 0.3s; overflow: hidden; }
-        .card:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3); }
-        .card-header { background: #FFD700; color: #000; padding: 10px; font-weight: bold; font-size: 18px; }
-        .card-body { padding: 20px; text-align: center; }
-        
-        /* أزرار التحميل (UX 20px+) */
-        .btn { display: inline-block; padding: 12px 25px; background: #FFD700; color: #000; text-decoration: none; 
-               border-radius: 5px; font-weight: bold; font-size: 20px; margin-top: 15px; }
-        
-        .footer { text-align: center; padding: 40px; color: #888; border-top: 1px solid #333; }
-    </style>
-</head>
-<body>
-
-<header>
-    <h1>منصة أشرف الإبداعية 2026 👑</h1>
-    <p class="subtitle">بوابتك لاحتراف الـ SEO وتصميم واجهات المستخدم الذكية</p>
-</header>
-
-<div class="container">
+    /* الخلفية العامة والتنسيق */
+    .main {
+        background-color: #000000;
+        color: #FFFFFF;
+    }
     
-    <div class="card">
-        <div class="card-header">📄 تقارير SEO الملكية</div>
-        <div class="card-body">
-            <p style="font-size: 18px; color: #ccc;">تحميل أحدث تقرير فحص للمواقع بتوقيع أشرف حسن.</p>
-            <a href="Ashraf_SEO_Report.pdf" class="btn" download>تحميل التقرير (PDF)</a>
-        </div>
-    </div>
+    /* تنسيق العناوين باللون الذهبي وحجم كبير */
+    h1, h2, h3 {
+        color: #D4AF37 !important;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        text-align: center;
+    }
+    
+    /* تكبير حجم الخط للنصوص العادية لسهولة القراءة بدون نظارة */
+    p, span, label, div {
+        font-size: 22px !important;
+        line-height: 1.6;
+    }
 
-    <div class="card">
-        <div class="card-header">🎬 مكتبة الفيديو الذكية</div>
-        <div class="card-body">
-            <video width="100%" controls style="border-radius: 8px;">
-                <source src="classic_summary.mp4" type="video/mp4">
-            </video>
-            <p style="font-size: 18px; color: #ccc;">شاهد أحدث ملخصات الروايات الكلاسيكية.</p>
-        </div>
-    </div>
+    /* تنسيق الأزرار */
+    .stButton>button {
+        background-color: #D4AF37;
+        color: black;
+        font-size: 20px;
+        font-weight: bold;
+        border-radius: 10px;
+        border: none;
+        width: 100%;
+    }
+    
+    /* تنسيق المدخلات */
+    .stTextInput>div>div>input {
+        background-color: #1A1A1A;
+        color: gold;
+        border: 1px solid #D4AF37;
+        font-size: 20px;
+    }
+    </style>
+    """, unsafe__html=True)
 
-</div>
+# محتوى الصفحة
+def main():
+    st.markdown("<h1>🌟 منصة أشرف الإبداعية 2026 🌟</h1>")
+    st.markdown("<h3 style='text-align: center;'>خبير الـ SEO وتصميم واجهات المستخدم UX</h3>")
+    
+    st.divider()
 
-<div class="footer">
-    حقوق الطبع محفوظة © 2026 | تطوير المهندس أشرف حسن علي عبد النبي
-</div>
+    # تقسيم الصفحة إلى أعمدة
+    col1, col2 = st.columns(2)
 
-</body>
-</html>
+    with col1:
+        st.markdown("### 🛠️ أدوات الذكاء الاصطناعي")
+        st.write("نعمل على تطوير أدوات برمجية ذكية (Green Software) تهدف لتحسين الأداء الرقمي وتقليل الانبعاثات الكربونية البرمجية.")
+        if st.button("استكشاف أدوات Optimum"):
+            st.success("جاري الانتقال إلى مساعد Optimum الذكي...")
+
+    with col2:
+        st.markdown("### 📈 خدمات الـ SEO")
+        st.write("نقدم استراتيجيات متقدمة لتصدر نتائج البحث في محركات البحث العالمية بأساليب تقنية حديثة.")
+        if st.button("طلب استشارة فنية"):
+            st.balloons()
+
+    st.divider()
+
+    # قسم خاص بالمدونة أو الأخبار التقنية
+    st.markdown("### 📝 آخر التحديثات التقنية")
+    st.info("تذكر دائماً أن البساطة في التصميم هي قمة الرقي. نحن ندمج بين جمال اللونين الأسود والذهبي وبين سهولة الاستخدام المطلقة.")
+
+if __name__ == "__main__":
+    main()
