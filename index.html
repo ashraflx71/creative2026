@@ -3,45 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة أشرف الإبداعية 2026 👑</title>
+    <title>منصة أشرف الإبداعية 2026 | خبير SEO & UI/UX</title>
     <style>
-        /* التيم الملكي: أسود وذهبي */
-        body { background-color: #000; color: gold; font-family: Arial, sans-serif; text-align: center; padding: 20px; }
-        h1 { color: gold; font-size: 40px; border-bottom: 2px solid gold; display: inline-block; padding-bottom: 10px; }
+        /* الهوية الملكية: أسود وذهبي */
+        body { background-color: #000; color: #FFD700; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; }
+        header { background: #111; padding: 40px 20px; border-bottom: 3px solid #FFD700; text-align: center; }
         
-        /* شبكة عرض الفيديوهات (UI/UX) */
-        .video-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 30px; }
-        .video-card { background: #111; border: 2px solid gold; border-radius: 15px; padding: 15px; width: 300px; }
+        h1 { font-size: 45px; margin: 0; text-transform: uppercase; letter-spacing: 2px; }
+        .subtitle { font-size: 22px; color: #fff; margin-top: 10px; }
+
+        .container { padding: 40px; display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
+
+        /* كروت العرض (Cards UI) */
+        .card { background: #1a1a1a; border: 1px solid #FFD700; border-radius: 15px; width: 320px; transition: 0.3s; overflow: hidden; }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3); }
+        .card-header { background: #FFD700; color: #000; padding: 10px; font-weight: bold; font-size: 18px; }
+        .card-body { padding: 20px; text-align: center; }
         
-        /* وضوح النص (Readability 20px+) */
-        p { font-size: 20px; margin-top: 10px; }
-        video { width: 100%; border-radius: 10px; }
+        /* أزرار التحميل (UX 20px+) */
+        .btn { display: inline-block; padding: 12px 25px; background: #FFD700; color: #000; text-decoration: none; 
+               border-radius: 5px; font-weight: bold; font-size: 20px; margin-top: 15px; }
         
-        .footer { margin-top: 50px; font-size: 18px; color: #888; }
+        .footer { text-align: center; padding: 40px; color: #888; border-top: 1px solid #333; }
     </style>
 </head>
 <body>
 
+<header>
     <h1>منصة أشرف الإبداعية 2026 👑</h1>
-    <p>🎬 منطقة الاختبار الملكي - محرك إنتاج الفيديو الذكي</p>
+    <p class="subtitle">بوابتك لاحتراف الـ SEO وتصميم واجهات المستخدم الذكية</p>
+</header>
 
-    <div class="video-grid">
-        <div class="video-card">
-            <video controls>
-                <source src="classic_summary.mp4" type="video/mp4">
-            </video>
-            <p>📚 ملخصات الأدب الكلاسيكي</p>
-        </div>
-
-        <div class="video-card">
-            <video controls>
-                <source src="royal_test_zone.mp4" type="video/mp4">
-            </video>
-            <p>⚙️ تجربة المحرك الذكي</p>
+<div class="container">
+    
+    <div class="card">
+        <div class="card-header">📄 تقارير SEO الملكية</div>
+        <div class="card-body">
+            <p style="font-size: 18px; color: #ccc;">تحميل أحدث تقرير فحص للمواقع بتوقيع أشرف حسن.</p>
+            <a href="Ashraf_SEO_Report.pdf" class="btn" download>تحميل التقرير (PDF)</a>
         </div>
     </div>
 
-    <div class="footer">تطوير: أشرف حسن - خبير SEO & UI/UX</div>
+    <div class="card">
+        <div class="card-header">🎬 مكتبة الفيديو الذكية</div>
+        <div class="card-body">
+            <video width="100%" controls style="border-radius: 8px;">
+                <source src="classic_summary.mp4" type="video/mp4">
+            </video>
+            <p style="font-size: 18px; color: #ccc;">شاهد أحدث ملخصات الروايات الكلاسيكية.</p>
+        </div>
+    </div>
+
+</div>
+
+<div class="footer">
+    حقوق الطبع محفوظة © 2026 | تطوير المهندس أشرف حسن علي عبد النبي
+</div>
 
 </body>
 </html>
