@@ -1,47 +1,71 @@
-// اسم النسخة لضمان التحديث التلقائي
-const CACHE_NAME = 'Ashraf-Tech-2026-v1';
+const CACHE_NAME = 'Ashraf-Tech-v2-2026';
+const OFFLINE_URL = 'offline.html';
 
-// الملفات الأساسية التي نريدها أن تفتح "فورا" حتى بدون إنترنت
-const assetsToCache = [
-  '/',
-  '/index.html',
-  '/css/luxury-gold-style.css', // ملف التنسيق الأسود والذهبي
-  '/js/video-gen-logic.js',
-  '/images/logo-2026.png'
-];
-
-// 1. تثبيت الخدمة وحفظ الملفات الأساسية (البرمجة الخضراء - توفير بيانات)
+// 1. تثبيت الخدمة وحفظ الملفات الأساسية (البرمجة الخضراء)
 self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(assetsToCache);
-    })
-  );
+    event.waitUntil(
+        caches.open(CACHE_NAME).then((cache) => {
+            return cache.addAll([
+                '/',
+                'index.html',
+                'manifest.json',
+                // أضف أي ملفات CSS أو صور ذهبية هنا
+            ]);
+        })
+    );
+    self.skipWaiting();
 });
 
-// 2. استراتيجية "السرعة أولا" (Cache-First Strategy)
-// تضمن فتح الموقع في أقل من ثانية واحدة
-self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    caches.match(event.request).then((response) => {
-      return response || fetch(event.request).then((fetchResponse) => {
-        // إضافة الملفات الجديدة للذاكرة تلقائياً لتحسين الأداء لاحقاً
-        return caches.open(CACHE_NAME).then((cache) => {
-          cache.put(event.request, fetchResponse.clone());
-          return fetchResponse;
-        });
-      });
-    }).catch(() => {
-      // في حالة انقطاع الإنترنت تماما، يظهر صفحة مخصصة تخبر المستخدم بالانتظار
-      return caches.match('/offline.html');
-    })
-  );
+// 2. تفعيل الخدمة وتنظيف الكاش القديم
+self.addEventListener('activate', (event) => {
+    event.waitUntil(
+        caches.keys().then((cacheNames) => {
+            return Promise.all(
+                cacheNames.map((cache) => {
+                    if (cache !== CACHE_NAME) {
+                        return caches.delete(cache);
+                    }
+                })
+            );
+        })
+    );
+    self.clients.claim();
 });
 
-// 3. التحديث التلقائي (Background Sync)
-// ميزة هامة جدا لرفع الفيديوهات أو بيانات الـ SEO في الخلفية
+// 3. خاصية الـ Background Sync (أهم ميزة لأتمتة الفيديو)
+// تضمن إرسال أوامر التوليد للسحابة حتى لو انقطع الإنترنت
 self.addEventListener('sync', (event) => {
-  if (event.tag === 'sync-video-gen') {
-    event.waitUntil(sendDataToServer());
-  }
+    if (event.tag === 'video-render-sync') {
+        event.waitUntil(processVideoQueue());
+    }
+});
+
+// 4. استراتيجية "الشبكة أولاً مع العودة للكاش" (Network-First)
+// تضمن حصولك على آخر تحديثات الـ SEO مع سرعة فتح فائقة
+self.addEventListener('fetch', (event) => {
+    event.respondWith(
+        fetch(event.request).catch(() => {
+            return caches.match(event.request);
+        })
+    );
+});
+
+// وظيفة محاكاة معالجة البيانات في الخلفية
+async function processVideoQueue() {
+    console.log('[Service Worker] جاري معالجة طابور الفيديوهات في الخلفية...');
+    // هنا يتم الربط مع API التوليد الخاص بك مستقبلاً
+}
+
+// 5. استقبال التنبيهات (Push Notifications) 
+// لإعلامك على هاتفك فور انتهاء توليد الفيديو
+self.addEventListener('push', (event) => {
+    const options = {
+        body: event.data.text(),
+        icon: '/images/icon-192.png',
+        badge: '/images/icon-192.png',
+        vibrate: [200, 100, 200]
+    };
+    event.waitUntil(
+        self.registration.showNotification('Creative 2026 AI', options)
+    );
 });
