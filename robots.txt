@@ -1,5 +1,1 @@
-User-agent: *
-Allow: /
-
-# رابط خريطة الموقع الخاص بك
 Sitemap: https://ashraflx71.github.io/creative2026/sitemap.xml
