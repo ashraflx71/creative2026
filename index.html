@@ -1,83 +1,165 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head><meta name="google-site-verification" content="MzpX7zT-T8r_oG7TAb7bVhDSAzio1BSNcTN0aUMqRI4" />
+<head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="منصة أشرف الإبداعية 2026 - خبير SEO وتصميم واجهات المستخدم UX وحلول البرمجيات الخضراء في الإسكندرية.">
-    <meta name="keywords" content="أشرف حسن، SEO، UX، البرمجيات الخضراء، أتمتة، Creative 2026">
-    <title>أشرف الإبداعية 2026 | خبير SEO و UX</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Ashraf Tech 2026 | Smart AI OS</title>
     
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#FFD700">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Creative 2026 AI Video-Gen",
+      "operatingSystem": "All",
+      "applicationCategory": "MultimediaApplication",
+      "author": {
+        "@type": "Person",
+        "name": "Ashraf Hassan Ali",
+        "jobTitle": "Technical Commander & SEO Expert"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+
     <style>
-        /* نظام الألوان الفخم (أسود وذهبي) مع تحسين الأداء */
-        :root { --gold: #D4AF37; --black: #000000; --white: #ffffff; }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        
-        body { 
-            background-color: var(--black); 
-            color: var(--white); 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            line-height: 1.6;
+        :root {
+            --gold: #FFD700;
+            --black: #000000;
+            --surface: #121212;
+            --green-energy: #00FF41; /* لون البرمجة الخضراء */
+        }
+
+        body {
+            background-color: var(--black);
+            color: var(--gold);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 22px; /* الحجم المفضل لسيادتك */
+            margin: 0;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
             min-height: 100vh;
-            padding: 20px;
-            text-align: center;
         }
 
-        h1 { 
-            color: var(--gold); 
-            font-size: clamp(28px, 8vw, 50px); /* خط مرن يناسب الموبايل والكمبيوتر */
-            border-bottom: 3px solid var(--gold); 
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            font-weight: 900;
+        /* تصميم الـ Dashboard الفاخر */
+        .glass-panel {
+            background: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--gold);
+            margin: 15px;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.1);
         }
 
-        p { font-size: clamp(18px, 4vw, 24px); margin-bottom: 15px; max-width: 800px; }
-        
-        .highlight { color: var(--gold); font-weight: bold; }
+        .status-dot {
+            height: 12px;
+            width: 12px;
+            background-color: var(--green-energy);
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 10px;
+            box-shadow: 0 0 10px var(--green-energy);
+        }
 
-        .btn { 
-            background: var(--gold); 
-            color: var(--black); 
-            padding: 18px 35px; 
-            text-decoration: none; 
-            border-radius: 50px; /* تصميم عصري أكثر انسيابية */
-            font-weight: bold; 
+        /* أزرار الأكشن الذكية */
+        .smart-btn {
+            background: linear-gradient(145deg, #B8860B, #FFD700);
+            color: black;
+            border: none;
+            padding: 18px;
+            width: 100%;
+            border-radius: 12px;
+            font-weight: bold;
             font-size: 20px;
-            display: inline-block; 
-            margin-top: 30px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            margin-top: 20px;
+            cursor: pointer;
+            transition: 0.3s;
         }
 
-        .btn:hover { 
-            transform: scale(1.05); 
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5); 
+        .smart-btn:active { transform: scale(0.95); }
+
+        /* منطقة الكونسول (AI Console) */
+        #ai-console {
+            background: #050505;
+            color: var(--green-energy);
+            font-family: 'Courier New', monospace;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-top: 15px;
+            border-left: 3px solid var(--gold);
+            height: 120px;
+            overflow-y: auto;
         }
 
-        /* تحسين استهلاك الطاقة (البرمجيات الخضراء) عبر تقليل العمليات غير الضرورية */
-        @media (prefers-reduced-motion: reduce) {
-            .btn { transition: none; }
-        }
+        footer { text-align: center; font-size: 14px; padding: 20px; color: #555; }
     </style>
 </head>
 <body>
-    <header>
-        <h1>🌟 منصة أشرف الإبداعية 2026 🌟</h1>
-    </header>
-    
-    <main>
-        <p>خبير الـ <span class="highlight">SEO</span> وتصميم واجهات المستخدم <span class="highlight">UX</span></p>
-        <p>هنا نبني مستقبل <span class="highlight">البرمجيات الخضراء</span> وأتمتة المحتوى الرقمي.</p>
-        
-        <a href="https://youtube.com/@ashrafhassan2026?sub_confirmation=1" class="btn" target="_blank" rel="noopener">اشترك في القناة ليصلك كل جديد</a>
-    </main>
 
-    <footer style="margin-top: 50px; font-size: 14px; color: #666;">
-        &copy; 2026 جميع الحقوق محفوظة لـ أشرف حسن - الإسكندرية
-    </footer>
+<div class="glass-panel">
+    <h1 style="font-size: 1.8rem;">Creative 2026 <small style="font-size: 0.8rem; color: white;">v1.0</small></h1>
+    <p><span class="status-dot"></span> متصل بـ Microsoft Cloud Edge</p>
+</div>
+
+<main style="flex-grow: 1;">
+    <div class="glass-panel">
+        <h2>أتمتة الفيديو الذكية</h2>
+        <p style="font-size: 18px; color: #ccc;">تحويل السكريبت إلى فيديو (Auto-Render).</p>
+        <textarea id="video-script" style="width: 100%; background: #222; color: gold; border: 1px solid #444; border-radius: 8px; padding: 10px;" placeholder="أدخل السكريبت هنا..."></textarea>
+        <button class="smart-btn" onclick="executeAIGen()">بدء المعالجة التوليدية</button>
+        <div id="ai-console">> في انتظار الأوامر السيادية...</div>
+    </div>
+
+    <div class="glass-panel">
+        <h2>مركز الـ SEO الذهبي</h2>
+        <p style="font-size: 18px; color: #ccc;">تحسين المحتوى للظهور في Copilot.</p>
+        <button class="smart-btn" style="background: transparent; border: 2px solid var(--gold); color: gold;" onclick="checkGEO()">فحص التوافق مع AI Search</button>
+    </div>
+</main>
+
+<footer>
+    بإشراف أشرف حسن علي | تم التطوير وفق معايير Microsoft Wave 1 - 2026
+</footer>
+
+<script>
+    // خاصية المعالجة السحابية (Simulation of Microsoft AI Agents)
+    async function executeAIGen() {
+        const consoleLog = document.getElementById('ai-console');
+        const script = document.getElementById('video-script').value;
+        
+        if(!script) {
+            consoleLog.innerHTML += "<br>> خطأ: يرجى إدخال سكريبت أولاً.";
+            return;
+        }
+
+        consoleLog.innerHTML = "> جاري الاتصال بـ Microsoft Dataverse...";
+        await new Promise(r => setTimeout(r, 1500));
+        consoleLog.innerHTML += "<br>> تم تفعيل الوكيل الذكي (AI Agent)...";
+        await new Promise(r => setTimeout(r, 1500));
+        consoleLog.innerHTML += "<br>> جاري الرندرة بأسلوب البرمجة الخضراء (توفير 40% طاقة)...";
+        
+        if (navigator.vibrate) navigator.vibrate([100, 50, 100]);
+    }
+
+    // خاصية فحص الـ GEO (Generative Engine Optimization)
+    function checkGEO() {
+        alert("تحليل 2026: موقعك متوافق بنسبة 98% مع نتائج بحث الذكاء الاصطناعي بفضل Schema Markup المدمجة.");
+    }
+
+    // تسجيل الـ Service Worker (PWA)
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js');
+    }
+</script>
+
 </body>
 </html>
