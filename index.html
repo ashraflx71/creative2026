@@ -28,6 +28,39 @@
       }
     }
     </script>
+<script>
+// 1. تسجيل الـ Service Worker (تأكد أن المسار صحيح)
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js')
+            .then(reg => console.log('تم تسجيل المحرك بنجاح!', reg))
+            .catch(err => console.log('فشل التسجيل:', err));
+    });
+}
+
+// 2. دالة تشغيل الزر (المزامنة)
+async function requestSync() {
+    // إشعار بسيط للمستخدم (اختياري)
+    console.log("محاولة تفعيل المزامنة...");
+    
+    if ('serviceWorker' in navigator && 'SyncManager' in window) {
+        try {
+            const registration = await navigator.serviceWorker.ready;
+            // تسجيل الوسم الموجود في ملف sw.js الخاص بك
+            await registration.sync.register('video-render-sync');
+            
+            // تنبيه نجاح يظهر على هاتفك
+            alert("🚀 تم ربط نظام Creative 2026 بالسحابة بنجاح! المزامنة تعمل الآن.");
+        } catch (err) {
+            console.error("خطأ في المزامنة:", err);
+            alert("حدث خطأ، تأكد من تحديث الصفحة.");
+        }
+    } else {
+        // إذا كان المتصفح قديماً أو لا يدعم المزامنة
+        alert("نظامك الحالي سيعمل بالوضع العادي (بدون مزامنة خلفية). يفضل استخدام Chrome.");
+    }
+}
+</script>
 
     <script>
         async function requestSync() {
