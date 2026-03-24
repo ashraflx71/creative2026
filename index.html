@@ -27,7 +27,18 @@
         "priceCurrency": "USD"
       }
     }
-    </script>
+    </script>async function requestSync() {
+    const registration = await navigator.serviceWorker.ready;
+    if ('sync' in registration) {
+        try {
+            await registration.sync.register('video-render-sync');
+            console.log('تم تسجيل المزامنة في الخلفية بنجاح!');
+        } catch {
+            console.log('المزامنة في الخلفية فشلت، سيتم المحاولة يدوياً.');
+        }
+    }
+}
+
 
     <style>
         :root {
