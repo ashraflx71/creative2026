@@ -1,6 +1,7 @@
 {
   "name": "Creative 2026",
   "short_name": "Creative",
+  "description": "منصة القائد التقني أشرف حسن لخدمات UI/UX و SEO",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#000000",
@@ -9,6 +10,11 @@
     {
       "src": "https://via.placeholder.com/192/000000/0000FF?text=C",
       "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://via.placeholder.com/512/000000/0000FF?text=Creative",
+      "sizes": "512x512",
       "type": "image/png"
     }
   ]
