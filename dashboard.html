@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control Center | Creative 2026</title>
+    <style>
+        :root { --main-color: #ccff00; --bg-dark: #000000; --card-bg: #0a0a0a; }
+        body { background-color: var(--bg-dark); color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 15px; font-size: 18px; }
+        
+        .header { border-bottom: 2px solid var(--main-color); padding: 20px 0; text-align: center; margin-bottom: 30px; }
+        .header h1 { color: var(--main-color); margin: 0; font-size: 28px; }
+
+        .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 30px; }
+        .stat-card { background: var(--card-bg); border: 1px solid #222; padding: 15px; border-radius: 12px; text-align: center; }
+        .stat-card span { display: block; font-size: 14px; color: #888; }
+        .stat-card b { font-size: 24px; color: var(--main-color); }
+
+        .section-title { color: var(--main-color); border-right: 4px solid var(--main-color); padding-right: 10px; margin: 20px 0; font-size: 22px; }
+
+        .client-list { background: var(--card-bg); border-radius: 15px; overflow: hidden; border: 1px solid #222; }
+        .client-item { display: flex; justify-content: space-between; align-items: center; padding: 15px; border-bottom: 1px solid #111; }
+        .client-info h4 { margin: 0; font-size: 18px; }
+        .client-info p { margin: 5px 0 0; font-size: 12px; color: #666; }
+        
+        .status { padding: 5px 10px; border-radius: 8px; font-size: 12px; font-weight: bold; }
+        .paid { background: #00ff0022; color: #00ff00; }
+        .pending { background: #ff000022; color: #ff0000; }
+
+        .btn-add { background: var(--main-color); color: #000; border: none; padding: 15px; width: 100%; border-radius: 12px; font-weight: bold; margin-top: 20px; font-size: 18px; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>قمرة قيادة القائد العام</h1>
+    <p style="color: #666; font-size: 14px;">إدارة أعمال Creative 2026</p>
+</div>
+
+<div class="stat-grid">
+    <div class="stat-card">
+        <span>إجمالي العملاء</span>
+        <b>0</b>
+    </div>
+    <div class="stat-card">
+        <span>أرباح الشهر</span>
+        <b>0 <small>ج.م</small></b>
+    </div>
+</div>
+
+<h2 class="section-title">إدارة العملاء التجاريين</h2>
+<div class="client-list">
+    <!-- نموذج لعميل مستقبلي -->
+    <div class="client-item">
+        <div class="client-info">
+            <h4>عميل قادم (قريباً)</h4>
+            <p>نوع الخدمة: متجر الكتروني</p>
+        </div>
+        <span class="status pending">في انتظار التعاقد</span>
+    </div>
+</div>
+
+<button class="btn-add" onclick="alert('جاهز لإضافة أول عميل حقيقي يا قائد!')">إضافة عميل جديد +</button>
+
+<h2 class="section-title">تنبيهات بوابة YOU</h2>
+<div class="client-list" style="padding: 20px; text-align: center; color: #444;">
+    لا توجد عمليات دفع من "غرباء" حالياً.
+</div>
+
+</body>
+</html>
