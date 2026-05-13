@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ترسانة الخدمات | Creative 2026</title>
+    <style>
+        :root { --gold: #ccff00; --royal-blue: #0051ff; --dark: #000000; }
+        body { background-color: var(--dark); color: #fff; font-family: 'Arial', sans-serif; margin: 0; padding: 0; font-size: 20px; }
+        
+        .hero { padding: 60px 20px; text-align: center; border-bottom: 3px solid var(--gold); background: radial-gradient(circle, #111 0%, #000 100%); }
+        .hero h1 { color: var(--gold); font-size: 45px; margin: 0; text-shadow: 0 0 20px rgba(204,255,0,0.3); }
+
+        .service-grid { display: grid; grid-template-columns: 1fr; padding: 20px; gap: 25px; }
+        
+        .service-card { 
+            border: 1px solid #222; border-radius: 25px; padding: 25px; 
+            background: #050505; transition: 0.4s; position: relative;
+        }
+        .service-card:hover { border-color: var(--gold); transform: translateY(-5px); }
+
+        .category-icon { color: var(--gold); font-size: 30px; margin-bottom: 15px; display: block; }
+        .service-title { color: var(--gold); font-size: 26px; margin: 10px 0; border-right: 5px solid var(--royal-blue); padding-right: 15px; }
+        
+        .features { list-style: none; padding: 0; margin: 20px 0; }
+        .features li { margin-bottom: 10px; font-size: 18px; color: #ccc; display: flex; align-items: center; }
+        .features li::before { content: "◈"; color: var(--royal-blue); margin-left: 10px; }
+
+        .contact-btn { 
+            background: var(--gold); color: #000; border: none; padding: 18px; 
+            width: 100%; border-radius: 15px; font-weight: bold; font-size: 20px; cursor: pointer;
+        }
+
+        .tech-stack { font-size: 14px; color: #555; margin-top: 15px; text-align: center; border-top: 1px solid #111; padding-top: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <h1>Creative 2026</h1>
+    <p>حلول القائد التقني: من الفكرة إلى التنفيذ الكامل</p>
+</div>
+
+<div class="service-grid">
+
+    <!-- 1. الويب والسيو -->
+    <div class="service-card">
+        <span class="category-icon">🌐</span>
+        <h2 class="service-title">تصميم المواقع و SEO</h2>
+        <ul class="features">
+            <li>مواقع فائقة السرعة (Green Code)</li>
+            <li>تصدر نتائج البحث الأولى في جوجل</li>
+            <li>إدارة المحتوى والمداونات الآلية</li>
+        </ul>
+        <button class="contact-btn" onclick="order('تطوير المواقع و SEO')">طلب الخدمة</button>
+        <div class="tech-stack">GitHub | Blogger | Google Console</div>
+    </div>
+
+    <!-- 2. تطبيقات الموبايل والبايثون -->
+    <div class="service-card" style="border: 1px solid var(--royal-blue);">
+        <span class="category-icon">📱</span>
+        <h2 class="service-title">تطبيقات الذكاء والبايثون</h2>
+        <ul class="features">
+            <li>تطبيقات Streamlit للتحكم والبيانات</li>
+            <li>برامج أتمتة المهام (Automation)</li>
+            <li>محاكيات وبرمجيات مخصصة للموبايل</li>
+        </ul>
+        <button class="contact-btn" style="background: var(--royal-blue); color: #fff;" onclick="order('تطبيقات الموبايل والبايثون')">طلب البرمجة</button>
+        <div class="tech-stack">Python | Streamlit | Cloud Shell</div>
+    </div>
+
+    <!-- 3. بوابة دفع YOU -->
+    <div class="service-card">
+        <span class="category-icon">💳</span>
+        <h2 class="service-title">أنظمة الدفع الإلكتروني (YOU)</h2>
+        <ul class="features">
+            <li>دمج بوابات الدفع المحلية (فودافون كاش، فوري)</li>
+            <li>تأمين العمليات برقم العملية (Transaction ID)</li>
+            <li>نظام مبيعات وتحصيل متكامل</li>
+        </ul>
+        <button class="contact-btn" onclick="order('نظام دفع YOU')">تفعيل النظام</button>
+        <div class="tech-stack">YOU Gateway | Security Protocols</div>
+    </div>
+
+    <!-- 4. الاستشارات التقنية UI/UX -->
+    <div class="service-card">
+        <span class="category-icon">🏗️</span>
+        <h2 class="service-title">استشارات Technical Lead</h2>
+        <ul class="features">
+            <li>تخطيط واجهات المستخدم UI/UX الملكية</li>
+            <li>إدارة المشاريع البرمجية المعقدة</li>
+            <li>تحويل الأفكار إلى نماذج عمل (Prototypes)</li>
+        </ul>
+        <button class="contact-btn" onclick="order('استشارة تقنية UI/UX')">احجز استشارة</button>
+        <div class="tech-stack">Expert Guidance | User Experience</div>
+    </div>
+
+</div>
+
+<footer>
+    <p style="text-align: center; color: #333; padding: 20px;">
+        تم البناء بمعايير القائد العام - أشرف حسن © 2026
+    </p>
+</footer>
+
+<script>
+    function order(serviceName) {
+        const phone = "201111210119";
+        const msg = "تحية للقائد أشرف.. أريد التعاقد بخصوص: " + serviceName;
+        window.location.href = "https://wa.me/" + phone + "?text=" + encodeURIComponent(msg);
+    }
+</script>
+
+</body>
+</html>
