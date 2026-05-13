@@ -5,67 +5,169 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Control Center | Creative 2026</title>
     <style>
-        :root { --main-color: #ccff00; --bg-dark: #000000; --card-bg: #0a0a0a; }
-        body { background-color: var(--bg-dark); color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 15px; font-size: 18px; }
+        :root { 
+            --main-color: #ccff00; /* الفسفوري التقني */
+            --accent-blue: #007bff; /* الأزرق الاحترافي */
+            --bg-dark: #000000; 
+            --card-bg: #0a0a0a; 
+        }
         
-        .header { border-bottom: 2px solid var(--main-color); padding: 20px 0; text-align: center; margin-bottom: 30px; }
+        body { 
+            background-color: var(--bg-dark); 
+            color: #fff; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            padding: 15px; 
+            font-size: 20px; /* حجم خط مريح للموبايل */
+            line-height: 1.6;
+        }
+        
+        .header { 
+            border-bottom: 2px solid var(--main-color); 
+            padding: 20px 0; 
+            text-align: center; 
+            margin-bottom: 30px; 
+        }
         .header h1 { color: var(--main-color); margin: 0; font-size: 28px; }
 
         .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 30px; }
-        .stat-card { background: var(--card-bg); border: 1px solid #222; padding: 15px; border-radius: 12px; text-align: center; }
-        .stat-card span { display: block; font-size: 14px; color: #888; }
-        .stat-card b { font-size: 24px; color: var(--main-color); }
+        .stat-card { 
+            background: var(--card-bg); 
+            border: 1px solid #222; 
+            padding: 15px; 
+            border-radius: 12px; 
+            text-align: center; 
+            transition: 0.3s;
+        }
+        .stat-card span { display: block; font-size: 16px; color: #888; }
+        .stat-card b { font-size: 26px; color: var(--main-color); }
 
-        .section-title { color: var(--main-color); border-right: 4px solid var(--main-color); padding-right: 10px; margin: 20px 0; font-size: 22px; }
+        .section-title { 
+            color: var(--accent-blue); 
+            border-right: 4px solid var(--main-color); 
+            padding-right: 10px; 
+            margin: 20px 0; 
+            font-size: 22px; 
+        }
 
         .client-list { background: var(--card-bg); border-radius: 15px; overflow: hidden; border: 1px solid #222; }
-        .client-item { display: flex; justify-content: space-between; align-items: center; padding: 15px; border-bottom: 1px solid #111; }
-        .client-info h4 { margin: 0; font-size: 18px; }
-        .client-info p { margin: 5px 0 0; font-size: 12px; color: #666; }
+        .client-item { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 18px; 
+            border-bottom: 1px solid #111; 
+        }
+        .client-info h4 { margin: 0; font-size: 20px; color: #eee; }
+        .client-info p { margin: 5px 0 0; font-size: 14px; color: #666; }
         
-        .status { padding: 5px 10px; border-radius: 8px; font-size: 12px; font-weight: bold; }
+        .status { padding: 5px 12px; border-radius: 8px; font-size: 13px; font-weight: bold; }
         .paid { background: #00ff0022; color: #00ff00; }
         .pending { background: #ff000022; color: #ff0000; }
 
-        .btn-add { background: var(--main-color); color: #000; border: none; padding: 15px; width: 100%; border-radius: 12px; font-weight: bold; margin-top: 20px; font-size: 18px; }
+        .btn-add { 
+            background: var(--main-color); 
+            color: #000; 
+            border: none; 
+            padding: 18px; 
+            width: 100%; 
+            border-radius: 12px; 
+            font-weight: bold; 
+            margin-top: 20px; 
+            font-size: 20px; 
+            cursor: pointer;
+        }
+
+        /* أنيميشن بسيط لمراقب بوابة YOU */
+        #live-monitor { transition: opacity 0.8s ease-in-out; }
     </style>
 </head>
 <body>
 
 <div class="header">
     <h1>قمرة قيادة القائد العام</h1>
-    <p style="color: #666; font-size: 14px;">إدارة أعمال Creative 2026</p>
+    <p style="color: #888; font-size: 16px;">إدارة أعمال Creative 2026 - م. أشرف</p>
 </div>
 
 <div class="stat-grid">
     <div class="stat-card">
         <span>إجمالي العملاء</span>
-        <b>0</b>
+        <b id="total-clients">0</b>
     </div>
     <div class="stat-card">
         <span>أرباح الشهر</span>
-        <b>0 <small>ج.م</small></b>
+        <b id="total-profit">0 <small>ج.م</small></b>
     </div>
 </div>
 
 <h2 class="section-title">إدارة العملاء التجاريين</h2>
-<div class="client-list">
-    <!-- نموذج لعميل مستقبلي -->
+<div class="client-list" id="client-container">
+    <!-- عملاء تجريبيين -->
     <div class="client-item">
         <div class="client-info">
-            <h4>عميل قادم (قريباً)</h4>
-            <p>نوع الخدمة: متجر الكتروني</p>
+            <h4>شركة شريف برو</h4>
+            <p>نوع الخدمة: صيانة سيارات (SEO)</p>
         </div>
-        <span class="status pending">في انتظار التعاقد</span>
+        <span class="status paid">تم الدفع</span>
+    </div>
+
+    <div class="client-item">
+        <div class="client-info">
+            <h4>متجر الكتروني قادم</h4>
+            <p>نوع الخدمة: UI/UX Design</p>
+        </div>
+        <span class="status pending">انتظار</span>
     </div>
 </div>
 
-<button class="btn-add" onclick="alert('جاهز لإضافة أول عميل حقيقي يا قائد!')">إضافة عميل جديد +</button>
+<button class="btn-add" onclick="addNewClient()">إضافة عميل جديد +</button>
 
 <h2 class="section-title">تنبيهات بوابة YOU</h2>
-<div class="client-list" style="padding: 20px; text-align: center; color: #444;">
-    لا توجد عمليات دفع من "غرباء" حالياً.
+<div class="client-list" id="live-monitor" style="padding: 25px; text-align: center; color: #555; border: 1px dashed #333;">
+    <div style="display: inline-block; width: 12px; height: 12px; background: var(--main-color); border-radius: 50%; margin-left: 10px; box-shadow: 0 0 10px var(--main-color);"></div>
+    بوابة YOU في وضع مراقبة العمليات.. لا توجد حركة حالياً.
 </div>
+
+<script>
+    // وظيفة لتحديث الإحصائيات بناءً على العناصر الموجودة
+    function updateStats() {
+        const clients = document.querySelectorAll('.client-item');
+        document.getElementById('total-clients').innerText = clients.length;
+
+        // حساب افتراضي: 1000 ج.م لكل عميل دفع
+        const paidCount = document.querySelectorAll('.status.paid').length;
+        document.getElementById('total-profit').innerHTML = (paidCount * 1000) + ' <small>ج.م</small>';
+    }
+
+    // وظيفة لإضافة عميل (محاكاة)
+    function addNewClient() {
+        const name = prompt("أدخل اسم العميل:");
+        if (name) {
+            const container = document.getElementById('client-container');
+            const newItem = `
+                <div class="client-item">
+                    <div class="client-info">
+                        <h4>${name}</h4>
+                        <p>نوع الخدمة: تطوير برمجيات</p>
+                    </div>
+                    <span class="status pending">قيد المراجعة</span>
+                </div>
+            `;
+            container.innerHTML += newItem;
+            updateStats();
+            alert("تمت إضافة العميل إلى القائمة بنجاح يا قائد!");
+        }
+    }
+
+    // تأثير النبض لمراقب العمليات
+    setInterval(() => {
+        const monitor = document.getElementById('live-monitor');
+        monitor.style.opacity = (monitor.style.opacity == "0.4") ? "1" : "0.4";
+    }, 1500);
+
+    // التشغيل المبدئي
+    updateStats();
+</script>
 
 </body>
 </html>
