@@ -2,115 +2,54 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Ashraf Tech 2026 | Smart AI OS</title>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#FFD700">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Creative 2026 AI Video-Gen",
-      "operatingSystem": "All",
-      "applicationCategory": "MultimediaApplication",
-      "author": {
-        "@type": "Person",
-        "name": "Ashraf Hassan Ali",
-        "jobTitle": "Technical Commander & SEO Expert"
-      },
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    }
-    </script>
-<script>
-// 1. تسجيل الـ Service Worker (تأكد أن المسار صحيح)
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js')
-            .then(reg => console.log('تم تسجيل المحرك بنجاح!', reg))
-            .catch(err => console.log('فشل التسجيل:', err));
-    });
-}
-
-// 2. دالة تشغيل الزر (المزامنة)
-async function requestSync() {
-    // إشعار بسيط للمستخدم (اختياري)
-    console.log("محاولة تفعيل المزامنة...");
-    
-    if ('serviceWorker' in navigator && 'SyncManager' in window) {
-        try {
-            const registration = await navigator.serviceWorker.ready;
-            // تسجيل الوسم الموجود في ملف sw.js الخاص بك
-            await registration.sync.register('video-render-sync');
-            
-            // تنبيه نجاح يظهر على هاتفك
-            alert("🚀 تم ربط نظام Creative 2026 بالسحابة بنجاح! المزامنة تعمل الآن.");
-        } catch (err) {
-            console.error("خطأ في المزامنة:", err);
-            alert("حدث خطأ، تأكد من تحديث الصفحة.");
-        }
-    } else {
-        // إذا كان المتصفح قديماً أو لا يدعم المزامنة
-        alert("نظامك الحالي سيعمل بالوضع العادي (بدون مزامنة خلفية). يفضل استخدام Chrome.");
-    }
-}
-</script>
-
-    <script>
-        async function requestSync() {
-            if ('serviceWorker' in navigator) {
-                const registration = await navigator.serviceWorker.ready;
-                if ('sync' in registration) {
-                    try {
-                        await registration.sync.register('video-render-sync');
-                        console.log('تم تسجيل المزامنة في الخلفية بنجاح!');
-                    } catch (err) {
-                        console.log('المزامنة في الخلفية فشلت:', err);
-                    }
-                }
-            }
-        }
-
-        // تسجيل الـ Service Worker عند التحميل
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js')
-                    .then(reg => console.log('SW Registered!', reg))
-                    .catch(err => console.log('SW Registration Failed!', err));
-            });
-        }
-    </script>
-
+    <title>Creative 2026 | كرييتف</title>
     <style>
-        /* التنسيق الملكي الأسود والذهبي */
         body {
-            background-color: #000;
-            color: #FFD700;
-            font-size: 22px;
+            background-color: #000000;
+            color: #FFFFFF;
             font-family: Arial, sans-serif;
+            font-size: 22px; /* الحجم الذي تفضله */
+            text-align: center;
             margin: 0;
             padding: 20px;
-            text-align: center;
+            border: 2px solid #D4AF37; /* إطار ذهبي رفيع */
+            min-height: 90vh;
         }
-        .container {
-            border: 2px solid #FFD700;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 0 15px #FFD700;
+        h1 { color: #0000FF; } /* اللون الأزرق */
+        .card {
+            border: 1px solid #0000FF;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+        .btn {
+            background-color: #0000FF;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 15px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Creative 2026</h1>
-        <p>مرحباً بك في نظام التشغيل الذكي لـ أشرف حسن</p>
-        <button onclick="requestSync()" style="background:#FFD700; color:#000; border:none; padding:10px 20px; border-radius:5px; font-weight:bold;">تفعيل المزامنة السحابية</button>
+    <h1>Creative 2026</h1>
+    <p>مرحباً بك في منصة القائد التقني أشرف حسن.</p>
+    
+    <div class="card">
+        <p>خدمات UI/UX و SEO احترافية</p>
+        <p>برمجيات خضراء خفيفة وعالية الأداء</p>
     </div>
+
+    <a href="#" class="btn">استكشف المشاريع</a>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
 </body>
 </html>
