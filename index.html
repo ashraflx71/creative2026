@@ -5,79 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creative 2026 | القائد التقني</title>
 
-    <!-- إعدادات PWA -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#000000">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    
-    <!-- ربط الأيقونة بالملف الموجود لديك -->
     <link rel="icon" type="image/png" href="FontAwesome-Icons-icon.png">
     <link rel="apple-touch-icon" href="FontAwesome-Icons-icon.png">
 
     <style>
-        /* التصميم الملكي الفسفوري */
-        body {
-            background-color: #000000;
-            color: #39FF14;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 20px;
-            text-align: center;
-        }
-
-        header {
-            padding: 30px 0;
-            border-bottom: 2px solid #39FF14;
-            box-shadow: 0 0 15px #39FF14;
-            margin-bottom: 30px;
-        }
-
-        h1 {
-            font-size: 26px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 0 0 10px #39FF14;
-        }
-
-        .grid-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-
-        .card {
-            background: #111;
-            border: 2px solid #39FF14;
-            padding: 25px;
-            border-radius: 15px;
-            transition: 0.3s;
-            cursor: pointer;
-            text-decoration: none;
-            color: #39FF14;
-        }
-
-        .card:active {
-            background: #39FF14;
-            color: #000;
-            box-shadow: 0 0 20px #39FF14;
-        }
-
-        .card h2 {
-            margin: 0;
-            font-size: 22px;
-        }
-
-        .card p {
-            font-size: 16px;
-            color: #888;
-        }
-
-        footer {
-            margin-top: 40px;
-            font-size: 14px;
-            color: #00FFFF;
-        }
+        body { background-color: #000000; color: #39FF14; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 20px; text-align: center; }
+        header { padding: 20px 0; border-bottom: 2px solid #39FF14; box-shadow: 0 0 15px #39FF14; margin-bottom: 30px; }
+        h1 { font-size: 26px; text-shadow: 0 0 10px #39FF14; }
+        .grid-container { display: grid; grid-template-columns: 1fr; gap: 15px; }
+        .card { background: #111; border: 2px solid #39FF14; padding: 20px; border-radius: 15px; cursor: pointer; text-decoration: none; color: #39FF14; transition: 0.3s; }
+        .card:active { background: #39FF14; color: #000; }
+        
+        /* واجهات الأنظمة */
+        #active-section { margin-top: 30px; padding: 20px; border: 1px solid #39FF14; border-radius: 15px; background: #050505; display: none; }
+        input { width: 90%; padding: 12px; margin: 10px 0; background: #111; border: 1px solid #39FF14; color: #fff; border-radius: 8px; font-size: 18px; }
+        button { padding: 15px 30px; background: #39FF14; color: #000; border: none; font-weight: bold; border-radius: 10px; cursor: pointer; width: 100%; margin-top: 10px; }
+        #resultText { margin: 20px 0; font-size: 20px; color: #fff; min-height: 50px; border-bottom: 1px solid #444; }
+        .palabra-btn { background: none; border: 2px solid #00FFFF; color: #00FFFF; border-radius: 50%; width: 70px; height: 70px; font-size: 25px; }
     </style>
 </head>
 <body>
@@ -88,39 +34,82 @@
     </header>
 
     <div class="grid-container">
-        <a href="#payment" class="card">
+        <div class="card" onclick="showSection('pay-ui')">
             <h2>نظام YOU المالي 💳</h2>
-            <p>إدارة المدفوعات (فودافون كاش / فوري)</p>
-        </a>
+            <p>إرسال البيانات لـ Google Sheets</p>
+        </div>
 
-        <a href="#translator" class="card">
+        <div class="card" onclick="showSection('trans-ui')">
             <h2>مترجم Palabra 🗣️</h2>
-            <p>الترجمة الصوتية الفورية الاحترافية</p>
-        </a>
-
-        <a href="#simulator" class="card">
-            <h2>محاكي Eco-Pulse 🦾</h2>
-            <p>التحكم في الروبوتات بإشارات العضلات</p>
-        </a>
-
-        <a href="#seo" class="card">
-            <h2>خدمات SEO & UI/UX 🚀</h2>
-            <p>تحسين محركات البحث وتصميم الواجهات</p>
-        </a>
+            <p>ترجمة صوتية ونطق آلي</p>
+        </div>
     </div>
 
-    <footer>
-        <p>تم التطوير بواسطة أشرف حسن © 2026</p>
-    </footer>
+    <!-- قسم العرض النشط -->
+    <div id="active-section">
+        <!-- واجهة نظام YOU -->
+        <div id="pay-ui" style="display: none;">
+            <h3 style="color: #39FF14;">إدارة مدفوعات YOU</h3>
+            <input type="number" id="amount" placeholder="المبلغ">
+            <input type="text" id="trans_id" placeholder="Transaction ID">
+            <button onclick="sendToSheet()">تأكيد وإرسال البيانات</button>
+        </div>
+
+        <!-- واجهة Palabra -->
+        <div id="trans-ui" style="display: none;">
+            <h3 style="color: #00FFFF;">Palabra AI Translator</h3>
+            <div id="resultText">اضغط وتحدث.. سأقوم بترجمتك ونطقها</div>
+            <button class="palabra-btn" onclick="startPalabra()">🎤</button>
+        </div>
+    </div>
 
     <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('sw.js')
-            .then(reg => console.log('Service Worker Registered'))
-            .catch(err => console.error('Service Worker Failed', err));
-        });
-      }
+        function showSection(id) {
+            document.getElementById('active-section').style.display = 'block';
+            document.getElementById('pay-ui').style.display = (id === 'pay-ui') ? 'block' : 'none';
+            document.getElementById('trans-ui').style.display = (id === 'trans-ui') ? 'block' : 'none';
+        }
+
+        // 1. برمجة نظام YOU (الإرسال لجوجل شيت)
+        function sendToSheet() {
+            const amount = document.getElementById('amount').value;
+            const tid = document.getElementById('trans_id').value;
+            const scriptURL = 'ضع_رابط_جوجل_شيت_هنا'; // سنستبدله لاحقاً
+
+            if(!amount || !tid) { alert("أدخل البيانات كاملة يا قائد"); return; }
+
+            alert("جاري تسجيل العملية في النظام...");
+            // ملاحظة: الربط الفعلي يحتاج Google Apps Script (سأشرحه لك)
+            console.log("Data Sent:", {amount, tid});
+        }
+
+        // 2. برمجة Palabra (ترجمة + نطق)
+        function startPalabra() {
+            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = 'ar-EG';
+            
+            recognition.onstart = () => { document.getElementById('resultText').innerHTML = "جاري الاستماع..."; };
+
+            recognition.onresult = (event) => {
+                const text = event.results[0][0].transcript;
+                document.getElementById('resultText').innerHTML = "أنت قلت: " + text;
+                
+                // محاكاة الترجمة والنطق
+                speak("Translating: " + text); 
+            };
+            recognition.start();
+        }
+
+        function speak(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US'; // ينطق الترجمة بالإنجليزية
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // تسجيل Service Worker للـ PWA
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
     </script>
 </body>
 </html>
