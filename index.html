@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
-<link rel="apple-touch-icon" href="icon-192.png">
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creative 2026 | القائد التقني</title>
+
+    <!-- أكواد الـ PWA والتعريف -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- الأيقونات -->
+    <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+    <link rel="apple-touch-icon" href="icon-192.png">
+
     <style>
-        <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#000000">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link rel="apple-touch-icon" href="icon-192.png">
-        
         /* التصميم الملكي الفسفوري */
         body {
             background-color: #000000;
@@ -32,16 +34,15 @@
         }
 
         h1 {
-            font-size: 26px; /* حجم الخط المفضل لديك */
+            font-size: 26px; 
             text-transform: uppercase;
             letter-spacing: 2px;
             text-shadow: 0 0 10px #39FF14;
         }
 
-        /* حاوية الأزرار (الخدمات) */
         .grid-container {
             display: grid;
-            grid-template-columns: 1fr; /* مناسب جداً للهاتف */
+            grid-template-columns: 1fr; 
             gap: 20px;
         }
 
@@ -64,7 +65,7 @@
 
         .card h2 {
             margin: 0;
-            font-size: 22px; /* الخط الواضح الذي تفضله */
+            font-size: 22px; 
         }
 
         .card p {
@@ -75,19 +76,10 @@
         footer {
             margin-top: 40px;
             font-size: 14px;
-            color: #00FFFF; /* لمسة أزرق فسفوري */
+            color: #00FFFF;
         }
     </style>
-</<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js')
-        .then(reg => console.log('Service Worker Registered'))
-        .catch(err => console.log('Service Worker Failed', err));
-    });
-  }
-</script>
-    head>
+</head>
 <body>
 
     <header>
@@ -96,25 +88,21 @@
     </header>
 
     <div class="grid-container">
-        <!-- نظام YOU للدفع -->
         <a href="#payment" class="card">
             <h2>نظام YOU المالي 💳</h2>
             <p>إدارة المدفوعات (فودافون كاش / فوري)</p>
         </a>
 
-        <!-- مترجم Palabra -->
         <a href="#translator" class="card">
             <h2>مترجم Palabra 🗣️</h2>
             <p>الترجمة الصوتية الفورية الاحترافية</p>
         </a>
 
-        <!-- محاكي Eco-Pulse -->
         <a href="#simulator" class="card">
             <h2>محاكي Eco-Pulse 🦾</h2>
             <p>التحكم في الروبوتات بإشارات العضلات</p>
         </a>
 
-        <!-- خدمات SEO -->
         <a href="#seo" class="card">
             <h2>خدمات SEO & UI/UX 🚀</h2>
             <p>تحسين محركات البحث وتصميم الواجهات</p>
@@ -125,5 +113,15 @@
         <p>تم التطوير بواسطة أشرف حسن © 2026</p>
     </footer>
 
+    <!-- كود الـ Service Worker يتم وضعه قبل نهاية الجسم -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('sw.js')
+            .then(reg => console.log('Service Worker Registered'))
+            .catch(err => console.log('Service Worker Failed', err));
+        });
+      }
+    </script>
 </body>
 </html>
