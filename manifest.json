@@ -1,11 +1,10 @@
 {
-  "name": "Creative 2026 - Super App",
+  "name": "Creative 2026 - القائد التقني",
   "short_name": "Creative2026",
-  "description": "منصة القائد التقني المتكاملة للأدوات والخدمات البرمجية",
-  "start_url": "/",
+  "start_url": ".",
   "display": "standalone",
-  "background_color": "#000000", 
-  "theme_color": "#39FF14", 
+  "background_color": "#000000",
+  "theme_color": "#39FF14",
   "icons": [
     {
       "src": "icon-192.png",
