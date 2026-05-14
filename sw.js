@@ -1,24 +1,24 @@
-const CACHE_NAME = 'creative-2026-v1';
+const cacheName = 'creative-2026-v1';
 const assets = [
   './',
   './index.html',
-  './manifest.json'
+  './FontAwesome-Icons-icon.png'
 ];
 
-// تثبيت المحرك وحفظ الملفات الأساسية لتوفير البطارية والبيانات
-self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => {
-      return cache.addAll(assets);
+// تثبيت الـ Service Worker وتخزين الملفات
+self.addEventListener('install', evt => {
+  evt.waitUntil(
+    caches.open(cacheName).then(cache => {
+      cache.addAll(assets);
     })
   );
 });
 
-// استرجاع الملفات بسرعة فائقة دون استهلاك RAM إضافي
-self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request).then(response => {
-      return response || fetch(event.request);
+// جلب البيانات من الذاكرة المؤقتة (Cache)
+self.addEventListener('fetch', evt => {
+  evt.respondWith(
+    caches.match(evt.request).then(rec => {
+      return rec || fetch(evt.request);
     })
   );
 });
