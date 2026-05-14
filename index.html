@@ -5,21 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creative 2026 | القائد التقني</title>
 
-    <!-- أكواد الـ PWA والتعريف -->
+    <!-- إعدادات PWA -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#000000">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     
-    <!-- الأيقونات -->
-    <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
-    <link rel="apple-touch-icon" href="icon-192.png">
+    <!-- ربط الأيقونة بالملف الموجود لديك -->
+    <link rel="icon" type="image/png" href="FontAwesome-Icons-icon.png">
+    <link rel="apple-touch-icon" href="FontAwesome-Icons-icon.png">
 
     <style>
         /* التصميم الملكي الفسفوري */
         body {
             background-color: #000000;
-            color: #39FF14; /* أخضر فسفوري نيون */
+            color: #39FF14;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 20px;
@@ -34,7 +34,7 @@
         }
 
         h1 {
-            font-size: 26px; 
+            font-size: 26px;
             text-transform: uppercase;
             letter-spacing: 2px;
             text-shadow: 0 0 10px #39FF14;
@@ -42,7 +42,7 @@
 
         .grid-container {
             display: grid;
-            grid-template-columns: 1fr; 
+            grid-template-columns: 1fr;
             gap: 20px;
         }
 
@@ -65,7 +65,7 @@
 
         .card h2 {
             margin: 0;
-            font-size: 22px; 
+            font-size: 22px;
         }
 
         .card p {
@@ -113,13 +113,12 @@
         <p>تم التطوير بواسطة أشرف حسن © 2026</p>
     </footer>
 
-    <!-- كود الـ Service Worker يتم وضعه قبل نهاية الجسم -->
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
           navigator.serviceWorker.register('sw.js')
             .then(reg => console.log('Service Worker Registered'))
-            .catch(err => console.log('Service Worker Failed', err));
+            .catch(err => console.error('Service Worker Failed', err));
         });
       }
     </script>
