@@ -5,23 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creative 2026 | القائد التقني</title>
 
+    <!-- إعدادات PWA للهاتف -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#000000">
     <link rel="icon" type="image/png" href="FontAwesome-Icons-icon.png">
+    <link rel="apple-touch-icon" href="FontAwesome-Icons-icon.png">
     
     <style>
-        body { background-color: #000000; color: #39FF14; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 20px; text-align: center; }
+        body { background-color: #000000; color: #39FF14; font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; padding: 20px; text-align: center; }
         header { padding: 20px 0; border-bottom: 2px solid #39FF14; box-shadow: 0 0 15px #39FF14; margin-bottom: 30px; }
-        h1 { font-size: 26px; text-shadow: 0 0 10px #39FF14; }
+        h1 { font-size: 26px; text-transform: uppercase; text-shadow: 0 0 10px #39FF14; }
+        
         .grid-container { display: grid; grid-template-columns: 1fr; gap: 15px; }
         .card { background: #111; border: 2px solid #39FF14; padding: 20px; border-radius: 15px; cursor: pointer; text-decoration: none; color: #39FF14; transition: 0.3s; }
-        .card:active { background: #39FF14; color: #000; }
+        .card:active { background: #39FF14; color: #000; box-shadow: 0 0 20px #39FF14; }
+
+        /* واجهة الأنظمة النشطة */
+        #active-section { margin-top: 30px; padding: 20px; border: 1px solid #39FF14; border-radius: 15px; background: #050505; display: none; box-shadow: inset 0 0 10px #39FF14; }
+        input { width: 90%; padding: 15px; margin: 10px 0; background: #111; border: 1px solid #39FF14; color: #fff; border-radius: 8px; font-size: 20px; }
+        button { padding: 15px 30px; background: #39FF14; color: #000; border: none; font-weight: bold; border-radius: 10px; cursor: pointer; width: 100%; margin-top: 10px; font-size: 18px; }
         
-        #active-section { margin-top: 30px; padding: 20px; border: 1px solid #39FF14; border-radius: 15px; background: #050505; display: none; }
-        input { width: 90%; padding: 12px; margin: 10px 0; background: #111; border: 1px solid #39FF14; color: #fff; border-radius: 8px; font-size: 18px; }
-        button { padding: 15px 30px; background: #39FF14; color: #000; border: none; font-weight: bold; border-radius: 10px; cursor: pointer; width: 100%; margin-top: 10px; }
-        #resultText { margin: 20px 0; font-size: 20px; color: #fff; min-height: 50px; }
-        .palabra-btn { background: none; border: 2px solid #00FFFF; color: #00FFFF; border-radius: 50%; width: 70px; height: 70px; font-size: 25px; }
+        #resultText { margin: 20px 0; font-size: 22px; color: #fff; min-height: 60px; border-bottom: 1px solid #333; }
+        .palabra-btn { background: none; border: 3px solid #00FFFF; color: #00FFFF; border-radius: 50%; width: 80px; height: 80px; font-size: 30px; cursor: pointer; }
+        footer { margin-top: 40px; font-size: 14px; color: #00FFFF; }
     </style>
 </head>
 <body>
@@ -34,61 +40,74 @@
     <div class="grid-container">
         <div class="card" onclick="showSection('pay-ui')">
             <h2>نظام YOU المالي 💳</h2>
-            <p>إرسال تأكيد الدفع للإيميل</p>
+            <p>تأكيد العمليات (فودافون كاش / فوري)</p>
         </div>
 
         <div class="card" onclick="showSection('trans-ui')">
             <h2>مترجم Palabra 🗣️</h2>
-            <p>ترجمة صوتية ونطق آلي</p>
+            <p>الترجمة الذكية والنطق الآلي</p>
         </div>
     </div>
 
+    <!-- منطقة العمليات -->
     <div id="active-section">
-        <!-- واجهة نظام YOU المعدلة للإيميل -->
+        
+        <!-- نظام YOU الربط بـ Formspree -->
         <div id="pay-ui" style="display: none;">
-            <h3 style="color: #39FF14;">إدارة مدفوعات YOU</h3>
-            <form action="https://formspree.io/f/YOUR_ID_HERE" method="POST" id="pay-form">
-                <input type="number" name="Amount" placeholder="المبلغ" required>
-                <input type="text" name="TransactionID" placeholder="Transaction ID" required>
-                <input type="email" name="_replyto" placeholder="إيميلك للتواصل (اختياري)">
+            <h3 style="color: #39FF14;">إرسال بيانات العملية</h3>
+            <form action="https://formspree.io/f/mwvyzgyd" method="POST">
+                <input type="number" name="المبلغ" placeholder="أدخل المبلغ" required>
+                <input type="text" name="رقم_العملية" placeholder="Transaction ID" required>
                 <button type="submit">تأكيد وإرسال للإيميل</button>
             </form>
         </div>
 
-        <!-- واجهة Palabra -->
+        <!-- مترجم Palabra -->
         <div id="trans-ui" style="display: none;">
             <h3 style="color: #00FFFF;">Palabra AI Translator</h3>
-            <div id="resultText">اضغط وتحدث.. سأترجم للإنجليزية وأنطق</div>
+            <div id="resultText">اضغط وتحدث.. سأترجم وأنطق</div>
             <button class="palabra-btn" onclick="startPalabra()">🎤</button>
         </div>
+
     </div>
+
+    <footer>
+        <p>تم التطوير بواسطة أشرف حسن © 2026</p>
+    </footer>
 
     <script>
         function showSection(id) {
             document.getElementById('active-section').style.display = 'block';
             document.getElementById('pay-ui').style.display = (id === 'pay-ui') ? 'block' : 'none';
             document.getElementById('trans-ui').style.display = (id === 'trans-ui') ? 'block' : 'none';
+            window.scrollTo(0, document.body.scrollHeight);
         }
 
-        // برمجة Palabra (نطق + ترجمة)
+        // محرك Palabra للترجمة والنطق
         function startPalabra() {
             const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
             recognition.lang = 'ar-EG';
             
-            recognition.onstart = () => { document.getElementById('resultText').innerHTML = "جاري الاستماع للقائد..."; };
+            recognition.onstart = () => { document.getElementById('resultText').innerHTML = "جاري الاستماع..."; };
 
             recognition.onresult = (event) => {
                 const text = event.results[0][0].transcript;
                 document.getElementById('resultText').innerHTML = "أنت قلت: " + text;
-                speak(text); // الموبايل هينطق اللي سمعه
+                
+                // نطق النص (يمكنك تغيير اللغة لـ en-US إذا أردت ترجمة)
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'ar-EG'; 
+                window.speechSynthesis.speak(utterance);
             };
+            recognition.onerror = () => { alert("يرجى تفعيل صلاحية الميكروفون"); };
             recognition.start();
         }
 
-        function speak(text) {
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = 'en-US'; 
-            window.speechSynthesis.speak(utterance);
+        // تسجيل الـ Service Worker لضمان عمل الـ PWA
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js').then(() => {
+                console.log("PWA Ready!");
+            });
         }
     </script>
 </body>
