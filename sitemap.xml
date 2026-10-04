@@ -1,9 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://ashraflx71.github.io/creative2026/</loc>
-    <lastmod>2026-03-24</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-  </urlset>
+import xml.etree.ElementTree as ET
+from datetime import datetime
+
+sitemap_path = 'sitemap.xml'
+tree = ET.parse(sitemap_path)
+root = tree.getroot()
+
+# تحديث جميع التواريخ إلى التاريخ الحالي
+today = datetime.now().strftime('%Y-%m-%d')
+for url in root.findall('{http://www.sitemaps.org/schemas/sitemap/0.9}url'):
+    loc = url.find('{http://www.sitemaps.org/schemas/sitemap/0.9}loc')
+    lastmod = url.find('{http://www.sitemaps.org/schemas/sitemap/0.9}lastmod')
+    if lastmod is not None:
+        lastmod.text = today
+
+tree.write(sitemap_path, encoding='utf-8', xml_declaration=True)
+print(f"✅ تم تحديث sitemap.xml بتاريخ: {today}")
