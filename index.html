@@ -1,71 +1,265 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creative 2026 | تصميم مواقع و SEO وحلول برمجية</title>
-    <meta name="description" content="Creative 2026 بإشراف أشرف حسن من الإسكندرية: تصميم مواقع سريعة، SEO، أتمتة بايثون، أنظمة دفع، واستشارات UI/UX.">
-    <link rel="canonical" href="https://ashraflx71.github.io/creative2026/">
-    <link rel="manifest" href="manifest.json">
+
+    <title>Creative 2026 | تصميم مواقع وSEO وحلول برمجية</title>
+
+    <meta name="description" content="Creative 2026 بإشراف أشرف حسن من الإسكندرية: تصميم مواقع سريعة، تحسين محركات البحث SEO، أتمتة بايثون، وحلول تقنية.">
+
     <meta name="theme-color" content="#000000">
-    <link rel="icon" type="image/png" href="FontAwesome-Icons-icon.png">
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical" href="https://creative2026-2smz.vercel.app/">
+    <link rel="manifest" href="./manifest.json">
+    <link rel="icon" type="image/png" href="./FontAwesome-Icons-icon.png">
+
     <style>
-        :root { --accent: #ccff00; --blue: #0051ff; --muted: #bbb; }
-        * { box-sizing: border-box; }
-        body { background: #000; color: #fff; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; margin: 0; font-size: 18px; line-height: 1.7; }
-        a:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
-        .topnav { display: flex; gap: 10px; padding: 12px 20px; border-bottom: 1px solid #111; flex-wrap: wrap; }
-        .topnav a { color: var(--accent); text-decoration: none; font-size: 16px; padding: 6px 12px; border: 1px solid #222; border-radius: 10px; }
-        .hero { padding: 60px 20px; text-align: center; border-bottom: 3px solid var(--accent); background: radial-gradient(circle, #111 0%, #000 100%); }
-        .hero h1 { color: var(--accent); font-size: clamp(32px, 9vw, 48px); margin: 0 0 10px; text-shadow: 0 0 20px rgba(204,255,0,.3); }
-        .hero p { color: var(--muted); margin: 0 auto 25px; max-width: 600px; }
-        .btn { display: inline-block; text-decoration: none; background: var(--accent); color: #000; padding: 14px 28px; border-radius: 14px; font-weight: bold; margin: 5px; }
-        .btn.blue { background: var(--blue); color: #fff; }
-        main { max-width: 1100px; margin: 0 auto; padding: 20px; }
-        h2.section { color: var(--accent); border-right: 5px solid var(--blue); padding-right: 12px; font-size: 24px; margin: 30px 0 15px; }
-        .grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
-        @media (min-width: 768px) { .grid { grid-template-columns: 1fr 1fr; } }
-        .card { border: 1px solid #222; border-radius: 20px; padding: 20px; background: #050505; }
-        .card h3 { margin: 0 0 8px; color: var(--accent); font-size: 21px; }
-        .card p { margin: 0; color: #ddd; font-size: 16px; }
-        .icon { font-size: 28px; display: block; }
-        footer p { text-align: center; color: #888; padding: 25px 20px; margin: 0; font-size: 15px; }
+        :root {
+            --accent: #ccff00;
+            --blue: #0051ff;
+            --muted: #bbb;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #000;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            margin: 0;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        a:focus-visible {
+            outline: 3px solid var(--blue);
+            outline-offset: 3px;
+        }
+
+        .topnav {
+            display: flex;
+            gap: 10px;
+            padding: 12px 20px;
+            border-bottom: 1px solid #222;
+            flex-wrap: wrap;
+        }
+
+        .topnav a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 16px;
+            padding: 6px 12px;
+            border: 1px solid #333;
+            border-radius: 10px;
+        }
+
+        .topnav a:hover {
+            background: #151515;
+        }
+
+        .hero {
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 3px solid var(--accent);
+            background: radial-gradient(circle, #111 0%, #000 100%);
+        }
+
+        .hero h1 {
+            color: var(--accent);
+            font-size: clamp(32px, 9vw, 48px);
+            margin: 0 0 10px;
+            text-shadow: 0 0 20px rgba(204, 255, 0, .3);
+        }
+
+        .hero p {
+            color: var(--muted);
+            margin: 0 auto 25px;
+            max-width: 600px;
+        }
+
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            background: var(--accent);
+            color: #000;
+            padding: 14px 28px;
+            border-radius: 14px;
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        .btn:hover {
+            opacity: .88;
+        }
+
+        .btn.blue {
+            background: var(--blue);
+            color: #fff;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2.section {
+            color: var(--accent);
+            border-right: 5px solid var(--blue);
+            padding-right: 12px;
+            font-size: 24px;
+            margin: 30px 0 15px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        @media (min-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .card {
+            border: 1px solid #222;
+            border-radius: 20px;
+            padding: 20px;
+            background: #050505;
+        }
+
+        .card h3 {
+            margin: 0 0 8px;
+            color: var(--accent);
+            font-size: 21px;
+        }
+
+        .card p {
+            margin: 0;
+            color: #ddd;
+            font-size: 16px;
+        }
+
+        .icon {
+            font-size: 28px;
+            display: block;
+        }
+
+        footer p {
+            text-align: center;
+            color: #888;
+            padding: 25px 20px;
+            margin: 0;
+            font-size: 15px;
+        }
     </style>
 </head>
+
 <body>
 
-<nav class="topnav" aria-label="التنقل">
-    <a href="index.html" aria-current="page">الرئيسية</a>
-    <a href="services.html">الخدمات</a>
-    <a href="dashboard.html">لوحة التحكم</a>
+<nav class="topnav" aria-label="التنقل الرئيسي">
+    <a href="./index.html" aria-current="page">الرئيسية</a>
+    <a href="./services.html">الخدمات</a>
 </nav>
 
 <header class="hero">
     <h1>Creative 2026</h1>
-    <p>حلول القائد التقني: مواقع سريعة، ظهور أقوى في جوجل، وأتمتة توفر وقتك، من الفكرة إلى التنفيذ الكامل.</p>
-    <a class="btn" href="services.html">شاهد الخدمات</a>
-    <a class="btn blue" id="wa" href="#" target="_blank" rel="noopener">تواصل واتساب</a>
+
+    <p>
+        حلول القائد التقني: مواقع سريعة، ظهور أقوى في جوجل،
+        وأتمتة توفر وقتك، من الفكرة إلى التنفيذ.
+    </p>
+
+    <a class="btn" href="./services.html">شاهد الخدمات</a>
+
+    <a
+        class="btn blue"
+        id="wa"
+        href="https://wa.me/201111210119"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+        تواصل واتساب
+    </a>
 </header>
 
 <main>
+
     <h2 class="section">ماذا نقدّم؟</h2>
+
     <div class="grid">
-        <div class="card"><span class="icon" aria-hidden="true">🌐</span><h3>تصميم المواقع و SEO</h3><p>مواقع خفيفة وسريعة على الجوال، مع تحسين ظهورها في نتائج البحث.</p></div>
-        <div class="card"><span class="icon" aria-hidden="true">📱</span><h3>بايثون وأتمتة</h3><p>برامج وتطبيقات تؤتمت المهام المتكررة وتنتج المحتوى.</p></div>
-        <div class="card"><span class="icon" aria-hidden="true">💳</span><h3>أنظمة الدفع</h3><p>دمج وسائل الدفع المحلية مع نظام تحصيل منظم.</p></div>
-        <div class="card"><span class="icon" aria-hidden="true">🏗️</span><h3>استشارات UI/UX</h3><p>تخطيط الواجهات وتحويل الفكرة إلى نموذج عمل.</p></div>
+
+        <div class="card">
+            <span class="icon" aria-hidden="true">🌐</span>
+            <h3>تصميم المواقع وSEO</h3>
+            <p>
+                مواقع خفيفة وسريعة على الجوال،
+                مع تحسين ظهورها في نتائج البحث.
+            </p>
+        </div>
+
+        <div class="card">
+            <span class="icon" aria-hidden="true">📱</span>
+            <h3>بايثون وأتمتة</h3>
+            <p>
+                برامج وحلول تساعد على أتمتة المهام
+                المتكررة وتوفير الوقت والجهد.
+            </p>
+        </div>
+
+        <div class="card">
+            <span class="icon" aria-hidden="true">💳</span>
+            <h3>أنظمة الدفع</h3>
+            <p>
+                دراسة ودمج حلول الدفع الإلكتروني
+                المناسبة لطبيعة المشروع.
+            </p>
+        </div>
+
+        <div class="card">
+            <span class="icon" aria-hidden="true">🏗️</span>
+            <h3>استشارات UI/UX</h3>
+            <p>
+                تخطيط الواجهات وتحسين تجربة المستخدم
+                وتحويل الأفكار إلى نماذج عملية.
+            </p>
+        </div>
+
     </div>
 
     <h2 class="section">من أعمالنا</h2>
+
     <div class="card">
         <h3>Back To Zero</h3>
-        <p>موقع متخصص في سمكرة ودهان وتجديد السيارات بالإسكندرية، بهوية سوداء وزرقاء وخريطة مدمجة وزر تواصل مباشر.</p>
+        <p>
+            موقع متخصص في سمكرة ودهان وتجديد السيارات
+            بالإسكندرية، بهوية سوداء وزرقاء
+            وخريطة مدمجة وزر تواصل مباشر.
+        </p>
     </div>
 
     <h2 class="section">من نحن</h2>
+
     <div class="card">
-        <p>أشرف حسن، مطوّر ومصمم من الإسكندرية، أركز على الكود النظيف الخفيف الذي يعمل بكفاءة على الجوال، وأدمج الذكاء الاصطناعي لتقليل الجهد وزيادة الدقة.</p>
+        <p>
+            أشرف حسن، مهتم بالتطوير والتصميم والحلول التقنية
+            من الإسكندرية. أركز على بناء مواقع خفيفة
+            وسهلة الاستخدام تعمل بكفاءة على الهواتف،
+            مع الاستفادة من التقنيات الحديثة والذكاء الاصطناعي.
+        </p>
     </div>
+
 </main>
 
 <footer>
@@ -73,12 +267,26 @@
 </footer>
 
 <script>
-    var msg = "مرحباً أشرف، أريد الاستفسار عن خدمات Creative 2026";
-    document.getElementById('wa').href = "https://wa.me/201111210119?text=" + encodeURIComponent(msg);
+    const message =
+        "مرحباً أشرف، أريد الاستفسار عن خدمات Creative 2026";
 
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js');
+    document.getElementById("wa").href =
+        "https://wa.me/201111210119?text=" +
+        encodeURIComponent(message);
+
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+            navigator.serviceWorker
+                .register("./sw.js")
+                .catch((error) => {
+                    console.warn(
+                        "تعذر تسجيل Service Worker:",
+                        error
+                    );
+                });
+        });
     }
 </script>
+
 </body>
 </html>
