@@ -1,5 +1,5 @@
-
 User-agent: *
 Allow: /
+Disallow: /dashboard.html
 
 Sitemap: https://ashraflx71.github.io/creative2026/sitemap.xml
