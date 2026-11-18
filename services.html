@@ -3,112 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ترسانة الخدمات | Creative 2026</title>
+    <meta name="theme-color" content="#000000">
+    <title>خدمات تصميم المواقع و SEO والبرمجة | Creative 2026</title>
+    <meta name="description" content="Creative 2026: تصميم مواقع سريعة، تحسين محركات البحث SEO، تطبيقات بايثون وأتمتة، أنظمة دفع إلكتروني، واستشارات UI/UX من الفكرة إلى التنفيذ.">
+    <meta property="og:title" content="خدمات Creative 2026">
+    <meta property="og:description" content="مواقع سريعة، SEO، أتمتة، أنظمة دفع، واستشارات تقنية.">
+    <meta property="og:type" content="website">
+    <link rel="manifest" href="manifest.json">
     <style>
-        :root { --gold: #ccff00; --royal-blue: #0051ff; --dark: #000000; }
-        body { background-color: var(--dark); color: #fff; font-family: 'Arial', sans-serif; margin: 0; padding: 0; font-size: 20px; }
-        
-        .hero { padding: 60px 20px; text-align: center; border-bottom: 3px solid var(--gold); background: radial-gradient(circle, #111 0%, #000 100%); }
-        .hero h1 { color: var(--gold); font-size: 45px; margin: 0; text-shadow: 0 0 20px rgba(204,255,0,0.3); }
+        :root { --accent: #ccff00; --royal-blue: #0051ff; --dark: #000000; --muted: #bbbbbb; }
+        * { box-sizing: border-box; }
+        body { background-color: var(--dark); color: #fff; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; margin: 0; padding: 0; font-size: 18px; line-height: 1.7; }
 
-        .service-grid { display: grid; grid-template-columns: 1fr; padding: 20px; gap: 25px; }
-        
-        .service-card { 
-            border: 1px solid #222; border-radius: 25px; padding: 25px; 
-            background: #050505; transition: 0.4s; position: relative;
-        }
-        .service-card:hover { border-color: var(--gold); transform: translateY(-5px); }
+        .topnav { display: flex; gap: 10px; padding: 12px 20px; border-bottom: 1px solid #111; }
+        .topnav a { color: var(--accent); text-decoration: none; font-size: 16px; padding: 6px 12px; border: 1px solid #222; border-radius: 10px; }
+        .topnav a:focus-visible, .contact-btn:focus-visible { outline: 3px solid var(--royal-blue); outline-offset: 2px; }
 
-        .category-icon { color: var(--gold); font-size: 30px; margin-bottom: 15px; display: block; }
-        .service-title { color: var(--gold); font-size: 26px; margin: 10px 0; border-right: 5px solid var(--royal-blue); padding-right: 15px; }
-        
-        .features { list-style: none; padding: 0; margin: 20px 0; }
-        .features li { margin-bottom: 10px; font-size: 18px; color: #ccc; display: flex; align-items: center; }
+        .hero { padding: 50px 20px; text-align: center; border-bottom: 3px solid var(--accent); background: radial-gradient(circle, #111 0%, #000 100%); }
+        .hero h1 { color: var(--accent); font-size: clamp(32px, 8vw, 45px); margin: 0 0 10px; text-shadow: 0 0 20px rgba(204,255,0,0.3); }
+        .hero p { margin: 0; color: var(--muted); }
+
+        .service-grid { display: grid; grid-template-columns: 1fr; padding: 20px; gap: 25px; max-width: 1100px; margin: 0 auto; }
+        @media (min-width: 768px) { .service-grid { grid-template-columns: 1fr 1fr; } }
+
+        .service-card { border: 1px solid #222; border-radius: 25px; padding: 25px; background: #050505; transition: 0.4s; display: flex; flex-direction: column; }
+        .service-card.featured { border-color: var(--royal-blue); }
+        .service-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+        @media (prefers-reduced-motion: reduce) { .service-card { transition: none; } .service-card:hover { transform: none; } }
+
+        .category-icon { font-size: 30px; margin-bottom: 10px; display: block; }
+        .service-title { color: var(--accent); font-size: 24px; margin: 10px 0; border-right: 5px solid var(--royal-blue); padding-right: 15px; }
+
+        .features { list-style: none; padding: 0; margin: 15px 0 25px; flex-grow: 1; }
+        .features li { margin-bottom: 10px; font-size: 17px; color: #ddd; display: flex; align-items: flex-start; }
         .features li::before { content: "◈"; color: var(--royal-blue); margin-left: 10px; }
 
-        .contact-btn { 
-            background: var(--gold); color: #000; border: none; padding: 18px; 
-            width: 100%; border-radius: 15px; font-weight: bold; font-size: 20px; cursor: pointer;
-        }
+        .contact-btn { display: block; text-align: center; text-decoration: none; background: var(--accent); color: #000; padding: 16px; width: 100%; border-radius: 15px; font-weight: bold; font-size: 19px; }
+        .contact-btn.blue { background: var(--royal-blue); color: #fff; }
 
-        .tech-stack { font-size: 14px; color: #555; margin-top: 15px; text-align: center; border-top: 1px solid #111; padding-top: 10px; }
+        .tech-stack { font-size: 14px; color: #999; margin-top: 15px; text-align: center; border-top: 1px solid #1a1a1a; padding-top: 10px; }
+
+        footer p { text-align: center; color: #888; padding: 20px; margin: 0; font-size: 15px; }
     </style>
 </head>
 <body>
 
-<div class="hero">
+<nav class="topnav" aria-label="التنقل">
+    <a href="index.html">الرئيسية</a>
+    <a href="services.html" aria-current="page">الخدمات</a>
+</nav>
+
+<header class="hero">
     <h1>Creative 2026</h1>
     <p>حلول القائد التقني: من الفكرة إلى التنفيذ الكامل</p>
-</div>
+</header>
 
-<div class="service-grid">
+<main class="service-grid">
 
-    <!-- 1. الويب والسيو -->
-    <div class="service-card">
-        <span class="category-icon">🌐</span>
+    <section class="service-card">
+        <span class="category-icon" aria-hidden="true">🌐</span>
         <h2 class="service-title">تصميم المواقع و SEO</h2>
         <ul class="features">
             <li>مواقع فائقة السرعة (Green Code)</li>
-            <li>تصدر نتائج البحث الأولى في جوجل</li>
-            <li>إدارة المحتوى والمداونات الآلية</li>
+            <li>تحسين ظهور موقعك في نتائج بحث جوجل</li>
+            <li>إدارة المحتوى والمدونات الآلية</li>
         </ul>
-        <button class="contact-btn" onclick="order('تطوير المواقع و SEO')">طلب الخدمة</button>
-        <div class="tech-stack">GitHub | Blogger | Google Console</div>
-    </div>
+        <a class="contact-btn" href="#" data-service="تطوير المواقع و SEO">طلب الخدمة</a>
+        <div class="tech-stack">GitHub | Blogger | Google Search Console</div>
+    </section>
 
-    <!-- 2. تطبيقات الموبايل والبايثون -->
-    <div class="service-card" style="border: 1px solid var(--royal-blue);">
-        <span class="category-icon">📱</span>
+    <section class="service-card featured">
+        <span class="category-icon" aria-hidden="true">📱</span>
         <h2 class="service-title">تطبيقات الذكاء والبايثون</h2>
         <ul class="features">
             <li>تطبيقات Streamlit للتحكم والبيانات</li>
             <li>برامج أتمتة المهام (Automation)</li>
             <li>محاكيات وبرمجيات مخصصة للموبايل</li>
         </ul>
-        <button class="contact-btn" style="background: var(--royal-blue); color: #fff;" onclick="order('تطبيقات الموبايل والبايثون')">طلب البرمجة</button>
+        <a class="contact-btn blue" href="#" data-service="تطبيقات الموبايل والبايثون">طلب البرمجة</a>
         <div class="tech-stack">Python | Streamlit | Cloud Shell</div>
-    </div>
+    </section>
 
-    <!-- 3. بوابة دفع YOU -->
-    <div class="service-card">
-        <span class="category-icon">💳</span>
+    <section class="service-card">
+        <span class="category-icon" aria-hidden="true">💳</span>
         <h2 class="service-title">أنظمة الدفع الإلكتروني (YOU)</h2>
         <ul class="features">
             <li>دمج بوابات الدفع المحلية (فودافون كاش، فوري)</li>
             <li>تأمين العمليات برقم العملية (Transaction ID)</li>
             <li>نظام مبيعات وتحصيل متكامل</li>
         </ul>
-        <button class="contact-btn" onclick="order('نظام دفع YOU')">تفعيل النظام</button>
+        <a class="contact-btn" href="#" data-service="نظام دفع YOU">تفعيل النظام</a>
         <div class="tech-stack">YOU Gateway | Security Protocols</div>
-    </div>
+    </section>
 
-    <!-- 4. الاستشارات التقنية UI/UX -->
-    <div class="service-card">
-        <span class="category-icon">🏗️</span>
+    <section class="service-card">
+        <span class="category-icon" aria-hidden="true">🏗️</span>
         <h2 class="service-title">استشارات Technical Lead</h2>
         <ul class="features">
             <li>تخطيط واجهات المستخدم UI/UX الملكية</li>
             <li>إدارة المشاريع البرمجية المعقدة</li>
             <li>تحويل الأفكار إلى نماذج عمل (Prototypes)</li>
         </ul>
-        <button class="contact-btn" onclick="order('استشارة تقنية UI/UX')">احجز استشارة</button>
+        <a class="contact-btn" href="#" data-service="استشارة تقنية UI/UX">احجز استشارة</a>
         <div class="tech-stack">Expert Guidance | User Experience</div>
-    </div>
+    </section>
 
-</div>
+</main>
 
 <footer>
-    <p style="text-align: center; color: #333; padding: 20px;">
-        تم البناء بمعايير القائد العام - أشرف حسن © 2026
-    </p>
+    <p>تم البناء بمعايير القائد العام - أشرف حسن © 2026</p>
 </footer>
 
 <script>
-    function order(serviceName) {
-        const phone = "201111210119";
-        const msg = "تحية للقائد أشرف.. أريد التعاقد بخصوص: " + serviceName;
-        window.location.href = "https://wa.me/" + phone + "?text=" + encodeURIComponent(msg);
-    }
+    (function () {
+        var phone = "201111210119";
+        var links = document.querySelectorAll('a[data-service]');
+        for (var i = 0; i < links.length; i++) {
+            var msg = "تحية للقائد أشرف.. أريد التعاقد بخصوص: " + links[i].getAttribute('data-service');
+            links[i].href = "https://wa.me/" + phone + "?text=" + encodeURIComponent(msg);
+            links[i].target = "_blank";
+            links[i].rel = "noopener";
+        }
+    })();
 </script>
 
 </body>
