@@ -3,115 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creative 2026 | القائد التقني</title>
+    <title>Creative 2026 | تصميم مواقع و SEO وحلول برمجية</title>
+    <meta name="description" content="Creative 2026 بإشراف أشرف حسن من الإسكندرية: تصميم مواقع سريعة، SEO، أتمتة بايثون، أنظمة دفع، واستشارات UI/UX.">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#000000">
     <link rel="icon" type="image/png" href="FontAwesome-Icons-icon.png">
-    
     <style>
-        body { background-color: #000000; color: #39FF14; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 20px; text-align: center; overflow-x: hidden; }
-        header { padding: 20px 0; border-bottom: 2px solid #39FF14; box-shadow: 0 0 15px #39FF14; margin-bottom: 30px; }
-        h1 { font-size: 26px; text-shadow: 0 0 10px #39FF14; }
-        .grid-container { display: grid; grid-template-columns: 1fr; gap: 15px; }
-        .card { background: #111; border: 2px solid #39FF14; padding: 20px; border-radius: 15px; cursor: pointer; color: #39FF14; transition: 0.3s; text-decoration: none; }
-        .card:active { background: #39FF14; color: #000; }
-
-        /* واجهة المحاكي */
-        #active-section { margin-top: 30px; padding: 20px; border: 1px solid #39FF14; border-radius: 15px; background: #050505; display: none; }
-        input { width: 90%; padding: 12px; margin: 10px 0; background: #111; border: 1px solid #39FF14; color: #fff; border-radius: 8px; }
-        button { padding: 15px 30px; background: #39FF14; color: #000; border: none; font-weight: bold; border-radius: 10px; cursor: pointer; width: 100%; margin-top: 10px; }
-
-        /* أنيميشن الروبوت */
-        #robot-status { width: 100px; height: 100px; margin: 20px auto; border: 5px solid #39FF14; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 40px; transition: 0.5s; }
-        .pulse { animation: pulsing 1.5s infinite; }
-        @keyframes pulsing { 0% { box-shadow: 0 0 0 0 rgba(57, 255, 20, 0.7); } 70% { box-shadow: 0 0 0 20px rgba(57, 255, 20, 0); } 100% { box-shadow: 0 0 0 0 rgba(57, 255, 20, 0); } }
-        
-        #log { font-family: monospace; font-size: 14px; color: #00FFFF; margin-top: 15px; text-align: left; background: #111; padding: 10px; border-radius: 5px; height: 80px; overflow-y: auto; }
+        :root { --accent: #ccff00; --blue: #0051ff; --muted: #bbb; }
+        * { box-sizing: border-box; }
+        body { background: #000; color: #fff; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; margin: 0; font-size: 18px; line-height: 1.7; }
+        a:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+        .topnav { display: flex; gap: 10px; padding: 12px 20px; border-bottom: 1px solid #111; flex-wrap: wrap; }
+        .topnav a { color: var(--accent); text-decoration: none; font-size: 16px; padding: 6px 12px; border: 1px solid #222; border-radius: 10px; }
+        .hero { padding: 60px 20px; text-align: center; border-bottom: 3px solid var(--accent); background: radial-gradient(circle, #111 0%, #000 100%); }
+        .hero h1 { color: var(--accent); font-size: clamp(32px, 9vw, 48px); margin: 0 0 10px; text-shadow: 0 0 20px rgba(204,255,0,.3); }
+        .hero p { color: var(--muted); margin: 0 auto 25px; max-width: 600px; }
+        .btn { display: inline-block; text-decoration: none; background: var(--accent); color: #000; padding: 14px 28px; border-radius: 14px; font-weight: bold; margin: 5px; }
+        .btn.blue { background: var(--blue); color: #fff; }
+        main { max-width: 1100px; margin: 0 auto; padding: 20px; }
+        h2.section { color: var(--accent); border-right: 5px solid var(--blue); padding-right: 12px; font-size: 24px; margin: 30px 0 15px; }
+        .grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
+        @media (min-width: 768px) { .grid { grid-template-columns: 1fr 1fr; } }
+        .card { border: 1px solid #222; border-radius: 20px; padding: 20px; background: #050505; }
+        .card h3 { margin: 0 0 8px; color: var(--accent); font-size: 21px; }
+        .card p { margin: 0; color: #ddd; font-size: 16px; }
+        .icon { font-size: 28px; display: block; }
+        footer p { text-align: center; color: #888; padding: 25px 20px; margin: 0; font-size: 15px; }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>CREATIVE 2026</h1>
-        <p>لوحة تحكم القائد التقني</p>
-    </header>
+<nav class="topnav" aria-label="التنقل">
+    <a href="index.html" aria-current="page">الرئيسية</a>
+    <a href="services.html">الخدمات</a>
+    <a href="dashboard.html">لوحة التحكم</a>
+</nav>
 
-    <div class="grid-container">
-        <div class="card" onclick="showSection('pay-ui')"><h2>نظام YOU المالي 💳</h2></div>
-        <div class="card" onclick="showSection('trans-ui')"><h2>مترجم Palabra 🗣️</h2></div>
-        <div class="card" onclick="showSection('eco-pulse')"><h2>محاكي Eco-Pulse 🦾</h2></div>
+<header class="hero">
+    <h1>Creative 2026</h1>
+    <p>حلول القائد التقني: مواقع سريعة، ظهور أقوى في جوجل، وأتمتة توفر وقتك، من الفكرة إلى التنفيذ الكامل.</p>
+    <a class="btn" href="services.html">شاهد الخدمات</a>
+    <a class="btn blue" id="wa" href="#" target="_blank" rel="noopener">تواصل واتساب</a>
+</header>
+
+<main>
+    <h2 class="section">ماذا نقدّم؟</h2>
+    <div class="grid">
+        <div class="card"><span class="icon" aria-hidden="true">🌐</span><h3>تصميم المواقع و SEO</h3><p>مواقع خفيفة وسريعة على الجوال، مع تحسين ظهورها في نتائج البحث.</p></div>
+        <div class="card"><span class="icon" aria-hidden="true">📱</span><h3>بايثون وأتمتة</h3><p>برامج وتطبيقات تؤتمت المهام المتكررة وتنتج المحتوى.</p></div>
+        <div class="card"><span class="icon" aria-hidden="true">💳</span><h3>أنظمة الدفع</h3><p>دمج وسائل الدفع المحلية مع نظام تحصيل منظم.</p></div>
+        <div class="card"><span class="icon" aria-hidden="true">🏗️</span><h3>استشارات UI/UX</h3><p>تخطيط الواجهات وتحويل الفكرة إلى نموذج عمل.</p></div>
     </div>
 
-    <div id="active-section">
-        <!-- واجهة نظام YOU -->
-        <div id="pay-ui" style="display: none;">
-            <h3>إدارة مدفوعات YOU</h3>
-            <form action="https://formspree.io/f/mwvyzgyd" method="POST">
-                <input type="number" name="Amount" placeholder="المبلغ" required>
-                <input type="text" name="TID" placeholder="Transaction ID" required>
-                <button type="submit">إرسال للتأكيد</button>
-            </form>
-        </div>
-
-        <!-- واجهة Palabra -->
-        <div id="trans-ui" style="display: none;">
-            <h3>Palabra AI Translator</h3>
-            <div id="resultText" style="margin: 20px 0; font-size: 20px;">جاهز للترجمة...</div>
-            <button onclick="startPalabra()" style="border-radius: 50%; width: 70px; height: 70px; background: none; border: 2px solid #00FFFF; color: #00FFFF;">🎤</button>
-        </div>
-
-        <!-- واجهة Eco-Pulse -->
-        <div id="eco-pulse" style="display: none;">
-            <h3 style="color: #39FF14;">محاكي سوار MIT (Eco-Pulse)</h3>
-            <div id="robot-status">🤖</div>
-            <p id="status-text">الحالة: في انتظار الإشارة...</p>
-            <button onclick="simulatePulse('FORWARD')">محاكاة نبضة (للأمام)</button>
-            <button onclick="simulatePulse('STOP')" style="background: #ff3131;">توقف طارئ</button>
-            <div id="log">>> نظام التحكم جاهز...</div>
-        </div>
+    <h2 class="section">من أعمالنا</h2>
+    <div class="card">
+        <h3>Back To Zero</h3>
+        <p>موقع متخصص في سمكرة ودهان وتجديد السيارات بالإسكندرية، بهوية سوداء وزرقاء وخريطة مدمجة وزر تواصل مباشر.</p>
     </div>
 
-    <script>
-        function showSection(id) {
-            document.getElementById('active-section').style.display = 'block';
-            document.querySelectorAll('#active-section > div').forEach(div => div.style.display = 'none');
-            document.getElementById(id).style.display = 'block';
-            window.scrollTo(0, document.body.scrollHeight);
-        }
+    <h2 class="section">من نحن</h2>
+    <div class="card">
+        <p>أشرف حسن، مطوّر ومصمم من الإسكندرية، أركز على الكود النظيف الخفيف الذي يعمل بكفاءة على الجوال، وأدمج الذكاء الاصطناعي لتقليل الجهد وزيادة الدقة.</p>
+    </div>
+</main>
 
-        // محاكي Eco-Pulse
-        function simulatePulse(command) {
-            const robot = document.getElementById('robot-status');
-            const log = document.getElementById('log');
-            const statusText = document.getElementById('status-text');
-            
-            robot.classList.add('pulse');
-            log.innerHTML += `<br>> إشارة عضلية مكتشفة: ${command}`;
-            
-            if(command === 'FORWARD') {
-                statusText.innerHTML = "الحالة: الروبوت يتحرك للأمام";
-                robot.style.borderColor = "#39FF14";
-                robot.innerHTML = "🚀";
-            } else {
-                statusText.innerHTML = "الحالة: تم إيقاف المحرك";
-                robot.style.borderColor = "#ff3131";
-                robot.innerHTML = "🛑";
-                robot.classList.remove('pulse');
-            }
-            log.scrollTop = log.scrollHeight;
-        }
+<footer>
+    <p>© 2026 أشرف حسن | الإسكندرية، مصر</p>
+</footer>
 
-        // Palabra Logic
-        function startPalabra() {
-            const rec = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-            rec.lang = 'ar-EG';
-            rec.onresult = (e) => { 
-                const t = e.results[0][0].transcript;
-                document.getElementById('resultText').innerText = "قلت: " + t;
-                const s = new SpeechSynthesisUtterance(t); s.lang = 'ar-EG'; window.speechSynthesis.speak(s);
-            };
-            rec.start();
-        }
-    </script>
+<script>
+    var msg = "مرحباً أشرف، أريد الاستفسار عن خدمات Creative 2026";
+    document.getElementById('wa').href = "https://wa.me/201111210119?text=" + encodeURIComponent(msg);
+</script>
 </body>
 </html>
